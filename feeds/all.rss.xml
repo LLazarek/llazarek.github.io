@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?> 
+<rss version="2.0">
+ <channel>
+  <title>My Blog: My Blog</title>
+  <description>My Blog: My Blog</description>
+  <link>http://www.example.com/index.html</link>
+  <lastBuildDate>Mon, 21 May 2018 23:54:40 UT</lastBuildDate>
+  <pubDate>Mon, 21 May 2018 23:54:40 UT</pubDate>
+  <ttl>1800</ttl>
+  <item>
+   <title>Initial test</title>
+   <link>http://www.example.com/2018/05/initial-test.html?utm_source=all&amp;utm_medium=RSS</link>
+   <guid isPermaLink="false">urn:http-www-example-com:-2018-05-initial-test-html</guid>
+   <pubDate>Mon, 21 May 2018 23:54:40 UT</pubDate>
+   <author>The Unknown Author</author>
+   <description>
+&lt;p&gt;This is a test summary.&lt;/p&gt;&lt;a href="http://www.example.com/2018/05/initial-test.html?utm_source=all&amp;amp;utm_medium=RSS"&gt;&lt;em&gt;More&amp;hellip;&lt;/em&gt;&lt;/a&gt;</description></item>
+  <item>
+   <title>A 2012 blog post</title>
+   <link>http://www.example.com/2012/01/a-2012-blog-post.html?utm_source=all&amp;utm_medium=RSS</link>
+   <guid isPermaLink="false">urn:http-www-example-com:-2012-01-a-2012-blog-post-html</guid>
+   <pubDate>Sun, 01 Jan 2012 05:00:00 UT</pubDate>
+   <author>The Unknown Author</author>
+   <description>
+&lt;p&gt;Here is an example blog post.&lt;/p&gt;
+
+&lt;p&gt;Everything after this paragraph &amp;ldquo;after the break&amp;rdquo;. On index pages and Atom feeds, it will become &amp;ldquo;Continue reading&amp;hellip;&amp;rdquo;, if you configure them to include only the summary &amp;ldquo;blurb&amp;rdquo; before the break.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;some code&lt;/code&gt;&lt;/pre&gt;&lt;a href="http://www.example.com/2012/01/a-2012-blog-post.html?utm_source=all&amp;amp;utm_medium=RSS"&gt;&lt;em&gt;More&amp;hellip;&lt;/em&gt;&lt;/a&gt;</description></item></channel></rss>

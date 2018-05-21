@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?> 
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+ <title type="text">My Blog: Posts tagged 'test'</title>
+ <link rel="self" href="http://www.example.com/feeds/test.atom.xml" />
+ <link href="http://www.example.com/tags/test.html" />
+ <id>urn:http-www-example-com:-tags-test-html</id>
+ <updated>2018-05-21T23:54:40Z</updated>
+ <entry>
+  <title type="text">Initial test</title>
+  <link rel="alternate" href="http://www.example.com/2018/05/initial-test.html?utm_source=test&amp;utm_medium=Atom" />
+  <id>urn:http-www-example-com:-2018-05-initial-test-html</id>
+  <published>2018-05-21T23:54:40Z</published>
+  <updated>2018-05-21T23:54:40Z</updated>
+  <author>
+   <name>The Unknown Author</name></author>
+  <content type="html">
+&lt;p&gt;This is a test summary.&lt;/p&gt;&lt;a href="http://www.example.com/2018/05/initial-test.html?utm_source=test&amp;amp;utm_medium=Atom"&gt;&lt;em&gt;More&amp;hellip;&lt;/em&gt;&lt;/a&gt;</content></entry></feed>
