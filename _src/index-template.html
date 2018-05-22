@@ -1,12 +1,15 @@
 <article>
   <header>
-    <h2><a href='@|uri-path|'>@|title|</a></h2>
-    <p class='date-and-tags'>@|date| :: @|tags|</p>
-    <p class='authors'>By: @|authors|</p>
+    <h2 style="display:inline"><a href='@|uri-path|'>@|title|</a></h2>
+    <span style="display:inline-block; width:40px;"></span>
+    <p class='date-and-tags' style="color:grey;display:inline">@|date| :: @|tags|</p>
+    <!-- <p class='authors' style="color:grey;margin-left:3%">By: @|authors|</p> -->
   </header>
+  <div class='content' style="margin-left:3%">
   @|content-only|
   @(when more?
     @list{<footer>
-            <a href='@|uri-path|'>&hellip; more &hellip;</a>
+            <a href='@|uri-path|'>view full &hellip;</a>
           </footer>})
+  </div>
 </article>
