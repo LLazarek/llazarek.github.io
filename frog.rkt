@@ -4,9 +4,9 @@
 ;; in frog/params.
 (define/contract (init)
   (-> any)
-  (current-scheme/host "http://www.example.com")
-  (current-title "My Blog")
-  (current-author "The Unknown Author"))
+  (current-scheme/host "https://llazarek.github.io")
+  (current-title "llazarek")
+  (current-author "Lukas Lazarek"))
 
 ;; Called once per post and non-post page, on the contents.
 (define/contract (enhance-body xs)
@@ -16,7 +16,7 @@
       (syntax-highlight #:python-executable "python"
                         #:line-numbers? #t
                         #:css-class "source")
-      (auto-embed-tweets #:parents? #t)
+      ;; (auto-embed-tweets #:parents? #t)
       (add-racket-doc-links #:code? #t #:prose? #f)))
 
 ;; Called from `raco frog --clean`.
