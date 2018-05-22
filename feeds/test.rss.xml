@@ -4,9 +4,19 @@
   <title>llazarek: Posts tagged 'test'</title>
   <description>llazarek: Posts tagged 'test'</description>
   <link>https://llazarek.github.io/tags/test.html</link>
-  <lastBuildDate>Mon, 21 May 2018 23:54:40 UT</lastBuildDate>
-  <pubDate>Mon, 21 May 2018 23:54:40 UT</pubDate>
+  <lastBuildDate>Tue, 22 May 2018 02:48:07 UT</lastBuildDate>
+  <pubDate>Tue, 22 May 2018 02:48:07 UT</pubDate>
   <ttl>1800</ttl>
+  <item>
+   <title>Another test</title>
+   <link>https://llazarek.github.io/2018/05/another-test.html?utm_source=test&amp;utm_medium=RSS</link>
+   <guid isPermaLink="false">urn:https-llazarek-github-io:-2018-05-another-test-html</guid>
+   <pubDate>Tue, 22 May 2018 02:48:07 UT</pubDate>
+   <author>Lukas Lazarek</author>
+   <description>
+&lt;p&gt;Replace this with your post text. Add one or more comma-separated
+Tags above. The special tag &amp;lsquo;DRAFT&amp;lsquo; will prevent the post from being
+published.&lt;/p&gt;&lt;a href="https://llazarek.github.io/2018/05/another-test.html?utm_source=test&amp;amp;utm_medium=RSS"&gt;&lt;em&gt;More&amp;hellip;&lt;/em&gt;&lt;/a&gt;</description></item>
   <item>
    <title>Initial test</title>
    <link>https://llazarek.github.io/2018/05/initial-test.html?utm_source=test&amp;utm_medium=RSS</link>
