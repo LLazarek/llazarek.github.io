@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?> 
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+ <title type="text">llazarek: Posts tagged 'racket'</title>
+ <link rel="self" href="https://llazarek.github.io/feeds/racket.atom.xml" />
+ <link href="https://llazarek.github.io/tags/racket.html" />
+ <id>urn:https-llazarek-github-io:-tags-racket-html</id>
+ <updated>2018-05-22T23:06:27Z</updated>
+ <entry>
+  <title type="text">Language-oriented Programming: ptext</title>
+  <link rel="alternate" href="https://llazarek.github.io/2018/05/language-oriented-programming-ptext.html?utm_source=racket&amp;utm_medium=Atom" />
+  <id>urn:https-llazarek-github-io:-2018-05-language-oriented-programming-ptext-html</id>
+  <published>2018-05-22T23:06:27Z</published>
+  <updated>2018-05-22T23:06:27Z</updated>
+  <author>
+   <name>Lukas Lazarek</name></author>
+  <content type="html">
+&lt;p&gt;Language-oriented programming in action with racket.&lt;/p&gt;&lt;a href="https://llazarek.github.io/2018/05/language-oriented-programming-ptext.html?utm_source=racket&amp;amp;utm_medium=Atom"&gt;&lt;em&gt;More&amp;hellip;&lt;/em&gt;&lt;/a&gt;</content></entry></feed>
