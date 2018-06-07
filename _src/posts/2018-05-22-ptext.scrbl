@@ -8,6 +8,12 @@ Language-oriented programming in action with racket.
 
 <!-- more -->
 
+@margin-note{
+@bold{Note}
+I recently learned about @hyperlink["https://docs.racket-lang.org/scribble/index.html"]{scribble}, and specifically @hyperlink["https://docs.racket-lang.org/scribble-pp/index.html"]{how scribble as a text preprocessor}.
+It is far superior to ptext in terms of being actually useful.
+}
+
 A year or two ago, I wrote a text preprocessor to allow embedded text
 generation using @hyperlink["https://racket-lang.org/"]{racket}.
 The idea was to be able to embed racket expressions inside a text file
@@ -57,7 +63,7 @@ original text is printed and the expressions are evaluated and then
 printed.
 It's beautifully simple.
 
-I won't go into further detail but please check out
+I won't go into further detail but do check out
 @hyperlink["https://beautifulracket.com/"]{Beautiful Racket} if you
 are interested.
 It's really fantastic.
@@ -65,3 +71,6 @@ This exercise in applying language-oriented programming to one of my
 own tools has served to clearly show me how this approach can be
 useful.
 I'm excited to see where else I might be able to use these ideas.
+
+
+
