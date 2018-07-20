@@ -1,4 +1,5 @@
 https://llazarek.github.io/2018/05/language-oriented-programming-ptext.html
+https://llazarek.github.io/2018/07/tracking-expenses-with-ledger.html
 https://llazarek.github.io/2018/07/modal-editing-in-emacs.html
 https://llazarek.github.io/2018/07/organization-with-org-mode.html
 https://llazarek.github.io/2018/07/improving-the-agenda.html
