@@ -1,0 +1,50 @@
+#+OPTIONS: toc:nil
+
+# Tags seperated by commas and spaces
+#+BEGIN_SRC markdown
+Title: Tracking Expenses with Ledger
+Date: 2018-07-20T13:34:47
+Tags: DRAFT
+#+END_SRC
+
+#+ll-process: (ll-replace "^\\* " "<br></br><br></br>\n* ")
+
+* Header :notitle:
+How I track expenses using ledger, even on my phone.
+#+HTML: <!-- more -->
+
+* Content :notitle:
+
+* Ledger
+I use [[https://www.ledger-cli.org/][ledger]] to track my personal finances.
+Ledger is a commandline tool for [[https://en.wikipedia.org/wiki/Double-entry_bookkeeping_system][double-entry accounting]], and it's most salient feature is that all of my financial data is stored in plain text and ledger never automatically modifies it.
+This guarantees that my data will always be easily accessible (no software lock-in) and can't be corrupted by a bug, crash, etc.
+
+The ledger website has a pretty thorough guide to using the tool, so I won't explain in any detail here.
+The basic idea is to have entries for every financial transaction that look like this:
+#+BEGIN_EXAMPLE
+date * (Person or company the transaction is with)
+    ; (A note on what this transaction is)
+    (An account which is credited or debited)  (Amount to credit/debit)
+    (An account which is credited or debited)  (Amount to credit/debit)
+
+; Example:
+
+2018/07/17 * Ben's Noodles
+    ; Dinner
+    expenses:basics:food  25.0
+    liabilities:cards:visa  -25.0
+#+END_EXAMPLE
+
+Then, ledger can check my math and produce reports from the commandline, such as how much money I have left in my accounts, or how much I spent on food last month, or all of the transactions I made with Ben's Noodles since September of this year.
+
+* Tracking expenses when not at the computer
+While I greatly appreciate ledger's simplicity and compatibility with unix tools, one of my main quibbles with it early on was keeping track of expenses when I am not at the computer.
+Most of my expenses are incurred at times when I can't add them to my ledger file, so I needed a way to temporarily store entries and a mechanism to import them into my ledger file.
+The obvious solution was to use an expense-tracking app which supports data export.
+
+I use [[https://play.google.com/store/apps/details?id%3Dcom.monefy.app.lite&hl%3Den_US][Monefy]], and it suits my needs pretty well.
+It has all of the basic components of a ledger entry as described above, so it suffices for the 
+
+* Recurring ledger entries
+
