@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <meta charset="utf-8">
+    <title>Modal Editing in Emacs</title>
+    <meta name="description" content="Modal editing in emacs is easy, and can be much better than vim....">
+    <meta name="author"      content="Lukas Lazarek">
+    <meta name="keywords"    content="emacs">
+    <meta name="viewport"    content="width=device-width, initial-scale=1.0">
+    <link rel="icon"      href="/favicon.ico">
+    <link rel="canonical" href="https://llazarek.github.io/2018/07/modal-editing-in-emacs.html">
+    <link rel="next" href="/2018/07/organization-with-org-mode.html">
+    <link rel="prev" href="/2018/07/improving-the-agenda.html">
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/css/scribble.css">
+    <link rel="stylesheet" type="text/css" href="/css/custom.css">
+    <!-- Feeds -->
+    <link rel="alternate" type="application/atom+xml"
+          href="/feeds/all.atom.xml" title="Atom Feed">
+    <link rel="alternate" type="application/rss+xml"
+          href="/feeds/all.rss.xml" title="RSS Feed">
+    <!-- JS -->
+    <script type="text/javascript">
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-xxxxx', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </head>
+  <body>
+
+    <!-- A standard Twitter Bootstrap nav bar -->
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+      <div class="container">
+
+      <a href="/index.html" class="navbar-brand">llazarek</a>
+
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+              data-target="#navbar_collapse" aria-controls="navbar_collapse"
+              aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbar_collapse">
+          <ul class="navbar-nav mr-auto">
+
+
+            <li class="nav-item dropdown">
+              <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
+                Tags <b class="caret"></b>
+              </a>
+
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="/tags/emacs.html">emacs</a><a class="dropdown-item" href="/tags/org.html">org</a><a class="dropdown-item" href="/tags/PL.html">PL</a><a class="dropdown-item" href="/tags/racket.html">racket</a>
+              </div>
+            </li>
+
+            <li>
+              <a class="nav-link" href="/About.html">About</a>
+            </li> 
+
+            <li class="nav-item">
+              <a class="nav-link" href="/feeds/all.atom.xml">Atom</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="/feeds/all.rss.xml">RSS</a>
+            </li>
+          </ul>
+      </div>
+
+      </div>
+    </nav>
+
+
+    <div class="container">
+      <div class="row">
+
+        <!-- Main column -->
+        <div id="content" class="col-md-12">
+
+
+
+
+
+          <article>
+  <span style="display:block; height:40px;"></span>
+  <header>
+    <h1>Modal Editing in Emacs</h1>
+    <span style="display:inline-block; width:40px;"></span>
+    <p class='date-and-tags' style="color:grey;display:inline">
+<time datetime="2018-07-09" pubdate="true">2018-07-09</time> :: <span class="tags"><a href="/tags/emacs.html">emacs</a></span></p>
+    <!-- <p class='authors' style="color:grey;margin-left:3%">By: <span class="authors">Lukas Lazarek</span></p> -->
+  </header>
+
+<p>Modal editing in emacs is easy, and can be much better than vim.</p>
+<!-- more-->
+
+<br />
+
+<br />
+
+<h1 id="emacs-and-vim-modal-editing">Emacs and vim: modal editing</h1>
+
+<p>The holy war of text editors will never be resolved, because emacs and vim represent wholly different philosophies of what they want to be. Vim wants to be a lightweight yet powerful text editor. <em>Emacs doesn&rsquo;t even want to be a text editor</em>, and it isn&rsquo;t one. Emacs is more aptly described as a text-based programming environment. This is clear when one actually looks at how emacs works and emacs lisp: all editing commands are functions, just as well executed by pressing keys as by an elisp program.</p>
+
+<p>What inevitably comes up in the debate about text editors, however, is not interesting differences like that. One of the main things people argue about is modal editing. Emacs&rsquo; default text insertion strategy is not modal, while vim&rsquo;s is. For many people, modal editing is so fast and effective that this alone makes vim better than emacs.</p>
+
+<p>I actually agree, though not about vim being better ;). Modal editing is, in my opinion, a much more effective way to work with text most of the time. Given what I described above about emacs, however, it should be clear that this is hardly a real difference. It&rsquo;s just a matter of writing the (little bit of) code for modal editing in emacs and binding the code to keys. Or, for those who want things to be as close as possible to vim and/or are lazy, there&rsquo;s <a href="https://www.emacswiki.org/emacs/Evil">EVIL mode</a>.</p>
+
+<p>But I have found writing my own modal editing system beneficial. First of all, I don&rsquo;t think that <em>all</em> of the ways vim does things are great (or even good), though many of them are great. So I want to be able to pick and choose the features I like, and mix in my own useful features. By writing my own mode, I have the power to make the system exactly as I like it.</p>
+
+<p>And it&rsquo;s not even very hard.</p>
+
+<br />
+
+<br />
+
+<h1 id="minor-modes-for-modal-editing">Minor modes for modal editing</h1>
+
+<p>Emacs&rsquo; <a href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Modes.html">system of major and minor modes</a> is quite expressive. Namely, it makes it almost trivial to implement modal editing that works everywhere. Both major and minor modes can create new keybindings. Since major modes change depending on the type of text being worked on, but minor modes generally operate independently of that, a minor mode is the simplest route.</p>
+
+<br />
+
+<br />
+
+<h1 id="what-am-i-actually-talking-about">What am I actually talking about?</h1>
+
+<p>Before describing how to implement modal editing as a minor mode, let&rsquo;s quickly review how modal editing works at an abstract level - so that it&rsquo;s clear why all the pieces are necessary and the roles they play.</p>
+
+<p>Modal editing at its simplest means that text editing is done in two or more modes, each of which has presents a different interface for interacting with text. The simplest way to think of this is probably similar to vim&rsquo;s two primary modes (though I&rsquo;m going to simplify them a bit): &ldquo;insertion&rdquo; and &ldquo;normal&rdquo; modes, which I&rsquo;ll call &ldquo;command&rdquo; mode from here on. In insertion mode, text can be typed, deleted (with backspace), etc, but the cursor can&rsquo;t be moved around and &ldquo;extra&rdquo; operations can&rsquo;t be done. Just typing text. In command mode, the cursor can be moved and text manipulation operations like copy/pasta, search/replace, etc are available; furthermore, these commands can are executed using single key combinations, without any modifiers (ctrl, alt, etc).</p>
+
+<p>This is a simplified version of how vim&rsquo;s modal editing works, and the system below will be a functionally similar approximation. Instead of creating both modes, I approximate emacs&rsquo;s default mode as the equivalent of insert mode: actually, it&rsquo;s much better in my opinion because all of emacs&rsquo; normal bindings to do manipulation are available, just without the single key shortcuts.</p>
+
+<br />
+
+<br />
+
+<h1 id="creating-a-custom-editing-minor-mode">Creating a custom editing minor mode</h1>
+
+<p>As I just mentioned, I don&rsquo;t actually create a special insert mode; I just use emacs&rsquo;s normal bindings. That means all there is to make is the command mode, which provides the single-key shortcuts characteristic of vim.</p>
+
+<p>Every mode in the modal editing system should have a corresponding minor mode - except the normal insertion mode. So one minor mode is necessary to create the command mode. The way it works is simple; when the minor mode is active, we are in command mode, otherwise we aren&rsquo;t. So the way to enter and exit is simply to activate/deactivate the minor mode. Since a minor mode has its own keybindings, the shortcuts will just be keybindings in the minor mode.</p>
+
+<p>Thankfully, creating a new minor mode is easy with <a href="https://www.gnu.org/software/emacs/manual/html_node/elisp/Defining-Minor-Modes.html">define-minor-mode</a>. All that&rsquo;s necessary is a name, docstring, lighter symbol (for indicating on the modeline when the mode is active), and a keymap for bindings.</p>
+
+<pre><code>(define-minor-mode some-mode-name
+  "Docstring"
+  ;; initial value
+  nil
+  ;; indicator for mode line
+  " modeline-indicator"
+  ;; minor mode bindings
+  '(((kbd "key string as shown by C-h k") . some-interactive-function)
+    ...)
+  :group 'some-not-really-important-symbol)</code></pre>
+
+<p>Since this mode will be frequently enabled and disabled in the course of editing, the first command necessary is a toggle function. This is really simple, because <code>define-minor-mode</code> automatically creates a variable with the same name as the mode which is not <code>nil</code> when the mode is active and <code>nil</code> otherwise. Then just bind the keys to enter and exit the command mode, respectively with <code>global-set-key</code> and by placing the binding in the mode&rsquo;s keymap. Picking a good binding to enter the command mode may be difficult (<code>ESC</code> is annoying to rebind because emacs interprets it as an alternative <code>ALT</code> key), so choose wisely; I use <code>M-SPC</code> and quite like it. Here is a MWE providing vim-like hjkl movement. Press <code>M-SPC</code> to enter the mode, and <code>i</code> to exit.</p>
+
+<pre><code>(define-minor-mode my-command-mode
+  "my-command-mode is a minor mode for modal editing.
+
+Use `toggle-my-command-mode' to enter and exit the mode.
+
+my-command-mode defines the following bindings:
+\\{my-command-mode-map}
+"
+  ;; initial value
+  nil
+  ;; indicator for mode line
+  " mcm"
+  ;; minor mode bindings
+  '(((kbd "i") . toggle-my-command-mode)
+
+    ((kbd "j") . next-line)
+    ((kbd "k") . previous-line)
+    ((kbd "h") . backward-char)
+    ((kbd "l") . forward-char))
+  :group 'mcm-group)
+
+(defun toggle-my-command-mode (&amp;optional set-state)
+  "Toggle `my-command-mode', optionally ensuring its state with `SET-STATE'.
+
+`SET-STATE' is interpreted as follows:
+  nil   (Same as no argument) Toggle `my-command-mode'
+  -1    Ensure `my-command-mode' is disabled
+  else  Ensure `my-command-mode' is enabled
+"
+  (cond ((equal set-state -1)
+         (when my-command-mode
+           (my-command-mode -1)))
+
+        ((equal set-state nil)
+         (my-command-mode (if my-command-mode -1 1)))
+
+        (else
+         (unless my-command-mode
+           (my-command-mode 1)))))
+
+(global-set-key (kbd "M-SPC") 'toggle-my-command-mode)</code></pre>
+
+<p>An aside for those unfamiliar with emacs lisp: To try this out just copy-pasta it into any buffer (like <code>*scratch*</code>), highlight it, and execute (with <code>M-x</code>) <code>eval-region</code>. Also, if you&rsquo;re particularly careful about your code, you may be wondering why it&rsquo;s ok that the minor mode definition binds <code>toggle-my-command-mode</code>, even though it isn&rsquo;t defined yet. Actually, the code binding the function to the key just registers the <span class="underline">name</span> of a function and associates it with the key; when that key is pressed, the function associated with the name is looked up dynamically. Thus, it&rsquo;s no problem to provide any arbitrary symbol (defined or not) to the binding code, you&rsquo;ll only run into issues if the symbol is still undefined when the key gets pressed. In this case, the function is defined right away so that won&rsquo;t happen.</p>
+
+<p>Ultimately, this pattern is how much of the functionality of the mode is implemented. For many actions, however, there is likely a built-in command to do it, so use those instead. For example, most basic movement commands are available built-in, like those shown above for moving the cursor bound to hjkl.</p>
+
+<br />
+
+<br />
+
+<h1 id="extra-context-menus-with-hydra">Extra: context menus with hydra</h1>
+
+<p>The excellent <a href="https://github.com/abo-abo/hydra">hydra package</a> provides a great way to create context menus for some of the more specialized commands that one might want bindings for, but may be difficult to memorize. It&rsquo;s very easy to use; for example, here is a hydra that I use for register management.</p>
+
+<pre><code>(defhydra mcm/hydra/registers (:color blue :hint nil)
+    "
+Register commands
+_s_: Save point                 _n_: Number to register
+_j_: Jump to register         _i_/_+_: Increment number in register
+_y_: Copy to register           _h_: Show registers
+_p_: Insert from register       _w_: Window config to register
+"
+    ("s" point-to-register)
+    ("j" jump-to-register)
+    ("y" copy-to-register)
+    ("p" insert-register)
+    ("h" helm-register)
+    ("n" number-to-register)
+    ("i" increment-register)
+    ("+" increment-register)
+    ("w" window-configuration-to-register)
+    ("q" nil))
+;; The function to activate this hydra is `mcm/hydra/registers/main'</code></pre>
+
+<br />
+
+<br />
+
+<h1 id="my-own-modal-editing-system">My own modal editing system</h1>
+
+<p>As an example of all of this in practice, <a href="https://gist.github.com/LLazarek/d9c226763860c3f53a6d28535e9efb64">here is the system</a> for modal editing that I have used for the past few years. I called it Nav-mode because initially I started it just for easier navigation; it has since evolved well beyond that, but I see little reason to change the name.</p>
+
+<p>Note that it includes bindings for a number of custom commands and packages I haven&rsquo;t included, so it isn&rsquo;t quite plug and play, but the essence should be clear. Some highlights of extra packages that I use in the mode include <a href="https://github.com/emacs-helm/helm">helm</a>, <a href="https://github.com/abo-abo/avy">avy</a>, <a href="https://github.com/magnars/multiple-cursors.el">multiple-cursors</a>, <a href="https://github.com/Fuco1/smartparens">smartparens</a>, <a href="https://github.com/abo-abo/hydra">hydra</a>.</p>
+
+<br />
+
+<br />
+
+<h1 id="thats-it">That&rsquo;s it!</h1>
+
+<p>Modal editing is not only possible in emacs, it&rsquo;s quite easy. Furthermore, it&rsquo;s highly customizable, allowing me to tailor it precisely to my needs. I have used this particular system of modal editing for a few years and I would unequivocally recommend it to anyone using emacs.</p>
+  <footer>
+    <script type="text/javascript">
+      !function(d,s,id){
+          var js,fjs=d.getElementsByTagName(s)[0];
+          if(!d.getElementById(id)){
+              js=d.createElement(s);
+              js.id=id;
+              js.src="//platform.twitter.com/widgets.js";
+              fjs.parentNode.insertBefore(js,fjs);
+          }
+      }(document,"script","twitter-wjs");
+    </script>
+    <a href="https://twitter.com/share"
+       class="twitter-share-button"
+       data-url="https://llazarek.github.io/2018/07/modal-editing-in-emacs.html"
+       data-dnt="true">
+      "Tweet"</a>
+    <script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
+    <g:plusone size="medium" href="https://llazarek.github.io/2018/07/modal-editing-in-emacs.html"></g:plusone>
+    <script type="text/javascript">
+      var disqus_shortname = 'shortname';
+      (function() {
+          var dsq = document.createElement('script');
+          dsq.type = 'text/javascript';
+          dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+    <div id="disqus_thread"></div>
+
+    <div class="row justify-content-center">
+      <nav aria-label="Page Navigation">
+        <ul class="pagination">
+          <li class="page-item">
+            <a class="page-link" href="/2018/07/organization-with-org-mode.html" aria-label="Previous">
+              <span aria-hidden="true">&larr; Organization with Org Mode</span>
+            </a>
+          </li>
+          <li class="page-item">
+            <a class="page-link" href="/2018/07/improving-the-agenda.html" aria-label="Next">
+              <span aria-hidden="true">Improving the Agenda &rarr;</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </footer>
+</article>
+        </div>
+      </div>
+      <footer>
+        <hr />
+        <p>Site generated by <a href="https://github.com/greghendershott/frog">Frog</a>,
+        the <strong>fr</strong>ozen bl<strong>og</strong> tool,
+        using <a href="http://twitter.github.com/bootstrap/index.html">Bootstrap</a>.</p>
+        <p><em>Copyright Lukas Lazarek 2018 -- and the foreseeable future...</em></p>
+      </footer>
+    </div>
+    <!-- </body> JS -->
+    <script type="text/javascript" src="/js/jquery-3.2.1.slim.min.js"></script>
+    <script type="text/javascript" src="/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

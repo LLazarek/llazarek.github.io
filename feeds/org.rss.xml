@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?> 
+<rss version="2.0">
+ <channel>
+  <title>llazarek: Posts tagged 'org'</title>
+  <description>llazarek: Posts tagged 'org'</description>
+  <link>https://llazarek.github.io/tags/org.html</link>
+  <lastBuildDate>Mon, 09 Jul 2018 07:27:27 UT</lastBuildDate>
+  <pubDate>Mon, 09 Jul 2018 07:27:27 UT</pubDate>
+  <ttl>1800</ttl>
+  <item>
+   <title>Improving the Agenda</title>
+   <link>https://llazarek.github.io/2018/07/improving-the-agenda.html?utm_source=org&amp;utm_medium=RSS</link>
+   <guid isPermaLink="false">urn:https-llazarek-github-io:-2018-07-improving-the-agenda-html</guid>
+   <pubDate>Mon, 09 Jul 2018 07:27:27 UT</pubDate>
+   <author>Lukas Lazarek</author>
+   <description>
+&lt;p&gt;Org mode&amp;rsquo;s agenda is a fantastic interface for viewing and managing tasks. However, its default display settings get cluttered with large numbers of tasks, making it difficult to see what really needs to be done. Here are some of the ways I make the agenda crystal clear.&lt;/p&gt;&lt;a href="https://llazarek.github.io/2018/07/improving-the-agenda.html?utm_source=org&amp;amp;utm_medium=RSS"&gt;&lt;em&gt;More&amp;hellip;&lt;/em&gt;&lt;/a&gt;</description></item>
+  <item>
+   <title>Organization with Org Mode</title>
+   <link>https://llazarek.github.io/2018/07/organization-with-org-mode.html?utm_source=org&amp;utm_medium=RSS</link>
+   <guid isPermaLink="false">urn:https-llazarek-github-io:-2018-07-organization-with-org-mode-html</guid>
+   <pubDate>Mon, 02 Jul 2018 15:37:07 UT</pubDate>
+   <author>Lukas Lazarek</author>
+   <description>
+&lt;p&gt;I organize myself and my work using emacs&amp;rsquo; org mode. It has served me extremely well over the past few years and has helped me better organize both my working and personal life. In this post, I describe how I use org mode for everything from long-term projects to appointments and ideas.&lt;/p&gt;&lt;a href="https://llazarek.github.io/2018/07/organization-with-org-mode.html?utm_source=org&amp;amp;utm_medium=RSS"&gt;&lt;em&gt;More&amp;hellip;&lt;/em&gt;&lt;/a&gt;</description></item></channel></rss>

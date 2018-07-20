@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <meta charset="utf-8">
+    <title>Improving the Agenda</title>
+    <meta name="description" content="Org mode's agenda is a fantastic interface for viewing and managing tasks. However, its default display settings get cluttered with large numbers of tasks, making it difficult to see what really needs to be done. Here are some of the ways I make the agend...">
+    <meta name="author"      content="Lukas Lazarek">
+    <meta name="keywords"    content="emacs, org">
+    <meta name="viewport"    content="width=device-width, initial-scale=1.0">
+    <link rel="icon"      href="/favicon.ico">
+    <link rel="canonical" href="https://llazarek.github.io/2018/07/improving-the-agenda.html">
+    <link rel="next" href="/2018/07/modal-editing-in-emacs.html">
+
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/css/scribble.css">
+    <link rel="stylesheet" type="text/css" href="/css/custom.css">
+    <!-- Feeds -->
+    <link rel="alternate" type="application/atom+xml"
+          href="/feeds/all.atom.xml" title="Atom Feed">
+    <link rel="alternate" type="application/rss+xml"
+          href="/feeds/all.rss.xml" title="RSS Feed">
+    <!-- JS -->
+    <script type="text/javascript">
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-xxxxx', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </head>
+  <body>
+
+    <!-- A standard Twitter Bootstrap nav bar -->
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+      <div class="container">
+
+      <a href="/index.html" class="navbar-brand">llazarek</a>
+
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+              data-target="#navbar_collapse" aria-controls="navbar_collapse"
+              aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbar_collapse">
+          <ul class="navbar-nav mr-auto">
+
+
+            <li class="nav-item dropdown">
+              <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
+                Tags <b class="caret"></b>
+              </a>
+
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="/tags/emacs.html">emacs</a><a class="dropdown-item" href="/tags/org.html">org</a><a class="dropdown-item" href="/tags/PL.html">PL</a><a class="dropdown-item" href="/tags/racket.html">racket</a>
+              </div>
+            </li>
+
+            <li>
+              <a class="nav-link" href="/About.html">About</a>
+            </li> 
+
+            <li class="nav-item">
+              <a class="nav-link" href="/feeds/all.atom.xml">Atom</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="/feeds/all.rss.xml">RSS</a>
+            </li>
+          </ul>
+      </div>
+
+      </div>
+    </nav>
+
+
+    <div class="container">
+      <div class="row">
+
+        <!-- Main column -->
+        <div id="content" class="col-md-12">
+
+
+
+
+
+          <article>
+  <span style="display:block; height:40px;"></span>
+  <header>
+    <h1>Improving the Agenda</h1>
+    <span style="display:inline-block; width:40px;"></span>
+    <p class='date-and-tags' style="color:grey;display:inline">
+<time datetime="2018-07-09" pubdate="true">2018-07-09</time> :: <span class="tags"><a href="/tags/emacs.html">emacs</a>, <a href="/tags/org.html">org</a></span></p>
+    <!-- <p class='authors' style="color:grey;margin-left:3%">By: <span class="authors">Lukas Lazarek</span></p> -->
+  </header>
+
+<p>Org mode&rsquo;s agenda is a fantastic interface for viewing and managing tasks. However, its default display settings get cluttered with large numbers of tasks, making it difficult to see what really needs to be done. Here are some of the ways I make the agenda crystal clear.</p>
+<!-- more-->
+
+<br />
+
+<br />
+
+<h1 id="context">Context</h1>
+
+<p>I have found org mode&rsquo;s agenda an invaluable tool for keeping myself organized over the years. However, I can easily see how many newcomers to org fail to see its potential; the default display settings for the agenda leave much to be desired. Indeed, when I first started using the agenda to plan and manage my work, I often found myself staring at the agenda, overwhelmed by the sheer number of tasks and struggling to figure out what really needed to be done <span class="underline">now</span>.</p>
+
+<p>A few appearance tweaks can make a world of difference, however. The primary tools for doing this are simply color and text emphasis (bold, italics, underline). The default settings don&rsquo;t really leverage colors and text emphasis to group and highlight tasks. The second tool available is controlling the sorting of tasks with priorities. Finally, the agenda provides rich filtering tools to make dealing with lots of disparate tasks a little easier.</p>
+
+<br />
+
+<br />
+
+<h1 id="grouping-and-emphasizing-tasks-with-color">Grouping and emphasizing tasks with color</h1>
+
+<p>The most obvious way to help make more visual sense of the agenda is to color-code tasks. While this functionality is not built-in, it&rsquo;s quite easy to add. I think the most useful way to do this (thought not the easiest, see below) is by associating colors with tags, and colorizing tasks in the agenda according to their tags. The following function does just that; it can be invoked in <code>org-finalize-agenda-hook</code>. (Note that I can&rsquo;t claim full credit for this function, it is largely based on a stackoverflow answer I have since forgotten.)</p>
+
+<pre><code>(defun ll/org/agenda/color-headers-with (tag col)
+  "Color agenda lines matching TAG with color COL."
+  (interactive)
+  (goto-char (point-min))
+  (while (re-search-forward tag nil t)
+    (unless (find-in-line "\\[#[A-Z]\\]")
+      (let ((todo-end (or (ll/org/agenda/find-todo-word-end)
+                          (point-at-bol)))
+            (tags-beginning (or (find-in-line " :" t)
+                                (point-at-eol))))
+        (add-text-properties todo-end
+                             tags-beginning
+                             `(face (:foreground ,col)))))))
+
+;; Helper definitions
+(setq ll/org/agenda-todo-words
+      '("TODO" "GOAL" "NEXT" "STARTED" "WAITING" "REVIEW" "SUBMIT"
+        "DONE" "DEFERRED" "CANCELLED"))
+(defun find-in-line (needle &amp;optional beginning count)
+  "Find the position of the start of NEEDLE in the current line.
+  If BEGINNING is non-nil, find the beginning of NEEDLE in the current
+  line. If COUNT is non-nil, find the COUNT'th occurrence from the left."
+  (save-excursion
+    (beginning-of-line)
+    (let ((found (re-search-forward needle (point-at-eol) t count)))
+      (if beginning
+          (match-beginning 0)
+        found))))
+(defun ll/org/agenda/find-todo-word-end ()
+  (reduce (lambda (a b) (or a b))
+          (mapcar #'find-in-line ll/org/agenda-todo-words)))</code></pre>
+
+<p>Example usage:</p>
+
+<pre><code>(defun ll/org/colorize-headings ()
+  ;; Color all headings with :pers: tan
+  (ll/org/agenda/color-headers-with ":pers:" "tan")
+  ;; and :work: blue
+  (ll/org/agenda/color-headers-with ":work:" "blue"))
+(add-hook 'org-agenda-finalize-hook #'ll/org/colorize-headings)</code></pre>
+
+<p>Note that this function iterates over the agenda entries, modifying their face each time it is called. So if an entry has a tag that is matched by more than one call to this function (e.g. it&rsquo;s tagged with <code>:pers:work:</code>), then <span class="underline">the task will have the color of the last call</span>.</p>
+
+<p>Another way to do color coding (which takes precedence over the above method) is using priorities (about which I&rsquo;ll say more later). Org has a built-in mechanism to colorize and emphasize tasks marked with <a href="https://orgmode.org/manual/Priorities.html#Priorities">a priority</a> (<code>[#A]</code>, <code>[#B]</code>, etc). Thus, it&rsquo;s straightforward to do. In general though, I prefer the tag-based coloring for grouping/categorizing tasks. This is the configuration I use, highlighting tasks with priority A in bolded magenta, B in light green, and C in orange.</p>
+
+<pre><code>(customize-set-variable 'org-agenda-fontify-priorities t)
+(customize-set-variable 'org-priority-faces
+                        (quote ((?A :foreground "magenta" :weight bold)
+                                (?B :foreground "green3")
+                                (?C :foreground "orange"))))</code></pre>
+
+<br />
+
+<br />
+
+<h1 id="sorting">Sorting</h1>
+
+<p>Another way to help identify important tasks more easily is using sorting. As you might have guessed, priorities are not only useful for highlighting tasks; they also affect the sorting of tasks in the agenda. Higher priority tasks show up before lower priority ones within the same category (overdue, scheduled, deadline) in the agenda. By default, tasks have a priority of B; I find this unintuitive, so I set the default priority to C. This way tasks with priority A show first, then B, then C, then the rest.</p>
+
+<pre><code>;; Set default priority to C
+(customize-set-variable 'org-default-priority ?C)</code></pre>
+
+<p>You might ask &ldquo;why not make the default priority be lower than C, so that tasks with any priority at all show up first?&rdquo; It turns out that the default priority has to be at least the lowest priority (<code>org-lowest-priority</code>), which by default is C. Of course, it is possible to have as low a priority as you like (within reason), such as D, E, &#8230;, Z. I don&rsquo;t find that to be useful, however. Two high-priority priorities are enough.</p>
+
+<br />
+
+<br />
+
+<h1 id="filtering">Filtering</h1>
+
+<p>The agenda also provides filtering functions to restrict the displayed tasks. They are pretty self-explanatory; in the agenda, hit "/" to filter by tag and "=" to filter by regular expression. Press "/" again to clear or narrow further, or in the case of regexp filtering press "|" to clear the filter.</p>
+
+<p>The only noteworthy point about filtering is that the tag filter cannot express disjunction. This has caused me some grief, as I have wanted to filter with something like &ldquo;work OR school&rdquo;. The solution, though, is to just use the regexp filter with a pattern like ":(work|school)".</p>
+
+<br />
+
+<br />
+
+<h1 id="showing-more-stuff">Showing more stuff</h1>
+
+<p>Having cleaned up the agenda and made it easier to read, it might become appealing to start showing more relevant details. For example, seeing the notes in the body of a task is sometimes useful. Alternatively, it might be useful to see the value of some <a href="https://orgmode.org/manual/Properties-and-columns.html#Properties-and-columns">properties of the task</a>. Of course, the agenda can do it.</p>
+
+<p>Showing context lines from the body of the task is as simple as pressing a key in the agenda; &ldquo;E&rdquo; invokes <code>org-agenda-entry-text-mode</code> (see <a href="https://orgmode.org/manual/Agenda-commands.html#Agenda-commands">the manual</a>), showing some lines from the body of the task. To enable this behavior by default, configure <code>org-agenda-start-with-entry-text-mode</code>. The number of lines can also be configured with <code>org-agenda-entry-text-maxlines</code>. For example:</p>
+
+<pre><code>;; Show context lines by default in the agenda
+(customize-set-variable 'org-agenda-start-with-entry-text-mode t)
+;; Show up to 4 lines of context
+(customize-set-variable 'org-agenda-entry-text-maxlines 4)</code></pre>
+
+<p>However, I find that the context provided by org creates too much clutter to be useful. This is especially true when I have stuff written in the body of a task that I <em>don&rsquo;t</em> want to see in the agenda (often): <code>entry-text-mode</code> provides no way to configure <em>which</em> entries to show context for. Thus, I prefer the alternative way to show more information, which is to show the values of specific properties when they are present in the task.</p>
+
+<p>Showing property values in the agenda is provided by the excellent <a href="https://github.com/Malabarba/org-agenda-property">org-agenda-property package</a>, available on MELPA. Here&rsquo;s the configuration that I use to show the value in three properties that I use to record why a task is blocked, deferred, or canceled, and to write short notes on the task.</p>
+
+<pre><code>(use-package org-agenda-property
+  :config
+  (customize-set-variable 'org-agenda-property-list
+                          '("WAITING?" "DEFERRED?" "CANCELLED?" "NOTE"))
+  (customize-set-variable 'org-agenda-property-position 'same-line))</code></pre>
+  <footer>
+    <script type="text/javascript">
+      !function(d,s,id){
+          var js,fjs=d.getElementsByTagName(s)[0];
+          if(!d.getElementById(id)){
+              js=d.createElement(s);
+              js.id=id;
+              js.src="//platform.twitter.com/widgets.js";
+              fjs.parentNode.insertBefore(js,fjs);
+          }
+      }(document,"script","twitter-wjs");
+    </script>
+    <a href="https://twitter.com/share"
+       class="twitter-share-button"
+       data-url="https://llazarek.github.io/2018/07/improving-the-agenda.html"
+       data-dnt="true">
+      "Tweet"</a>
+    <script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
+    <g:plusone size="medium" href="https://llazarek.github.io/2018/07/improving-the-agenda.html"></g:plusone>
+    <script type="text/javascript">
+      var disqus_shortname = 'shortname';
+      (function() {
+          var dsq = document.createElement('script');
+          dsq.type = 'text/javascript';
+          dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+    <div id="disqus_thread"></div>
+
+    <div class="row justify-content-center">
+      <nav aria-label="Page Navigation">
+        <ul class="pagination">
+          <li class="page-item">
+            <a class="page-link" href="/2018/07/modal-editing-in-emacs.html" aria-label="Previous">
+              <span aria-hidden="true">&larr; Modal Editing in Emacs</span>
+            </a>
+          </li>
+
+        </ul>
+      </nav>
+    </div>
+  </footer>
+</article>
+        </div>
+      </div>
+      <footer>
+        <hr />
+        <p>Site generated by <a href="https://github.com/greghendershott/frog">Frog</a>,
+        the <strong>fr</strong>ozen bl<strong>og</strong> tool,
+        using <a href="http://twitter.github.com/bootstrap/index.html">Bootstrap</a>.</p>
+        <p><em>Copyright Lukas Lazarek 2018 -- and the foreseeable future...</em></p>
+      </footer>
+    </div>
+    <!-- </body> JS -->
+    <script type="text/javascript" src="/js/jquery-3.2.1.slim.min.js"></script>
+    <script type="text/javascript" src="/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
