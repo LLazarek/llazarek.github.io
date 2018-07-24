@@ -126,9 +126,7 @@ I've itemized out costs below, identifying the major categories of the expenses.
 <tbody>
 <tr>
 <td class="left">**Total** pre-departure costs         </td>
-<td class="right">8143.28</td>
+<td class="right">9721.46</td>
 </tr>
 </tbody>
 </table>
-
-9721.46

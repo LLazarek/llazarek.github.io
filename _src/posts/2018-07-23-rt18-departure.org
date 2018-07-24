@@ -60,8 +60,5 @@ I've itemized out costs below, identifying the major categories of the expenses.
 | - Insurance payments               |   502.40 |
 | - Mobile hotspot                   |       80 |
 |------------------------------------+----------|
-| *Total* pre-departure costs          |  8143.28 |
+| *Total* pre-departure costs          |  9721.46 |
 #+TBLFM: @12$2=vsum(@2..@-2)
-
-9721.46
-
