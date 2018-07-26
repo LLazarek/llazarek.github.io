@@ -1,0 +1,62 @@
+#+OPTIONS: toc:nil
+
+# Tags seperated by commas and spaces
+#+BEGIN_SRC markdown
+Title: Road Trip 2018: Leaving MA, entering NY
+Date: 2018-07-26T12:08:00
+Tags: rt18, travel
+#+END_SRC
+
+#+ll-process: (ll-replace "^\\* " "<br></br><br></br>\n* ")
+
+* Header :notitle:
+Finally getting on the road.
+#+HTML: <!-- more -->
+
+* Content :notitle:
+
+* Leaving Mass
+After working on last-minute repairs and cleanup until 3am, we woke up at 5am to get our state inspection -- the final hurdle preventing us from departure.
+Before we could leave, however, we noticed that the awning on the side of the RV was falling off.
+This was pretty concerning, since the awning consisted of two large metal poles and a heavy metal center around which the tarp wraps.
+It was too far gone to repair with any level of confidence, so we decided to tear it off.
+Andrew pulled out the pickaxe and utility knife and we set to work extending the awning and cutting it from the roof.
+It took an hour and a half or so but we got it off and felt much better about the safety of our home.
+
+We drove to Peabody for the state inspection but were rejected because one of our brake lights were out on both sides.
+We sat in the parking lot of the shop thinking what might have broken, and after an hour or so of fiddling we fixed the lights by taking them out and flipping them around.
+Thus we became road legal.
+
+Our final stop in Mass was a locksmith in Salem who copied the RV keys and made us new keys to access the water pump and inlet.
+With that, we were set to go at around 4pm.
+
+* New York
+We drove for six hours or so to the Spruce Creek Campground in Dolgeville NY.
+The owners were kind enough to let us check in nearly two hours after the normal closing time.
+We hooked up the power, turned on the AC, took showers, and went to sleep, exhausted.
+
+
+We woke up today at 8 feeling much better.
+A nearby diner supplied breakfast and gas, and then we went to George's Lumber for propane.
+We enjoyed a friendly conversation about our trip and national politics, and now we're on our way to Niagra.
+After that, the plan is to drive just past the boarder of Ohio.
+We're making good time!
+
+* Expenses (Days 2 & 3)
+| Item                                      | Amount ($) |
+|-------------------------------------------+------------|
+| RV Maintenance                            |            |
+| - MA Inspection                           |         35 |
+| - Locksmith                               |      26.25 |
+| - Propane refill                          |      38.89 |
+| - Spare gas can                           |         20 |
+| Food                                      |            |
+| - Lunch (pizza)                           |      17.22 |
+| - Dinner (rest stop, ~$10/person)         |         70 |
+| - Breakfast (diner)                       |         52 |
+| Accommodation                             |            |
+| - Spruce Creek campground                 |         51 |
+|-------------------------------------------+------------|
+| Total                                     |     310.36 |
+#+TBLFM: @13$2=vsum(@2..@-1)
+
