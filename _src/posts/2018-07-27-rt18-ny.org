@@ -2,7 +2,7 @@
 
 # Tags seperated by commas and spaces
 #+BEGIN_SRC markdown
-Title: Road Trip 2018: Niagra, Leaving New York
+Title: Road Trip 2018: Niagara, Leaving New York
 Date: 2018-07-27T16:54:48
 Tags: rt18, travel
 #+END_SRC
@@ -10,7 +10,7 @@ Tags: rt18, travel
 #+ll-process: (ll-replace "^\\* " "<br></br><br></br>\n* ")
 
 * Header :notitle:
-Seeing Niagra before heading out of NY.
+Seeing Niagara before heading out of NY.
 #+HTML: <!-- more -->
 
 * Content :notitle:
@@ -46,10 +46,10 @@ A few seconds later we found our exit and found the truck stop with a large, wel
 We found several open spaces and nestled in with the rest of the semi-trucks spending the night, exhausted.
 We fell asleep to the sounds of passing trucks on the overpass and trains on the tracks beside the parking lot.
 
-* Niagra
-The day before, we had arrived at Niagra at about 6pm, two hours behind schedule.
+* Niagara
+The day before, we had arrived at Niagara at about 6pm, two hours behind schedule.
 Nonetheless, there was still plenty of time for the boat tour.
-We took the Maiden of the Mist right up into the misty billows of the Niagra falls and walked along the American falls.
+We took the Maiden of the Mist right up into the misty billows of the Niagara falls and walked along the American falls.
 Then we stopped for dinner at a Chinese food place, where we decided to drive on until about 11pm and spend the night at a rest stop just inside the Pennsylavia border.
 
 * Pennsylvania
@@ -73,16 +73,19 @@ While this doesn't give a clear picture of the specific cost of tolls per day, i
 | - New Battery                          |         95 |
 | - Thermal Flasher Relay                |      16.95 |
 | - Tail lights and misc upgrades        |        105 |
-| Tolls                                  |         80 |
+| Tolls                                  |        100 |
 | Food                                   |            |
+| - Dinner (Chinese)                     |      86.50 |
 | - Breakfast (McDonalds)                |       7.96 |
 | - Groceries (Walmart)                  |        100 |
 | Accommodation                          |            |
 | - Willow Lake Campground               |         57 |
 | Misc Supplies                          |         50 |
+| Entertainment                          |            |
+| - Maid of the Mist boat tour           |     134.75 |
 |----------------------------------------+------------|
-| Total                                  |     511.91 |
-#+TBLFM: @13$2=vsum(@2..@-1)
+| Total                                  |     753.16 |
+#+TBLFM: @16$2=vsum(@2..@-1)
 
 * Pictures
 Out of the mist http:///img/07.26-mistmaiden.jpg
