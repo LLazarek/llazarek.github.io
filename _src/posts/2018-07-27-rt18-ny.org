@@ -1,0 +1,94 @@
+#+OPTIONS: toc:nil
+
+# Tags seperated by commas and spaces
+#+BEGIN_SRC markdown
+Title: Road Trip 2018: Niagra, Leaving New York
+Date: 2018-07-27T16:54:48
+Tags: rt18, travel
+#+END_SRC
+
+#+ll-process: (ll-replace "^\\* " "<br></br><br></br>\n* ")
+
+* Header :notitle:
+Seeing Niagra before heading out of NY.
+#+HTML: <!-- more -->
+
+* Content :notitle:
+
+* Disaster Strikes
+It was about 11pm and raining hard when we pulled up to the toll booth, scrambling to gather sufficient cash.
+Andrew stepped out to hand the woman the money and she said that our tail lights were out.
+That's no good, but it was ok since we were planning to spend the night at a rest stop less than a mile after the toll, just inside Pennsylvania.
+No problem.
+
+It became a problem after we pulled passed the last semi-truck parked in the rest stop.
+We sat behind another semi-truck parked on the edge of the entrance ramp to the highway, wondering what to do.
+Clearly we couldn't keep driving in the dark and rain without tail lights.
+But the nearest campground or Walmart with overnight parking seemed to be at least 15 miles away.
+
+The rain splashing on the roof accentuated the silence as we all sat staring at our phones, searching and thinking what we could do.
+After fifteen or twenty minutes we discover (on Google maps) a truck stop just off the next exit.
+It probably had a place to park safely overnight.
+We decide to carefully drive the three miles to the exit with our hazards on so that cars behind can see us.
+
+After a minute, the distinct odor of burning plastic fills the RV and Andrew notices that the hazards aren't flashing properly.
+They seemed to be getting stuck periodically.
+The burning smell got so bad that we had to turn off the hazards and hope that we would make it the rest of the way.
+It was only two miles or less.
+
+A minute later, a mile or so from the exit, there's a loud bang and Andrew starts exclaiming wildly.
+The hood had caught in the wind and flapped open.
+We looked behind us; we couldn't reasonably stop in the breakdown lane with no tail lights and no hazards..
+This was not our lucky day, to say the least.
+
+The hood flipped back down just as we had slowed down to a crawl in the breakdown lane.
+A few seconds later we found our exit and found the truck stop with a large, well-lit parking lot just off the exit ramp.
+We found several open spaces and nestled in with the rest of the semi-trucks spending the night, exhausted.
+We fell asleep to the sounds of passing trucks on the overpass and trains on the tracks beside the parking lot.
+
+* Niagra
+The day before, we had arrived at Niagra at about 6pm, two hours behind schedule.
+Nonetheless, there was still plenty of time for the boat tour.
+We took the Maiden of the Mist right up into the misty billows of the Niagra falls and walked along the American falls.
+Then we stopped for dinner at a Chinese food place, where we decided to drive on until about 11pm and spend the night at a rest stop just inside the Pennsylavia border.
+
+* Pennsylvania
+The next morning we woke up early to figure out what went wrong with our tail lights.
+After fiddling with the lights for three hours, we decide to drive to the next Walmart to get the parts we needed to fix the lights.
+There, we bought the parts we needed, a new battery, groceries, and some other useful bits to improve the RV like cupholders.
+We spent another five hours shopping, installing new extra tail lights, and setting up our home improvements.
+
+* On the road again
+Now we're on the road again in Ohio.
+We have decided to skip the Hocking Hills state park we had planned to spend the day at today in order to stay on schedule for the more significant attractions farther down the road.
+We'll be stopping early at a campground to enjoy a grilled dinner and relax on Lake Erie.
+
+* Expenses (Days 3 & 4)
+The toll expense represents the cash we have taken out in preparation for tolls.
+While this doesn't give a clear picture of the specific cost of tolls per day, in aggregate it should provide a good idea of how much tolls cost driving cross country.
+
+| Item                                   | Amount ($) |
+|----------------------------------------+------------|
+| RV Maintenance                         |            |
+| - New Battery                          |         95 |
+| - Thermal Flasher Relay                |      16.95 |
+| - Tail lights and misc upgrades        |        105 |
+| Tolls                                  |         80 |
+| Food                                   |            |
+| - Breakfast (McDonalds)                |       7.96 |
+| - Groceries (Walmart)                  |        100 |
+| Accommodation                          |            |
+| - Willow Lake Campground               |         57 |
+| Misc Supplies                          |         50 |
+|----------------------------------------+------------|
+| Total                                  |     511.91 |
+#+TBLFM: @13$2=vsum(@2..@-1)
+
+* Pictures
+Out of the mist http:///img/07.26-mistmaiden.jpg
+
+Full falls view http:///img/07.26-niagra.jpg
+
+Can you spot us? http:///img/07.26-truckstop.jpg
+
+

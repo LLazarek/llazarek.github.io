@@ -54,6 +54,7 @@ http:///img/07.26-inside.jpg
 | - Locksmith                               |      26.25 |
 | - Propane refill                          |      38.89 |
 | - Spare gas can                           |         20 |
+| Tolls                                     |      10.60 |
 | Food                                      |            |
 | - Lunch (pizza)                           |      17.22 |
 | - Dinner (rest stop, ~$10/person)         |         70 |
@@ -61,6 +62,6 @@ http:///img/07.26-inside.jpg
 | Accommodation                             |            |
 | - Spruce Creek campground                 |         51 |
 |-------------------------------------------+------------|
-| Total                                     |     310.36 |
-#+TBLFM: @13$2=vsum(@2..@-1)
+| Total                                     |     320.96 |
+#+TBLFM: @14$2=vsum(@2..@-1)
 
