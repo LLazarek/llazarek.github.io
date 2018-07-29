@@ -1,0 +1,22 @@
+#+OPTIONS: toc:nil
+
+# Tags seperated by commas and spaces
+#+BEGIN_SRC markdown
+Title: Road Trip 2018: End
+Date: 2018-07-29T11:33:30
+Tags: rt18, travel
+#+END_SRC
+
+#+ll-process: (ll-replace "^\\* " "<br></br><br></br>\n* ")
+
+* Header :notitle:
+The end.
+#+HTML: <!-- more -->
+
+* Content :notitle:
+
+* We crashed
+On route 90 just outside of Cleveland, we lost control and went off the highway.
+Nobody was hurt luckily, but the RV is pretty much totaled.
+We're all going home.
+
