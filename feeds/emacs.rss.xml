@@ -4,9 +4,17 @@
   <title>llazarek: Posts tagged 'emacs'</title>
   <description>llazarek: Posts tagged 'emacs'</description>
   <link>https://llazarek.github.io/tags/emacs.html</link>
-  <lastBuildDate>Mon, 09 Jul 2018 07:27:27 UT</lastBuildDate>
-  <pubDate>Mon, 09 Jul 2018 07:27:27 UT</pubDate>
+  <lastBuildDate>Wed, 15 Aug 2018 14:46:59 UT</lastBuildDate>
+  <pubDate>Wed, 15 Aug 2018 14:46:59 UT</pubDate>
   <ttl>1800</ttl>
+  <item>
+   <title>Scripting Emacs</title>
+   <link>https://llazarek.github.io/2018/08/scripting-emacs.html?utm_source=emacs&amp;utm_medium=RSS</link>
+   <guid isPermaLink="false">urn:https-llazarek-github-io:-2018-08-scripting-emacs-html</guid>
+   <pubDate>Wed, 15 Aug 2018 14:46:59 UT</pubDate>
+   <author>Lukas Lazarek</author>
+   <description>
+&lt;p&gt;I recently realized how easy it is to make emacs automatically do even more repetitive things I used to do manually.&lt;/p&gt;&lt;a href="https://llazarek.github.io/2018/08/scripting-emacs.html?utm_source=emacs&amp;amp;utm_medium=RSS"&gt;&lt;em&gt;More&amp;hellip;&lt;/em&gt;&lt;/a&gt;</description></item>
   <item>
    <title>Improving the Agenda</title>
    <link>https://llazarek.github.io/2018/07/improving-the-agenda.html?utm_source=emacs&amp;utm_medium=RSS</link>

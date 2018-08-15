@@ -1,0 +1,84 @@
+#+OPTIONS: toc:nil
+
+# Tags seperated by commas and spaces
+#+BEGIN_SRC markdown
+Title: Scripting Emacs
+Date: 2018-08-15T10:46:59
+Tags: emacs
+#+END_SRC
+
+#+ll-process: (ll-replace "^\\* " "<br></br><br></br>\n* ")
+
+* Header :notitle:
+I recently realized how easy it is to make emacs automatically do even more repetitive things I used to do manually.
+#+HTML: <!-- more -->
+
+* Content :notitle:
+Emacs is great for easily automating repetitive tasks, from macros to the design that every manual action performed in emacs is available in elisp as a function.
+While I have been aware of this and leverage it regularly to automate tasks within emacs, I have never really thought about using emacs to do the kind of work I typically write a shell script to do.
+This is probably because I'm usually always in emacs anyway, so my typical workflow for automating a task is to write a function to do it, and then bind that function to some key.
+
+Some scenarios lend themselves more to a shell script style of automation, however; yet, the task may still involve nontrivial text processing or emacs-specific things.
+In these cases, the workflow is really only slightly different.
+Again, I write a function to do it, test with that function, and once it is ready I place the body of the function in its own file and run it with
+: emacs -Q --load <the-file.el>
+
+Note that this will open a new gui instance, which may be desirable -- it means that the "script" behaves exactly as if the task was done manually.
+(The slowdown and popping up of windows can probably be mitigated by using =-nw=, but then some things that may only load when in X mode won't be available.)
+Emacs also provides a =--script= switch (use it instead of =--load=) which won't open the gui and does other nice things like exiting emacs automatically at the end, but it sometimes doesn't behave exactly the same way as when X is used.
+I suspect that certain libraries aren't loaded with that option (similar to =-nw= not loading X-related settings).
+This has tripped me up in the past when trying to automate exporting org files: the exported files are monochrome using =--script=, but colored using =--load=!
+
+* Example: generating agendas for others
+One of the typical cases where I want to script emacs is exporting information from org mode for non-emacs users to consume.
+For example, [[https://orgmode.org/manual/Weekly_002fdaily-agenda.html][the agenda]] provides such a convenient and automatic way to organize and represent information that I use it any time I have a timeline of tasks to complete.
+This kind of situation often occurs in group contexts as well, but of course rarely does anyone else use emacs, never mind org mode.
+So I often find myself in a situation where I would like to build and export custom agenda views for non-emacs users to have.
+Additionally, as the project progresses I may want to add tasks or mark tasks completed, and re-generate agendas for the others to see the progress.
+
+Org mode makes it pretty easy to do this, so it's simple to write a quick script that will automatically generate the necessary agenda views.
+One of the ways that I like to do this, for example, is to tag every task with the person it is delegated to.
+Then, I can create custom agenda view todo lists for each person by just filtering the agenda based on their tag and then exporting the view.
+I also like to leverage the =CATEGORY= property to provide more context in the agenda view for where tasks belong.
+
+Below is an example script that exports agenda views to postscript files using the above strategy.
+#+BEGIN_SRC elisp
+(setq org-agenda-exporter-settings
+      '((ps-left-header (list 'org-agenda-write-buffer-name))
+	(ps-right-header
+	 (list "/pagenumberstring load"
+	       (lambda () (format-time-string "%d/%m/%Y"))))
+	(ps-print-color-p t)
+	(ps-font-size '(14 . 11))       ; Lanscape . Portrait
+	(ps-top-margin 55)
+	(ps-left-margin 35)
+	(ps-right-margin 30)))
+(setq org-agenda-scheduled-leaders '("" "** LATE .%2dx: **"))
+(setq org-agenda-span 'year)
+(setq org-agenda-show-all-dates nil)
+
+(find-file "</path/to/the/source.org>")
+(org-agenda-file-to-front)
+(org-agenda-list)
+
+(defun export-view-for (tag)
+  (defun insert-tag ()
+    (insert (format ":\\(%s\\|all\\):" tag))
+    (execute-kbd-macro (kbd "RET")))
+  (run-with-timer 0.1 nil #'insert-tag)
+  (call-interactively #'org-agenda-filter-by-regexp)
+  (org-agenda-write (format "%s.ps" tag))
+  (org-agenda-filter-remove-all))
+
+(export-view-for "joe")
+(export-view-for "schmoe")
+(export-view-for "fred")
+
+(save-buffers-kill-terminal)
+#+END_SRC
+
+This could also pretty easily be abstracted to take a configuration file with the path to source and names to export views for.
+
+An extra fun fact is that exporting the views after updating the org source can be made easy with a link in the source that runs the script.
+: [[elisp:(async-shell-command "emacs -Q -l ./export-views.el")][export agenda views]]
+
