@@ -1,0 +1,76 @@
+#+OPTIONS: toc:nil
+
+# Tags seperated by commas and spaces
+#+BEGIN_SRC markdown
+Title: Working with images in Org
+Date: 2018-08-16T20:58:11
+Tags: emacs, org, DRAFT
+#+END_SRC
+
+#+ll-process: (ll-replace "^\\* " "<br></br><br></br>\n* ")
+
+* Header :notitle:
+Org mode prides itself on being purely plain text.
+That doesn't mean that it can't do images, though!
+
+#+HTML: <!-- more -->
+
+* Content :notitle:
+explanation..
+
+* Displaying images
+- Inline images
+- Resizing them
+
+* Inserting screenshots and editing images
+Automatically creates =resources= directory in same directory as current org file for screenshots.
+
+Dependencies: =imagemagick= and =gimp=.
+#+BEGIN_SRC elisp
+(defvar ll/org/insert-screenshot/redisplay-images t
+  "Redisplay images after inserting a screenshot with
+`ll/org/insert-screenshot'?")
+
+(defun ll/org/insert-screenshot (&optional arg)
+  "Capture a screenshot and insert a link to it in the current
+buffer. If `ll/org/insert-screenshot/redisplay-images' is non-nil,
+redisplay images in the current buffer.
+
+By default saves images to ./resources/screen_%Y%m%d_%H%M%S.png,
+creating the resources directory if necessary.
+
+With a prefix arg (C-u) prompt for a filename instead of using the default."
+  (interactive)
+  (unless (or arg
+              (file-directory-p "./resources"))
+    (make-directory "resources"))
+  (let* ((default-dest
+           (format-time-string "./resources/screen_%Y%m%d_%H%M%S.png"))
+         (dest (if arg
+                   (helm-read-string "Save to: " default-dest)
+                 default-dest)))
+    (start-process "scrot" nil "/usr/bin/import" dest)
+    (read-char "Taking screenshot... Press any key when done.")
+    (org-insert-link t (concat "file:" dest) "")
+    (when ll/org/insert-screenshot/redisplay-images
+      (org-remove-inline-images)
+      (org-display-inline-images))))
+
+
+(defvar ll/org/edit-image/redisplay-images t
+  "Redisplay images after editing an image with `ll/org/edit-image'?")
+
+(defun ll/org/edit-image (&optional arg)
+  "Edit the image linked at point. If
+`ll/org/insert-screenshot/redisplay-images' is non-nil, redisplay
+images in the current buffer."
+  (interactive)
+  (let ((img (ll/org/link-file-path-at-point)))
+    (start-process "gimp" nil "/usr/bin/gimp" img)
+    (read-char "Editing image... Press any key when done.")
+    (when ll/org/edit-image/redisplay-images
+      (org-remove-inline-images)
+      (org-display-inline-images))))
+#+END_SRC
+
+

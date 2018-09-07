@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <meta charset="utf-8">
+    <title>Improving the Agenda (part 2: custom views)</title>
+    <meta name="description" content="This is the second post on configuring the agenda. Find the first post here....">
+    <meta name="author"      content="Lukas Lazarek">
+    <meta name="keywords"    content="emacs, org">
+    <meta name="viewport"    content="width=device-width, initial-scale=1.0">
+    <link rel="icon"      href="/favicon.ico">
+    <link rel="canonical" href="https://llazarek.github.io/2018/09/improving-the-agenda-part-2-custom-views.html">
+    <link rel="next" href="/2018/08/scripting-emacs.html">
+
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/css/scribble.css">
+    <link rel="stylesheet" type="text/css" href="/css/custom.css">
+    <!-- Feeds -->
+    <link rel="alternate" type="application/atom+xml"
+          href="/feeds/all.atom.xml" title="Atom Feed">
+    <link rel="alternate" type="application/rss+xml"
+          href="/feeds/all.rss.xml" title="RSS Feed">
+    <!-- JS -->
+    <script type="text/javascript">
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-xxxxx', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </head>
+  <body>
+
+    <!-- A standard Twitter Bootstrap nav bar -->
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+      <div class="container">
+
+      <a href="/index.html" class="navbar-brand">llazarek</a>
+
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+              data-target="#navbar_collapse" aria-controls="navbar_collapse"
+              aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbar_collapse">
+          <ul class="navbar-nav mr-auto">
+
+
+            <li class="nav-item dropdown">
+              <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
+                Tags <b class="caret"></b>
+              </a>
+
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="/tags/emacs.html">emacs</a><a class="dropdown-item" href="/tags/finance.html">finance</a><a class="dropdown-item" href="/tags/ledger.html">ledger</a><a class="dropdown-item" href="/tags/linux.html">linux</a><a class="dropdown-item" href="/tags/networking.html">networking</a><a class="dropdown-item" href="/tags/org.html">org</a><a class="dropdown-item" href="/tags/PL.html">PL</a><a class="dropdown-item" href="/tags/racket.html">racket</a><a class="dropdown-item" href="/tags/rt18.html">rt18</a><a class="dropdown-item" href="/tags/scribble.html">scribble</a><a class="dropdown-item" href="/tags/travel.html">travel</a>
+              </div>
+            </li>
+
+            <li>
+              <a class="nav-link" href="/About.html">About</a>
+            </li> 
+
+            <li class="nav-item">
+              <a class="nav-link" href="/feeds/all.atom.xml">Atom</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="/feeds/all.rss.xml">RSS</a>
+            </li>
+          </ul>
+      </div>
+
+      </div>
+    </nav>
+
+
+    <div class="container">
+      <div class="row">
+
+        <!-- Main column -->
+        <div id="content" class="col-md-12">
+
+
+
+
+
+          <article>
+  <span style="display:block; height:40px;"></span>
+  <header>
+    <h1>Improving the Agenda (part 2: custom views)</h1>
+    <span style="display:inline-block; width:40px;"></span>
+    <p class='date-and-tags' style="color:grey;display:inline">
+<time datetime="2018-09-06" pubdate="true">2018-09-06</time> :: <span class="tags"><a href="/tags/emacs.html">emacs</a>, <a href="/tags/org.html">org</a></span></p>
+    <!-- <p class='authors' style="color:grey;margin-left:3%">By: <span class="authors">Lukas Lazarek</span></p> -->
+  </header>
+
+<p>This is the second post on configuring the agenda. Find the first post <a href="http://llazarek.github.io/2018/07/improving-the-agenda.html">here</a>.</p>
+<!-- more-->
+
+<br />
+
+<br />
+
+<h1 id="context">Context</h1>
+
+<h2 id="the-default-agenda-is-limited">The default agenda is limited</h2>
+
+<p>While org mode&rsquo;s default agenda layout is informative and can certainly be used effectively with minor tweaks (I used it as such quite effectively for a few years), it&rsquo;s not perfect. It can easily become cluttered and difficult to parse with too many tasks &#8211; precisely the circumstance in which it <em>should</em> make it easy to tell what needs to be done. Furthermore, since only time-stamped tasks show up in the default agenda, all the tasks I want to see must be dated. For many types of tasks this makes sense, as they must be performed on or by a certain date; however, a large class of tasks have no such clear date associated. For example, many low-priority tasks can be done any time, and long-term/ongoing tasks like projects without a definite deadline don&rsquo;t make sense to assign to arbitrary dates. These types make up a category of tasks about which I want to be reminded (or made aware of) in the agenda, without interfering with my ability to see and manage my more time-sensitive tasks.</p>
+
+<h2 id="representing-ongoing-tasks">Representing ongoing tasks</h2>
+
+<p>In the default agenda, I would typically schedule such tasks on the first date at which I wanted to be reminded of the task, but this approach is generally unattractive. It usually results in my agenda view for any given day consisting (often in large part) of a list of long-overdue tasks which aren&rsquo;t actually overdue, but are just ongoing, low prioty, or time-insensitive. This meant that to read what I needed to do for the day I must first mentally identify and filter out that category of tasks in order to see the time-sensitive items that must be completed by today or in the near future. This clearly means that agenda is <em>under-performing in it&rsquo;s most basic function</em> &#8211; to make it easy, if not instantaneous, to see what needs to be done today.</p>
+
+<p>While I found ways to mitigate this issue with prioritization and emphasis (as described in the last post), that solution was never really satisfactory because the overdue tasks still cluttered my view of today&rsquo;s tasks.</p>
+
+<p>The ideal solution to this problem is to be able to partition the agenda into sections, showing first the time-sensitive tasks of the day, then the tasks I have marked as priority items, and finally a list of all ongoing/time-insensitive tasks.</p>
+
+<br />
+
+<br />
+
+<h1 id="custom-agenda-commands">Custom agenda commands</h1>
+
+<p>Unsurprisingly, org mode provides pretty simple tools to make that dream a reality. Custom agenda commands allow pretty arbitrary queries of tasks in the agenda files to be pieced together into <a href="https://orgmode.org/worg/org-tutorials/org-custom-agenda-commands.html">composite agenda views</a>. In particular, <a href="https://orgmode.org/manual/Block-agenda.html#Block-agenda">agenda blocks</a> allow the agenda to be partitioned into different sections featuring entirely independent queries.</p>
+
+<br />
+
+<br />
+
+<h1 id="example">Example</h1>
+
+<p>The syntax for defining custom agenda commands is not entirely straightforward, so I think it is best conveyed by example. The docs provide some information, and the <a href="https://orgmode.org/worg/org-tutorials/org-custom-agenda-commands.html">worg page</a> is quite helpful. In general, I found it easiest to tweak and extend examples to obtain the desired configuration.</p>
+
+<h2 id="a-multi-part-agenda-view">A multi-part agenda view</h2>
+
+<p>To create a partitioned agenda view, modify <code>org-agenda-custom-commands</code> like this. The agenda views will be available from the agenda dispatcher, <code>org-agenda</code>.</p>
+
+<pre><code>(setq org-agenda-custom-commands
+      '(("h" "Agenda and Home-related tasks"
+         (;; One block with a standard agenda view
+          (agenda "")
+          ;; one block of ALL tasks tagged :home:
+          (tags-todo "home")))
+        ...))</code></pre>
+
+<h2 id="filtering">Filtering</h2>
+
+<p>Each block can have specialized filters for the items that should be included in the block.</p>
+
+<p>For example, with the above custom command any scheduled/deadline tasks tagged with <code>:home:</code> will be displayed twice. To fix this, we can filter out scheduled/deadline tasks from the second block:</p>
+
+<pre><code>(setq org-agenda-custom-commands
+      '(("h" "Agenda and Home-related tasks"
+         (;; One block with a standard agenda view
+          (agenda "")
+          ;; one block of ALL tasks tagged :home:
+          (tags-todo "home"
+                     (org-agenda-skip-function
+                      '(org-agenda-skip-if nil '(scheduled deadline))))))
+        ("H" "Agenda and Home-related tasks**"
+         (;; One block with a standard agenda view
+          (agenda "")
+          ;; one block of ALL tasks tagged :home:
+          (tags-todo "home"
+                     (org-agenda-skip-function
+                      '(or (org-agenda-skip-if nil '(scheduled deadline))
+                           (org-agenda-skip-if 'regexp ":work:"))))))
+        ...))</code></pre>
+
+<p>The second custom view also shows how filters can be combined with <code>or</code> and <code>and</code> to create complex filters. The second block of that view now also filters out any items tagged with <code>:work:</code>.</p>
+
+<h2 id="a-three-part-agenda">A three-part agenda</h2>
+
+<p>The agenda configuration I now use consists of three sections in the following order:</p>
+
+<ol>
+ <li>
+  <p>Scheduled, overdue, and upcoming deadline time-sensitive tasks for the current day:</p>
+  <pre><code>(agenda "plain"
+        ((org-agenda-span 'day)))</code></pre></li>
+ <li>
+  <p>Prioritized tasks for the current period (any tasks with the priority tag)</p>
+  <pre><code>(tags-todo "my-priority-tag"
+           ((org-agenda-span 'day) 
+            (org-agenda-overriding-header
+             "Priority tasks")))</code></pre></li>
+ <li>
+  <p>All other tasks, sorted by priority tag &#8211; specifically tasks <em>without</em> any timestamp</p>
+  <pre><code>(alltodo ""
+         ((org-agenda-skip-function
+           '(org-agenda-skip-if nil '(scheduled deadline)))
+          (org-agenda-overriding-header
+           "Low priority tasks")))</code></pre></li></ol>
+  <footer>
+    <script type="text/javascript">
+      !function(d,s,id){
+          var js,fjs=d.getElementsByTagName(s)[0];
+          if(!d.getElementById(id)){
+              js=d.createElement(s);
+              js.id=id;
+              js.src="//platform.twitter.com/widgets.js";
+              fjs.parentNode.insertBefore(js,fjs);
+          }
+      }(document,"script","twitter-wjs");
+    </script>
+    <a href="https://twitter.com/share"
+       class="twitter-share-button"
+       data-url="https://llazarek.github.io/2018/09/improving-the-agenda-part-2-custom-views.html"
+       data-dnt="true">
+      "Tweet"</a>
+    <script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
+    <g:plusone size="medium" href="https://llazarek.github.io/2018/09/improving-the-agenda-part-2-custom-views.html"></g:plusone>
+    <script type="text/javascript">
+      var disqus_shortname = 'shortname';
+      (function() {
+          var dsq = document.createElement('script');
+          dsq.type = 'text/javascript';
+          dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+    <div id="disqus_thread"></div>
+
+    <div class="row justify-content-center">
+      <nav aria-label="Page Navigation">
+        <ul class="pagination">
+          <li class="page-item">
+            <a class="page-link" href="/2018/08/scripting-emacs.html" aria-label="Previous">
+              <span aria-hidden="true">&larr; Scripting Emacs</span>
+            </a>
+          </li>
+
+        </ul>
+      </nav>
+    </div>
+  </footer>
+</article>
+        </div>
+      </div>
+      <footer>
+        <hr />
+        <p>Site generated by <a href="https://github.com/greghendershott/frog">Frog</a>,
+        the <strong>fr</strong>ozen bl<strong>og</strong> tool,
+        using <a href="http://twitter.github.com/bootstrap/index.html">Bootstrap</a>.</p>
+        <p><em>Copyright Lukas Lazarek 2018 -- and the foreseeable future...</em></p>
+      </footer>
+    </div>
+    <!-- </body> JS -->
+    <script type="text/javascript" src="/js/jquery-3.2.1.slim.min.js"></script>
+    <script type="text/javascript" src="/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
