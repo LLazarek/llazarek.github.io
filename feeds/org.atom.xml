@@ -4,13 +4,23 @@
  <link rel="self" href="https://llazarek.github.io/feeds/org.atom.xml" />
  <link href="https://llazarek.github.io/tags/org.html" />
  <id>urn:https-llazarek-github-io:-tags-org-html</id>
- <updated>2018-09-07T00:40:28Z</updated>
+ <updated>2018-10-14T16:39:49Z</updated>
+ <entry>
+  <title type="text">Images in org-mode</title>
+  <link rel="alternate" href="https://llazarek.github.io/2018/10/images-in-org-mode.html?utm_source=org&amp;utm_medium=Atom" />
+  <id>urn:https-llazarek-github-io:-2018-10-images-in-org-mode-html</id>
+  <published>2018-10-14T16:39:49Z</published>
+  <updated>2018-10-14T16:39:49Z</updated>
+  <author>
+   <name>Lukas Lazarek</name></author>
+  <content type="html">
+&lt;p&gt;Org-mode prides itself on being purely plain text. That doesn&amp;rsquo;t mean that it can&amp;rsquo;t do images, though!&lt;/p&gt;&lt;a href="https://llazarek.github.io/2018/10/images-in-org-mode.html?utm_source=org&amp;amp;utm_medium=Atom"&gt;&lt;em&gt;More&amp;hellip;&lt;/em&gt;&lt;/a&gt;</content></entry>
  <entry>
   <title type="text">Improving the Agenda (part 2: custom views)</title>
   <link rel="alternate" href="https://llazarek.github.io/2018/09/improving-the-agenda-part-2-custom-views.html?utm_source=org&amp;utm_medium=Atom" />
   <id>urn:https-llazarek-github-io:-2018-09-improving-the-agenda-part-2-custom-views-html</id>
-  <published>2018-09-07T00:40:28Z</published>
-  <updated>2018-09-07T00:40:28Z</updated>
+  <published>2018-09-07T01:40:28Z</published>
+  <updated>2018-09-07T01:40:28Z</updated>
   <author>
    <name>Lukas Lazarek</name></author>
   <content type="html">
@@ -19,8 +29,8 @@
   <title type="text">Improving the Agenda</title>
   <link rel="alternate" href="https://llazarek.github.io/2018/07/improving-the-agenda.html?utm_source=org&amp;utm_medium=Atom" />
   <id>urn:https-llazarek-github-io:-2018-07-improving-the-agenda-html</id>
-  <published>2018-07-09T07:27:27Z</published>
-  <updated>2018-07-09T07:27:27Z</updated>
+  <published>2018-07-09T08:27:27Z</published>
+  <updated>2018-07-09T08:27:27Z</updated>
   <author>
    <name>Lukas Lazarek</name></author>
   <content type="html">
@@ -29,8 +39,8 @@
   <title type="text">Organization with Org Mode</title>
   <link rel="alternate" href="https://llazarek.github.io/2018/07/organization-with-org-mode.html?utm_source=org&amp;utm_medium=Atom" />
   <id>urn:https-llazarek-github-io:-2018-07-organization-with-org-mode-html</id>
-  <published>2018-07-02T15:37:07Z</published>
-  <updated>2018-07-02T15:37:07Z</updated>
+  <published>2018-07-02T16:37:07Z</published>
+  <updated>2018-07-02T16:37:07Z</updated>
   <author>
    <name>Lukas Lazarek</name></author>
   <content type="html">

@@ -4,14 +4,22 @@
   <title>llazarek: llazarek</title>
   <description>llazarek: llazarek</description>
   <link>https://llazarek.github.io/index.html</link>
-  <lastBuildDate>Fri, 07 Sep 2018 00:40:28 UT</lastBuildDate>
-  <pubDate>Fri, 07 Sep 2018 00:40:28 UT</pubDate>
+  <lastBuildDate>Sun, 14 Oct 2018 16:39:49 UT</lastBuildDate>
+  <pubDate>Sun, 14 Oct 2018 16:39:49 UT</pubDate>
   <ttl>1800</ttl>
+  <item>
+   <title>Images in org-mode</title>
+   <link>https://llazarek.github.io/2018/10/images-in-org-mode.html?utm_source=all&amp;utm_medium=RSS</link>
+   <guid isPermaLink="false">urn:https-llazarek-github-io:-2018-10-images-in-org-mode-html</guid>
+   <pubDate>Sun, 14 Oct 2018 16:39:49 UT</pubDate>
+   <author>Lukas Lazarek</author>
+   <description>
+&lt;p&gt;Org-mode prides itself on being purely plain text. That doesn&amp;rsquo;t mean that it can&amp;rsquo;t do images, though!&lt;/p&gt;&lt;a href="https://llazarek.github.io/2018/10/images-in-org-mode.html?utm_source=all&amp;amp;utm_medium=RSS"&gt;&lt;em&gt;More&amp;hellip;&lt;/em&gt;&lt;/a&gt;</description></item>
   <item>
    <title>Improving the Agenda (part 2: custom views)</title>
    <link>https://llazarek.github.io/2018/09/improving-the-agenda-part-2-custom-views.html?utm_source=all&amp;utm_medium=RSS</link>
    <guid isPermaLink="false">urn:https-llazarek-github-io:-2018-09-improving-the-agenda-part-2-custom-views-html</guid>
-   <pubDate>Fri, 07 Sep 2018 00:40:28 UT</pubDate>
+   <pubDate>Fri, 07 Sep 2018 01:40:28 UT</pubDate>
    <author>Lukas Lazarek</author>
    <description>
 &lt;p&gt;This is the second post on configuring the agenda. Find the first post &lt;a href="http://llazarek.github.io/2018/07/improving-the-agenda.html"&gt;here&lt;/a&gt;.&lt;/p&gt;&lt;a href="https://llazarek.github.io/2018/09/improving-the-agenda-part-2-custom-views.html?utm_source=all&amp;amp;utm_medium=RSS"&gt;&lt;em&gt;More&amp;hellip;&lt;/em&gt;&lt;/a&gt;</description></item>
@@ -19,7 +27,7 @@
    <title>Scripting Emacs</title>
    <link>https://llazarek.github.io/2018/08/scripting-emacs.html?utm_source=all&amp;utm_medium=RSS</link>
    <guid isPermaLink="false">urn:https-llazarek-github-io:-2018-08-scripting-emacs-html</guid>
-   <pubDate>Wed, 15 Aug 2018 14:46:59 UT</pubDate>
+   <pubDate>Wed, 15 Aug 2018 15:46:59 UT</pubDate>
    <author>Lukas Lazarek</author>
    <description>
 &lt;p&gt;I recently realized how easy it is to make emacs automatically do even more repetitive things I used to do manually.&lt;/p&gt;&lt;a href="https://llazarek.github.io/2018/08/scripting-emacs.html?utm_source=all&amp;amp;utm_medium=RSS"&gt;&lt;em&gt;More&amp;hellip;&lt;/em&gt;&lt;/a&gt;</description></item>
@@ -27,7 +35,7 @@
    <title>Setting up a home cloud server with Nextcloud</title>
    <link>https://llazarek.github.io/2018/08/setting-up-a-home-cloud-server-with-nextcloud.html?utm_source=all&amp;utm_medium=RSS</link>
    <guid isPermaLink="false">urn:https-llazarek-github-io:-2018-08-setting-up-a-home-cloud-server-with-nextcloud-html</guid>
-   <pubDate>Sun, 12 Aug 2018 15:32:37 UT</pubDate>
+   <pubDate>Sun, 12 Aug 2018 16:32:37 UT</pubDate>
    <author>Lukas Lazarek</author>
    <description>
 &lt;p&gt;This weekend, I set up a home server for my parents running Nextcloud so that they can have their own, (almost) free cloud storage. The process was surprisingly simple and fun, though there are a number of steps involved, so I&amp;rsquo;m documenting it here for the sake of reproducibility.&lt;/p&gt;&lt;a href="https://llazarek.github.io/2018/08/setting-up-a-home-cloud-server-with-nextcloud.html?utm_source=all&amp;amp;utm_medium=RSS"&gt;&lt;em&gt;More&amp;hellip;&lt;/em&gt;&lt;/a&gt;</description></item>
@@ -35,7 +43,7 @@
    <title>Road Trip 2018: End</title>
    <link>https://llazarek.github.io/2018/07/road-trip-2018-end.html?utm_source=all&amp;utm_medium=RSS</link>
    <guid isPermaLink="false">urn:https-llazarek-github-io:-2018-07-road-trip-2018-end-html</guid>
-   <pubDate>Sun, 29 Jul 2018 15:33:30 UT</pubDate>
+   <pubDate>Sun, 29 Jul 2018 16:33:30 UT</pubDate>
    <author>Lukas Lazarek</author>
    <description>
 &lt;p&gt;The end.&lt;/p&gt;&lt;a href="https://llazarek.github.io/2018/07/road-trip-2018-end.html?utm_source=all&amp;amp;utm_medium=RSS"&gt;&lt;em&gt;More&amp;hellip;&lt;/em&gt;&lt;/a&gt;</description></item>
@@ -43,7 +51,7 @@
    <title>Road Trip 2018: Niagara, Leaving New York</title>
    <link>https://llazarek.github.io/2018/07/road-trip-2018-niagara-leaving-new-york.html?utm_source=all&amp;utm_medium=RSS</link>
    <guid isPermaLink="false">urn:https-llazarek-github-io:-2018-07-road-trip-2018-niagara-leaving-new-york-html</guid>
-   <pubDate>Fri, 27 Jul 2018 20:54:48 UT</pubDate>
+   <pubDate>Fri, 27 Jul 2018 21:54:48 UT</pubDate>
    <author>Lukas Lazarek</author>
    <description>
 &lt;p&gt;Seeing Niagara before heading out of NY.&lt;/p&gt;&lt;a href="https://llazarek.github.io/2018/07/road-trip-2018-niagara-leaving-new-york.html?utm_source=all&amp;amp;utm_medium=RSS"&gt;&lt;em&gt;More&amp;hellip;&lt;/em&gt;&lt;/a&gt;</description></item>
@@ -51,7 +59,7 @@
    <title>Road Trip 2018: Leaving MA, entering NY</title>
    <link>https://llazarek.github.io/2018/07/road-trip-2018-leaving-ma-entering-ny.html?utm_source=all&amp;utm_medium=RSS</link>
    <guid isPermaLink="false">urn:https-llazarek-github-io:-2018-07-road-trip-2018-leaving-ma-entering-ny-html</guid>
-   <pubDate>Thu, 26 Jul 2018 16:08:00 UT</pubDate>
+   <pubDate>Thu, 26 Jul 2018 17:08:00 UT</pubDate>
    <author>Lukas Lazarek</author>
    <description>
 &lt;p&gt;Finally getting on the road.&lt;/p&gt;&lt;a href="https://llazarek.github.io/2018/07/road-trip-2018-leaving-ma-entering-ny.html?utm_source=all&amp;amp;utm_medium=RSS"&gt;&lt;em&gt;More&amp;hellip;&lt;/em&gt;&lt;/a&gt;</description></item>
@@ -59,7 +67,7 @@
    <title>Road Trip 2018: Departure</title>
    <link>https://llazarek.github.io/2018/07/road-trip-2018-departure.html?utm_source=all&amp;utm_medium=RSS</link>
    <guid isPermaLink="false">urn:https-llazarek-github-io:-2018-07-road-trip-2018-departure-html</guid>
-   <pubDate>Tue, 24 Jul 2018 03:24:40 UT</pubDate>
+   <pubDate>Tue, 24 Jul 2018 04:24:40 UT</pubDate>
    <author>Lukas Lazarek</author>
    <description>
 &lt;p&gt;Getting ready to leave.&lt;/p&gt;&lt;a href="https://llazarek.github.io/2018/07/road-trip-2018-departure.html?utm_source=all&amp;amp;utm_medium=RSS"&gt;&lt;em&gt;More&amp;hellip;&lt;/em&gt;&lt;/a&gt;</description></item>
@@ -67,7 +75,7 @@
    <title>Tracking Expenses with Ledger</title>
    <link>https://llazarek.github.io/2018/07/tracking-expenses-with-ledger.html?utm_source=all&amp;utm_medium=RSS</link>
    <guid isPermaLink="false">urn:https-llazarek-github-io:-2018-07-tracking-expenses-with-ledger-html</guid>
-   <pubDate>Fri, 20 Jul 2018 17:34:47 UT</pubDate>
+   <pubDate>Fri, 20 Jul 2018 18:34:47 UT</pubDate>
    <author>Lukas Lazarek</author>
    <description>
 &lt;p&gt;How I track expenses using ledger, even on my phone.&lt;/p&gt;&lt;a href="https://llazarek.github.io/2018/07/tracking-expenses-with-ledger.html?utm_source=all&amp;amp;utm_medium=RSS"&gt;&lt;em&gt;More&amp;hellip;&lt;/em&gt;&lt;/a&gt;</description></item>
@@ -75,7 +83,7 @@
    <title>Improving the Agenda</title>
    <link>https://llazarek.github.io/2018/07/improving-the-agenda.html?utm_source=all&amp;utm_medium=RSS</link>
    <guid isPermaLink="false">urn:https-llazarek-github-io:-2018-07-improving-the-agenda-html</guid>
-   <pubDate>Mon, 09 Jul 2018 07:27:27 UT</pubDate>
+   <pubDate>Mon, 09 Jul 2018 08:27:27 UT</pubDate>
    <author>Lukas Lazarek</author>
    <description>
 &lt;p&gt;Org mode&amp;rsquo;s agenda is a fantastic interface for viewing and managing tasks. However, its default display settings get cluttered with large numbers of tasks, making it difficult to see what really needs to be done. Here are some of the ways I make the agenda crystal clear.&lt;/p&gt;&lt;a href="https://llazarek.github.io/2018/07/improving-the-agenda.html?utm_source=all&amp;amp;utm_medium=RSS"&gt;&lt;em&gt;More&amp;hellip;&lt;/em&gt;&lt;/a&gt;</description></item>
@@ -83,7 +91,7 @@
    <title>Modal Editing in Emacs</title>
    <link>https://llazarek.github.io/2018/07/modal-editing-in-emacs.html?utm_source=all&amp;utm_medium=RSS</link>
    <guid isPermaLink="false">urn:https-llazarek-github-io:-2018-07-modal-editing-in-emacs-html</guid>
-   <pubDate>Mon, 09 Jul 2018 06:02:02 UT</pubDate>
+   <pubDate>Mon, 09 Jul 2018 07:02:02 UT</pubDate>
    <author>Lukas Lazarek</author>
    <description>
 &lt;p&gt;Modal editing in emacs is easy, and can be much better than vim.&lt;/p&gt;&lt;a href="https://llazarek.github.io/2018/07/modal-editing-in-emacs.html?utm_source=all&amp;amp;utm_medium=RSS"&gt;&lt;em&gt;More&amp;hellip;&lt;/em&gt;&lt;/a&gt;</description></item>
@@ -91,7 +99,7 @@
    <title>Organization with Org Mode</title>
    <link>https://llazarek.github.io/2018/07/organization-with-org-mode.html?utm_source=all&amp;utm_medium=RSS</link>
    <guid isPermaLink="false">urn:https-llazarek-github-io:-2018-07-organization-with-org-mode-html</guid>
-   <pubDate>Mon, 02 Jul 2018 15:37:07 UT</pubDate>
+   <pubDate>Mon, 02 Jul 2018 16:37:07 UT</pubDate>
    <author>Lukas Lazarek</author>
    <description>
 &lt;p&gt;I organize myself and my work using emacs&amp;rsquo; org mode. It has served me extremely well over the past few years and has helped me better organize both my working and personal life. In this post, I describe how I use org mode for everything from long-term projects to appointments and ideas.&lt;/p&gt;&lt;a href="https://llazarek.github.io/2018/07/organization-with-org-mode.html?utm_source=all&amp;amp;utm_medium=RSS"&gt;&lt;em&gt;More&amp;hellip;&lt;/em&gt;&lt;/a&gt;</description></item>
@@ -99,7 +107,7 @@
    <title>Language-oriented Programming: ptext</title>
    <link>https://llazarek.github.io/2018/05/language-oriented-programming-ptext.html?utm_source=all&amp;utm_medium=RSS</link>
    <guid isPermaLink="false">urn:https-llazarek-github-io:-2018-05-language-oriented-programming-ptext-html</guid>
-   <pubDate>Tue, 22 May 2018 23:06:27 UT</pubDate>
+   <pubDate>Wed, 23 May 2018 00:06:27 UT</pubDate>
    <author>Lukas Lazarek</author>
    <description>
 &lt;p&gt;Language-oriented programming in action with racket.&lt;/p&gt;&lt;a href="https://llazarek.github.io/2018/05/language-oriented-programming-ptext.html?utm_source=all&amp;amp;utm_medium=RSS"&gt;&lt;em&gt;More&amp;hellip;&lt;/em&gt;&lt;/a&gt;</description></item></channel></rss>

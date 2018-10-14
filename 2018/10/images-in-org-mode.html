@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <meta charset="utf-8">
+    <title>Images in org-mode</title>
+    <meta name="description" content="Org-mode prides itself on being purely plain text. That doesn't mean that it can't do images, though!...">
+    <meta name="author"      content="Lukas Lazarek">
+    <meta name="keywords"    content="emacs, org">
+    <meta name="viewport"    content="width=device-width, initial-scale=1.0">
+    <link rel="icon"      href="/favicon.ico">
+    <link rel="canonical" href="https://llazarek.github.io/2018/10/images-in-org-mode.html">
+    <link rel="next" href="/2018/09/improving-the-agenda-part-2-custom-views.html">
+
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/css/scribble.css">
+    <link rel="stylesheet" type="text/css" href="/css/custom.css">
+    <!-- Feeds -->
+    <link rel="alternate" type="application/atom+xml"
+          href="/feeds/all.atom.xml" title="Atom Feed">
+    <link rel="alternate" type="application/rss+xml"
+          href="/feeds/all.rss.xml" title="RSS Feed">
+    <!-- JS -->
+    <script type="text/javascript">
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-xxxxx', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </head>
+  <body>
+
+    <!-- A standard Twitter Bootstrap nav bar -->
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+      <div class="container">
+
+      <a href="/index.html" class="navbar-brand">llazarek</a>
+
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+              data-target="#navbar_collapse" aria-controls="navbar_collapse"
+              aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbar_collapse">
+          <ul class="navbar-nav mr-auto">
+
+
+            <li class="nav-item dropdown">
+              <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
+                Tags <b class="caret"></b>
+              </a>
+
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="/tags/emacs.html">emacs</a><a class="dropdown-item" href="/tags/finance.html">finance</a><a class="dropdown-item" href="/tags/ledger.html">ledger</a><a class="dropdown-item" href="/tags/linux.html">linux</a><a class="dropdown-item" href="/tags/networking.html">networking</a><a class="dropdown-item" href="/tags/org.html">org</a><a class="dropdown-item" href="/tags/PL.html">PL</a><a class="dropdown-item" href="/tags/racket.html">racket</a><a class="dropdown-item" href="/tags/rt18.html">rt18</a><a class="dropdown-item" href="/tags/scribble.html">scribble</a><a class="dropdown-item" href="/tags/travel.html">travel</a>
+              </div>
+            </li>
+
+            <li>
+              <a class="nav-link" href="/About.html">About</a>
+            </li> 
+
+            <li class="nav-item">
+              <a class="nav-link" href="/feeds/all.atom.xml">Atom</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="/feeds/all.rss.xml">RSS</a>
+            </li>
+          </ul>
+      </div>
+
+      </div>
+    </nav>
+
+
+    <div class="container">
+      <div class="row">
+
+        <!-- Main column -->
+        <div id="content" class="col-md-12">
+
+
+
+
+
+          <article>
+  <span style="display:block; height:40px;"></span>
+  <header>
+    <h1>Images in org-mode</h1>
+    <span style="display:inline-block; width:40px;"></span>
+    <p class='date-and-tags' style="color:grey;display:inline">
+<time datetime="2018-10-14" pubdate="true">2018-10-14</time> :: <span class="tags"><a href="/tags/emacs.html">emacs</a>, <a href="/tags/org.html">org</a></span></p>
+    <!-- <p class='authors' style="color:grey;margin-left:3%">By: <span class="authors">Lukas Lazarek</span></p> -->
+  </header>
+
+<p>Org-mode prides itself on being purely plain text. That doesn&rsquo;t mean that it can&rsquo;t do images, though!</p>
+<!-- more-->
+
+<p>In fact, org-mode has built-in support for including images in its documents. Not only can those images be inserted into exported formats like HTML and LaTeX, they can be displayed inline in emacs.</p>
+
+<br />
+
+<br />
+
+<h1 id="displaying-images">Displaying images</h1>
+
+<p>Displaying inline images is as simple as inserting a link to an image without a description and executing <code>org-toggle-inline-images</code>. For example:</p>
+
+<pre><code>[[file:/path/to/an/image.png]]</code></pre>
+
+<p>and hitting the default binding for <code>org-toggle-inline-images</code>, <code>C-c C-x C-v</code> causes the link to be overlayed with the image it links to.</p>
+
+<br />
+
+<br />
+
+<h1 id="image-size">Image size</h1>
+
+<p>While this is great, when I started using this I quickly noticed that org doesn&rsquo;t like displaying large images inline. If the image takes up much or all of the vertical screen space, scrolling through the buffer with that image is a nightmare; this happens because inline images are overlayed over the link text in the buffer, meaning that the image is considered by emacs to be on a single line. Emacs&rsquo; minimum scrolling unit is a line, so either the whole line (image) is visible or not.</p>
+
+<p>While there are some workarounds like <a href="http://www.gnu.org/software/emacs/manual/html_node/elisp/Showing-Images.html">inserting images &ldquo;sliced&rdquo;</a> into multiple smaller images that each fit on one line, or a <a href="https://emacs.stackexchange.com/questions/10354/smooth-mouse-scroll-for-inline-images">relatively new pixel-based scrolling feature</a>, I have found that these each have their own issues. Instead, I find it easiest to just resize the image being linked so that it is a reasonable size and the above scrolling behavior isn&rsquo;t problematic.</p>
+
+<p>There are two ways to do this; the first is builtin but only works in recent versions of emacs/org-mode, and I have sometimes had issues with it in exports. Nonetheless, it is certainly the simplest for just viewing images within org. Just add an <code>ATTR_ORG</code> line before the image specifying a width for the inserted image (in pixels) before toggling inline images.</p>
+
+<pre><code>#+ATTR_ORG: :width 1200
+[[file:/path/to/an/image.png]]</code></pre>
+
+<p>The second way is to resize the image itself. This might seem like a hassle, which it can be, but it can be made pretty painless. It also integrates pretty well with the editing functions I describe below. To do this, I wrote a function that uses an external tool to resize the image under point, and binds this to a key of choice. The function can be found below, along with some other useful functions.</p>
+
+<br />
+
+<br />
+
+<h1 id="incorporating-images-into-my-note-taking-workflow">Incorporating images into my note-taking workflow</h1>
+
+<p>I often find org&rsquo;s ability to show inline images most useful when taking notes. It&rsquo;s said that a picture is worth a thousand words, and indeed I often find it easiest when taking notes to just take a quick screenshot of something rather than trying to describe it; or worse, making ascii-art to depict it &#8211; much as I love ascii art, it really isn&rsquo;t an efficient way to draw pictures (even with <a href="https://www.emacswiki.org/emacs/ArtistMode">artist-mode</a>). Furthermore, a simple screenshot may not be enough: I typically want to annotate the image, such as to highlight some portions of it or write comments directly beside the item of interest.</p>
+
+<p>To these ends, I wrote a pair of functions that allow me to quickly take screenshots and edit images directly from emacs. This eliminates the cognitive burden of opening a separate screenshot or image editing program etc, as well as feeling very natural. I bind these functions to easily accessible keys, and now inserting and marking up images in my notes feels just as natural as entering text.</p>
+
+<br />
+
+<br />
+
+<h1 id="the-code">The code</h1>
+
+<p>These three functions implement the behavior of taking screenshots, editing images, and resizing them. They are intended to be invoked within org mode, with the point at the location at which to insert the image or over the image to edit.</p>
+
+<p>A few notes: - The screenshot function automatically creates a <code>resources</code> directory in same directory as current org file. - These functions really just delegate to external programs in a convenient way, so they depend upon these programs being installed to work. The specific programs are <code>import</code>, <code>mogrify</code>, and <code>gimp</code>. The first two are part of the <code>imagemagick</code> package on Ubuntu and the last to the <code>gimp</code> package.</p>
+
+<pre><code>(defvar ll/org/insert-screenshot/redisplay-images t
+  "Redisplay images after inserting a screenshot with
+`ll/org/insert-screenshot'?")
+
+(defun ll/org/insert-screenshot (&amp;optional arg)
+  "Capture a screenshot and insert a link to it in the current
+buffer. If `ll/org/insert-screenshot/redisplay-images' is non-nil,
+redisplay images in the current buffer.
+
+By default saves images to ./resources/screen_%Y%m%d_%H%M%S.png,
+creating the resources directory if necessary.
+
+With a prefix arg (C-u) prompt for a filename instead of using the default.
+
+Depends upon `import` from ImageMagick."
+  (interactive)
+  (unless (or arg
+              (file-directory-p "./resources"))
+    (make-directory "resources"))
+  (let* ((default-dest
+           (format-time-string "./resources/screen_%Y%m%d_%H%M%S.png"))
+         (dest (if arg
+                   (helm-read-string "Save to: " default-dest)
+                 default-dest)))
+    (start-process "import" nil "/usr/bin/import" dest)
+    (read-char "Taking screenshot... Press any key when done.")
+    (org-insert-link t (concat "file:" dest) "")
+    (when ll/org/insert-screenshot/redisplay-images
+      (org-remove-inline-images)
+      (org-display-inline-images))))
+
+
+(defvar ll/org/edit-image/redisplay-images t
+  "Redisplay images after editing an image with `ll/org/edit-image'?")
+
+(defun ll/org/edit-image (&amp;optional arg)
+  "Edit the image linked at point. If
+`ll/org/insert-screenshot/redisplay-images' is non-nil, redisplay
+images in the current buffer."
+  (interactive)
+  (let ((img (ll/org/link-file-path-at-point)))
+    (start-process "gimp" nil "/usr/bin/gimp" img)
+    (read-char "Editing image... Press any key when done.")
+    (when ll/org/edit-image/redisplay-images
+      (org-remove-inline-images)
+      (org-display-inline-images))))
+
+(defun ll/org/resize-image-at-point (&amp;optional arg)
+  "Resize the image linked at point. If
+`ll/org/insert-screenshot/redisplay-images' is non-nil, redisplay
+images in the current buffer."
+  (interactive)
+  (let ((img (ll/org/link-file-path-at-point))
+        (percent (read-number "Resize to what percentage of current size? ")))
+    (start-process "mogrify" nil "/usr/bin/mogrify"
+                   "-resize"
+                   (format "%s%%" percent)
+                   img)
+    (when ll/org/edit-image/redisplay-images
+      (org-remove-inline-images)
+      (org-display-inline-images))))</code></pre>
+  <footer>
+    <script type="text/javascript">
+      !function(d,s,id){
+          var js,fjs=d.getElementsByTagName(s)[0];
+          if(!d.getElementById(id)){
+              js=d.createElement(s);
+              js.id=id;
+              js.src="//platform.twitter.com/widgets.js";
+              fjs.parentNode.insertBefore(js,fjs);
+          }
+      }(document,"script","twitter-wjs");
+    </script>
+    <a href="https://twitter.com/share"
+       class="twitter-share-button"
+       data-url="https://llazarek.github.io/2018/10/images-in-org-mode.html"
+       data-dnt="true">
+      "Tweet"</a>
+    <script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
+    <g:plusone size="medium" href="https://llazarek.github.io/2018/10/images-in-org-mode.html"></g:plusone>
+    <script type="text/javascript">
+      var disqus_shortname = 'shortname';
+      (function() {
+          var dsq = document.createElement('script');
+          dsq.type = 'text/javascript';
+          dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+    <div id="disqus_thread"></div>
+
+    <div class="row justify-content-center">
+      <nav aria-label="Page Navigation">
+        <ul class="pagination">
+          <li class="page-item">
+            <a class="page-link" href="/2018/09/improving-the-agenda-part-2-custom-views.html" aria-label="Previous">
+              <span aria-hidden="true">&larr; Improving the Agenda (part 2: custom views)</span>
+            </a>
+          </li>
+
+        </ul>
+      </nav>
+    </div>
+  </footer>
+</article>
+        </div>
+      </div>
+      <footer>
+        <hr />
+        <p>Site generated by <a href="https://github.com/greghendershott/frog">Frog</a>,
+        the <strong>fr</strong>ozen bl<strong>og</strong> tool,
+        using <a href="http://twitter.github.com/bootstrap/index.html">Bootstrap</a>.</p>
+        <p><em>Copyright Lukas Lazarek 2018 -- and the foreseeable future...</em></p>
+      </footer>
+    </div>
+    <!-- </body> JS -->
+    <script type="text/javascript" src="/js/jquery-3.2.1.slim.min.js"></script>
+    <script type="text/javascript" src="/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

@@ -3,8 +3,8 @@
 # Tags seperated by commas and spaces
 #+BEGIN_SRC markdown
 Title: Images in org-mode
-Date: 2018-10-14T20:58:11
-Tags: emacs, org, DRAFT
+Date: 2018-10-14T11:39:49
+Tags: emacs, org
 #+END_SRC
 
 #+ll-process: (ll-replace "^\\* " "<br></br><br></br>\n* ")

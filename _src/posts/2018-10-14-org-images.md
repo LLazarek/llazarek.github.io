@@ -1,6 +1,6 @@
     Title: Images in org-mode
-    Date: 2018-10-14T20:58:11
-    Tags: emacs, org, DRAFT
+    Date: 2018-10-14T11:39:49
+    Tags: emacs, org
 
 Org-mode prides itself on being purely plain text.
 That doesn't mean that it can't do images, though!
