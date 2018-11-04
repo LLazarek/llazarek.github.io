@@ -10,5 +10,6 @@ https://llazarek.github.io/2018/07/tracking-expenses-with-ledger.html
 https://llazarek.github.io/2018/07/road-trip-2018-departure.html
 https://llazarek.github.io/2018/09/improving-the-agenda-part-2-custom-views.html
 https://llazarek.github.io/2018/07/road-trip-2018-niagara-leaving-new-york.html
+https://llazarek.github.io/2018/11/org-export-processing.html
 https://llazarek.github.io/2018/07/road-trip-2018-leaving-ma-entering-ny.html
 https://llazarek.github.io/About.html
