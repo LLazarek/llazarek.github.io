@@ -160,18 +160,19 @@ the expression with its result formatted as a string. An
 at-expression is any elisp expression beginning with the provided
 delimiter string (~@ by default). E.g. ~@(+ 1 2), ~@c-version
 "
-  (let ((delim (or at-exp-delim "~@"))
-        (delim-len (length delim)))
+  (let* ((delim (or at-exp-delim "~@"))
+         (delim-len (length delim)))
     (save-excursion
       (beginning-of-buffer)
-      (while (search-forward at-exp-delim (buffer-end 1) t)
+      (while (search-forward delim (buffer-end 1) t)
         (let ((invocation (read (current-buffer))))
           (backward-kill-sexp)
           (save-excursion
             (backward-char delim-len)
-            (when (looking-at-p at-exp-delim)
+            (when (looking-at-p delim)
               (delete-char delim-len)))
-          (insert (format "%s" (eval invocation))))))))
+          (insert (format "%s"
+                          (eval invocation))))))))
 
 (defun ll/org-process/preprocess-buffer (backend)
   "Execute all \"#+ll-org-process: \" lines in the current buffer.
