@@ -1,5 +1,6 @@
 https://llazarek.github.io/2018/07/organization-with-org-mode.html
 https://llazarek.github.io/2018/08/scripting-emacs.html
+https://llazarek.github.io/2018/12/composable-testing-syntax.html
 https://llazarek.github.io/2018/07/road-trip-2018-end.html
 https://llazarek.github.io/2018/10/images-in-org-mode.html
 https://llazarek.github.io/2018/05/language-oriented-programming-ptext.html
@@ -8,6 +9,8 @@ https://llazarek.github.io/2018/07/modal-editing-in-emacs.html
 https://llazarek.github.io/2018/08/setting-up-a-home-cloud-server-with-nextcloud.html
 https://llazarek.github.io/2018/07/tracking-expenses-with-ledger.html
 https://llazarek.github.io/2018/07/road-trip-2018-departure.html
+https://llazarek.github.io/2019/01/fuzzy-searching-notes-with-fzf.html
+https://llazarek.github.io/2019/07/non-linear-notes-with-org.html
 https://llazarek.github.io/2018/09/improving-the-agenda-part-2-custom-views.html
 https://llazarek.github.io/2018/07/road-trip-2018-niagara-leaving-new-york.html
 https://llazarek.github.io/2018/11/org-export-processing.html

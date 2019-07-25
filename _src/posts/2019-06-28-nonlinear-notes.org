@@ -1,0 +1,156 @@
+#+OPTIONS: toc:nil
+
+# Tags seperated by commas and spaces
+#+BEGIN_SRC markdown
+Title: Non-linear notes with Org
+Date: 2019-07-24T16:48:06
+Tags: emacs, org
+#+END_SRC
+
+#+ll-process: (ll-replace "^\\* " "<br></br><br></br>\n* ")
+
+* Header :notitle:
+For all that I rave about org mode, I generally prefer taking notes by hand.
+Org wins out when my notes are certain kinds of technical or reference notes, including code snippets, links to resources, etc.
+In those cases, embedded code blocks, inline images, links, and more make org mode a perfect medium.
+Luckily, a large portion of the notes I take fall into those categories.
+But for the kind of notes that I take while trying to understand something, or build a high level idea of a lecture or book, handwritten notes are far superior in my opinion.
+This kind of note taking is also often more rewarding.
+
+It would be great if org mode could handle these kinds of notes as well.
+Why can't it?
+
+#+HTML: <!-- more -->
+
+* Old :noexport:
+I have long been searching for ways to make org notes closer to hand written notes.
+One of the most significant differences I struggle with is that org notes feel restrictively linear.
+By /linear/, I refer to the conceptual organization of notes.
+Text notes consist simply of a string of information, like bullets or sentences; the pieces form a chain that is to be read in sequence.
+Non-linear notes, however, link many conceptually related pieces of information together without necessarily imposing ordering.
+For example, I would call mind maps a non linear way of taking notes; mind maps use a graph with nodes as pieces of information, and both edges and spatial organization serve to link concepts together.
+When I write notes by hand, I use a mixed style of linear chunks organized in a vaguely mind map-like style, with links between chunks relating concepts.
+I also often freely use arrows and lines to link smaller things like words or sentences within a chunk, or to annotate pieces of an idea with further explanation.
+I would like to be able to do this in org mode, but this isn't really easy.
+
+Creating plain mind maps from org documents is actually quite simple, but I've found it to be of little use.
+I implemented a proof of concept (Todo link) which creates nodes for top level headings and can link them together to generate a Graphviz graph of the map for a file.
+But this is too simplistic; it doesn't even really come close to the example above.
+I can't arrange the chunks of information easily, and I can't nicely make annotations.
+
+There seem to be inherent barriers to supporting spacial organization in org, however.
+# First, there doesn't seem to be a simple lightweight way of specifying spatial organization. Perhaps [[https://orgmode.org/manual/Drawers.html][drawers]] could be used to specify associations with other headings: I have yet to explore this.
+It's unclear if there is any reasonable (syntactically light) way to support linking together small things like words, sentences, portions of equations, etc.
+Furthermore, viewing the spatial organization of a set of notes seems to necessitate exporting the notes to some format like images or PDF.
+This strikes me as a rather costly downside because I greatly appreciate how org provides features to make notes highly readable in their source buffer (e.g. inline images, markup fontification, latex overlays). 
+
+
+I have also considered the possibility that I am inflating the importance of spacial organization in my notes.
+For example, [[https://orgmode.org/manual/Hyperlinks.html#Hyperlinks][links]] provide a fantastic means of non-linearity that is not spatial.
+Indeed, I use links extensively; I find hem to be one of org mode's most useful features.
+
+However, I can't help but feel that spatial organization is a valuable enhancement to at least some forms of notes
+First, it provides a kind of implicit association in addition to explicit linking via grouping.
+Second, it makes it vastly easier to see the broad structure of the notes at a glance.
+I also greatly appreciate how naturally spatial organization allows a kind of local annotation of notes, as in the example above.
+
+
+
+
+Perhaps the only reasonable middle ground might be to just visually organize an overview of a set of notes.
+This would boil down to a kind of mind-map table of contents.
+This lets links do most of the heavy lifting for conceptual linking, while still providing the structural glancability of the spatial overview.
+Furthermore, this can be implemented fairly simply using drawers.
+
+At any rate, I'm still searching for an ideal format for note taking with org.
+
+
+* Content :notitle:
+First, the problem with handwritten notes.
+They're physical, and physical things get lost.
+The solution, I often think, is to scan them.
+Now they can't be lost, but can they be found easily?
+Not really, because they're not searchable.
+OCR can't even help (even if it were reliable) because my handwriting is terrible.
+
+Plain text notes are great because they solve both of those problems.
+They're digital and quickly searchable with =grep= or [[https://github.com/junegunn/fzf][fzf]], so I can actually find those notes about Markov models that I vaguely remember from several years ago.
+But text notes are too flat and linear to work well for typical note taking.
+I find that it's slow and difficult to linearize ideas into coherent text while taking notes.
+When I write notes by hand, I use a mixed style of sentences grouped in a vaguely mind map-like style, with links between groups relating concepts.
+I also often freely use arrows to link smaller things like words or sentences within a group, or to annotate pieces of an idea or equation with further explanation.
+For example, here's a snippet of some old notes exemplifying these features.
+TODO: image of notes (on phone)
+
+
+I would ideally like to be able to write notes like this in org mode, but this seems to be asking a lot (too much?).
+It's entirely unclear to me how to reasonably write text that captures the simplicity, the ease of both writing and reading this kind of handwritten notes.
+I can think of two wildly different approaches, neither of which is satisfying.
+
+The first is to write something that can be used to generate an image like the handwritten version, which ends up being a kind of program.
+Something like this:
+#+BEGIN_SRC org
+#lang notes
+
+*Tractability* := {worst case}_1 runtime is {_polynomial_}_2 in input size
+:1: Why? Analyses compose!
+:2: "Scales well": {T(c n)}_3 = {d T(n)}_4
+:3: Const increase in input size
+:4: Const increase in runtime
+:=>: 3 4
+
+{T(n) := wost case runtime for input {size}_6 n}_5
+:=>: 2 5
+
+:6: {bits}_7
+:7: Usually for "single" inputs like a number (e.g. fibonacci)
+:6: elements / components
+#+END_SRC
+This is nice because it's pretty unambiguous and aught to be able to render into something very similar to the handwritten version.
+Otherwise, however, it's terrible. 
+It has none of the instant understandability of the handwritten notes.
+Supposing even that it could be rendered nicely, though, I think it's a tough sell to have such an opaque source syntax, and it easn't even particularly fast or easy to write.
+One of the things that I love about org is that it has many features that make notes extremely readable in their source buffer (inline images, markup fontification, latex overlays, the list goes on...);
+I generally prefer reading my notes from source rather than exporting them.
+So it's pretty important to me that I can read the source.
+And don't even ask how annotation of formulas is supposed to work (it needs to get passed through to LaTeX).
+
+
+Let's give it another go, focusing only on how the source looks.
+#+BEGIN_SRC org
+                       why? analyses compose!
+                      /
+                     ,
+*Tractability* := worst case runtime is _polynomial_ in input size
+                                        /   ⇓
+ ,-------------------------------------'    ⇓
+.|   T(n) := worst case runtime for input size n.
+.|                                        / \
+.|                                       /   \
+.|                                    bits    elements, components
+.|                                    /
+.|        Usually for "single" inputs
+.|        like a number (e.g. fib)
+ v        
+"Scales well"
+T(c n) = d T(n)
+  /       \________________________
+ ,                                 '
+Const increase in input size  ==>  Const increase in runtime
+#+END_SRC
+This is just about as bad, but for an almost entirely opposite set of reasons.
+It's nice because it has much of the instant visual understandability of the original.
+But actually writing anything like this (and fiddling the formatting) is a gargantuan pain.
+The handwritten notes took less than a minute of actual writing, and that writing was done absentmindedly while focusing on a lecture and thinking about it.
+The version above took more than five minutes of dedicated fiddling, even knowing beforehand the final desired format and all the content!
+This is clearly unusable as well.
+
+
+Maybe there's some magical sweet spot in between these two ideas that balances presentation with ease of writing.
+Or maybe there's a way to achieve those two goals in plain text that's entirely different.
+The more I think about this, however, the more I doubt that it's even possible to have a plain text representation that fits the bill.
+Maybe I'm just asking too much?
+
+
+For now, I've settled on scanning notes and writing little keyword summaries in an text file "index" that points to the scans.
+It's a poor solution.

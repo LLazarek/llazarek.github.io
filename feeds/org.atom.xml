@@ -4,7 +4,29 @@
  <link rel="self" href="https://llazarek.github.io/feeds/org.atom.xml" />
  <link href="https://llazarek.github.io/tags/org.html" />
  <id>urn:https-llazarek-github-io:-tags-org-html</id>
- <updated>2018-11-04T01:33:06Z</updated>
+ <updated>2019-07-24T21:48:06Z</updated>
+ <entry>
+  <title type="text">Non-linear notes with Org</title>
+  <link rel="alternate" href="https://llazarek.github.io/2019/07/non-linear-notes-with-org.html?utm_source=org&amp;utm_medium=Atom" />
+  <id>urn:https-llazarek-github-io:-2019-07-non-linear-notes-with-org-html</id>
+  <published>2019-07-24T21:48:06Z</published>
+  <updated>2019-07-24T21:48:06Z</updated>
+  <author>
+   <name>Lukas Lazarek</name></author>
+  <content type="html">
+&lt;p&gt;For all that I rave about org mode, I generally prefer taking notes by hand. Org wins out when my notes are certain kinds of technical or reference notes, including code snippets, links to resources, etc. In those cases, embedded code blocks, inline images, links, and more make org mode a perfect medium. Luckily, a large portion of the notes I take fall into those categories. But for the kind of notes that I take while trying to understand something, or build a high level idea of a lecture or book, handwritten notes are far superior in my opinion. This kind of note taking is also often more rewarding.&lt;/p&gt;
+
+&lt;p&gt;It would be great if org mode could handle these kinds of notes as well. Why can&amp;rsquo;t it?&lt;/p&gt;&lt;a href="https://llazarek.github.io/2019/07/non-linear-notes-with-org.html?utm_source=org&amp;amp;utm_medium=Atom"&gt;&lt;em&gt;More&amp;hellip;&lt;/em&gt;&lt;/a&gt;</content></entry>
+ <entry>
+  <title type="text">Fuzzy-searching notes with fzf</title>
+  <link rel="alternate" href="https://llazarek.github.io/2019/01/fuzzy-searching-notes-with-fzf.html?utm_source=org&amp;utm_medium=Atom" />
+  <id>urn:https-llazarek-github-io:-2019-01-fuzzy-searching-notes-with-fzf-html</id>
+  <published>2019-01-12T23:39:54Z</published>
+  <updated>2019-01-12T23:39:54Z</updated>
+  <author>
+   <name>Lukas Lazarek</name></author>
+  <content type="html">
+&lt;p&gt;I have a lot of plain text notes, from years of using org mode for nearly everything. Finding specific pieces of information in that sea of information can be difficult; I am unwilling and unable to remember where exactly I wrote something down. Of course, since it&amp;rsquo;s all plain text, grep/ag and friends seem ideally suited to the task &amp;#8211; except that requires remembering exactly how the information was worded. Also too much. What about fuzzy search?&lt;/p&gt;&lt;a href="https://llazarek.github.io/2019/01/fuzzy-searching-notes-with-fzf.html?utm_source=org&amp;amp;utm_medium=Atom"&gt;&lt;em&gt;More&amp;hellip;&lt;/em&gt;&lt;/a&gt;</content></entry>
  <entry>
   <title type="text">Org Export Processing</title>
   <link rel="alternate" href="https://llazarek.github.io/2018/11/org-export-processing.html?utm_source=org&amp;utm_medium=Atom" />

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <meta charset="utf-8">
+    <title>Fuzzy-searching notes with fzf</title>
+    <meta name="description" content="I have a lot of plain text notes, from years of using org mode for nearly everything. Finding specific pieces of information in that sea of information can be difficult; I am unwilling and unable to remember where exactly I wrote something down. Of course...">
+    <meta name="author"      content="Lukas Lazarek">
+    <meta name="keywords"    content="emacs, org">
+    <meta name="viewport"    content="width=device-width, initial-scale=1.0">
+    <link rel="icon"      href="/favicon.ico">
+    <link rel="canonical" href="https://llazarek.github.io/2019/01/fuzzy-searching-notes-with-fzf.html">
+    <link rel="next" href="/2018/12/composable-testing-syntax.html">
+    <link rel="prev" href="/2019/07/non-linear-notes-with-org.html">
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/css/scribble.css">
+    <link rel="stylesheet" type="text/css" href="/css/custom.css">
+    <!-- Feeds -->
+    <link rel="alternate" type="application/atom+xml"
+          href="/feeds/all.atom.xml" title="Atom Feed">
+    <link rel="alternate" type="application/rss+xml"
+          href="/feeds/all.rss.xml" title="RSS Feed">
+    <!-- JS -->
+    <script type="text/javascript">
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-xxxxx', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </head>
+  <body>
+
+    <!-- A standard Twitter Bootstrap nav bar -->
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+      <div class="container">
+
+      <a href="/index.html" class="navbar-brand">llazarek</a>
+
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+              data-target="#navbar_collapse" aria-controls="navbar_collapse"
+              aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbar_collapse">
+          <ul class="navbar-nav mr-auto">
+
+
+            <li class="nav-item dropdown">
+              <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
+                Tags <b class="caret"></b>
+              </a>
+
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="/tags/emacs.html">emacs</a><a class="dropdown-item" href="/tags/finance.html">finance</a><a class="dropdown-item" href="/tags/ledger.html">ledger</a><a class="dropdown-item" href="/tags/linux.html">linux</a><a class="dropdown-item" href="/tags/networking.html">networking</a><a class="dropdown-item" href="/tags/org.html">org</a><a class="dropdown-item" href="/tags/PL.html">PL</a><a class="dropdown-item" href="/tags/racket.html">racket</a><a class="dropdown-item" href="/tags/rt18.html">rt18</a><a class="dropdown-item" href="/tags/scribble.html">scribble</a><a class="dropdown-item" href="/tags/testing.html">testing</a><a class="dropdown-item" href="/tags/travel.html">travel</a>
+              </div>
+            </li>
+
+            <li>
+              <a class="nav-link" href="/About.html">About</a>
+            </li> 
+
+            <li class="nav-item">
+              <a class="nav-link" href="/feeds/all.atom.xml">Atom</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="/feeds/all.rss.xml">RSS</a>
+            </li>
+          </ul>
+      </div>
+
+      </div>
+    </nav>
+
+
+    <div class="container">
+      <div class="row">
+
+        <!-- Main column -->
+        <div id="content" class="col-md-12">
+
+
+
+
+
+          <article>
+  <span style="display:block; height:40px;"></span>
+  <header>
+    <h1>Fuzzy-searching notes with fzf</h1>
+    <span style="display:inline-block; width:40px;"></span>
+    <p class='date-and-tags' style="color:grey;display:inline">
+<time datetime="2019-01-12" pubdate="true">2019-01-12</time> :: <span class="tags"><a href="/tags/emacs.html">emacs</a>, <a href="/tags/org.html">org</a></span></p>
+    <!-- <p class='authors' style="color:grey;margin-left:3%">By: <span class="authors">Lukas Lazarek</span></p> -->
+  </header>
+
+<p>I have a lot of plain text notes, from years of using org mode for nearly everything. Finding specific pieces of information in that sea of information can be difficult; I am unwilling and unable to remember where exactly I wrote something down. Of course, since it&rsquo;s all plain text, grep/ag and friends seem ideally suited to the task &#8211; except that requires remembering exactly how the information was worded. Also too much. What about fuzzy search?</p>
+<!-- more-->
+
+<p>The ideal solution would be full-text fuzzy search that recursively examines all files in a directory, following symlinks. Then I can symlink every place I put my notes to one location, and point it there.</p>
+
+<p>With emacs, as ever, there was a solution but a quick google search away: <a href="https://jblevins.org/projects/deft/">Deft</a>. Deft provides a nice interface to incrementally (though not fuzzily) search a whole repository of text. I used it for a while, but as my notes grew more numerous and I less patient, its speed became a rather glaring annoyance. It got to the point where I manually guessed the location of notes rather than suffering its half-minute load time.</p>
+
+<p>Yesterday a friend recommended <a href="https://github.com/junegunn/fzf">fzf</a> to me and within a few minutes I was wondering why I had wasted so much time before this. Along with <a href="https://github.com/bling/fzf.el">fzf.el</a> and a touch of elisp, I had a responsive, full-text fuzzy search that just works.</p>
+
+<pre><code>(use-package fzf
+  :bind ("C-S-s" . ll/fzf/notes)
+
+  :config
+  (customize-set-variable 'fzf/args
+                          "-x --color bw --print-query --delimiter=: --nth=3")
+  (customize-set-variable 'fzf/executable
+                          "/path/to/fzf")
+  (defvar ll/fzf/notes-directory "/path/to/notes/directory")
+  (defun ll/fzf/notes ()
+    (interactive)
+    (fzf/start ll/fzf/notes-directory
+               "ag -f --nobreak --noheading .")))</code></pre>
+  <footer>
+    <script type="text/javascript">
+      !function(d,s,id){
+          var js,fjs=d.getElementsByTagName(s)[0];
+          if(!d.getElementById(id)){
+              js=d.createElement(s);
+              js.id=id;
+              js.src="//platform.twitter.com/widgets.js";
+              fjs.parentNode.insertBefore(js,fjs);
+          }
+      }(document,"script","twitter-wjs");
+    </script>
+    <a href="https://twitter.com/share"
+       class="twitter-share-button"
+       data-url="https://llazarek.github.io/2019/01/fuzzy-searching-notes-with-fzf.html"
+       data-dnt="true">
+      "Tweet"</a>
+    <script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
+    <g:plusone size="medium" href="https://llazarek.github.io/2019/01/fuzzy-searching-notes-with-fzf.html"></g:plusone>
+    <script type="text/javascript">
+      var disqus_shortname = 'shortname';
+      (function() {
+          var dsq = document.createElement('script');
+          dsq.type = 'text/javascript';
+          dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+    <div id="disqus_thread"></div>
+
+    <div class="row justify-content-center">
+      <nav aria-label="Page Navigation">
+        <ul class="pagination">
+          <li class="page-item">
+            <a class="page-link" href="/2018/12/composable-testing-syntax.html" aria-label="Previous">
+              <span aria-hidden="true">&larr; Composable testing syntax</span>
+            </a>
+          </li>
+          <li class="page-item">
+            <a class="page-link" href="/2019/07/non-linear-notes-with-org.html" aria-label="Next">
+              <span aria-hidden="true">Non-linear notes with Org &rarr;</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </footer>
+</article>
+        </div>
+      </div>
+      <footer>
+        <hr />
+        <p>Site generated by <a href="https://github.com/greghendershott/frog">Frog</a>,
+        the <strong>fr</strong>ozen bl<strong>og</strong> tool,
+        using <a href="http://twitter.github.com/bootstrap/index.html">Bootstrap</a>.</p>
+        <p><em>Copyright Lukas Lazarek 2018 -- and the foreseeable future...</em></p>
+      </footer>
+    </div>
+    <!-- </body> JS -->
+    <script type="text/javascript" src="/js/jquery-3.2.1.slim.min.js"></script>
+    <script type="text/javascript" src="/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
