@@ -1,6 +1,6 @@
 https://llazarek.github.io/2018/07/organization-with-org-mode.html
 https://llazarek.github.io/2018/08/scripting-emacs.html
-https://llazarek.github.io/2018/12/composable-testing-syntax.html
+https://llazarek.github.io/2018/12/experimenting-with-testing-syntax-and-composition.html
 https://llazarek.github.io/2018/07/road-trip-2018-end.html
 https://llazarek.github.io/2018/10/images-in-org-mode.html
 https://llazarek.github.io/2018/05/language-oriented-programming-ptext.html

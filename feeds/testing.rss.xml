@@ -8,10 +8,10 @@
   <pubDate>Thu, 20 Dec 2018 02:52:06 UT</pubDate>
   <ttl>1800</ttl>
   <item>
-   <title>Composable testing syntax</title>
-   <link>https://llazarek.github.io/2018/12/composable-testing-syntax.html?utm_source=testing&amp;utm_medium=RSS</link>
-   <guid isPermaLink="false">urn:https-llazarek-github-io:-2018-12-composable-testing-syntax-html</guid>
+   <title>Experimenting with testing syntax and composition</title>
+   <link>https://llazarek.github.io/2018/12/experimenting-with-testing-syntax-and-composition.html?utm_source=testing&amp;utm_medium=RSS</link>
+   <guid isPermaLink="false">urn:https-llazarek-github-io:-2018-12-experimenting-with-testing-syntax-and-composition-html</guid>
    <pubDate>Thu, 20 Dec 2018 02:52:06 UT</pubDate>
    <author>Lukas Lazarek</author>
    <description>
-&lt;p&gt;Rackunit is Racket&amp;rsquo;s unit testing library, and it has a pretty cool set of features. It aims to support testing at every stage of development, from simple inline checks to large, programmatically manipulated test suites. Unfortunately, despite the many features rackunit provides to support this goal, I have many-a-time found myself struggling against rackunit&amp;rsquo;s model for defining new checks. Last weekend, I finally got around to writing a testing library that provides a simpler interface to write flexible, composable test predicates and macros.&lt;/p&gt;&lt;a href="https://llazarek.github.io/2018/12/composable-testing-syntax.html?utm_source=testing&amp;amp;utm_medium=RSS"&gt;&lt;em&gt;More&amp;hellip;&lt;/em&gt;&lt;/a&gt;</description></item></channel></rss>
+&lt;p&gt;&lt;a href="https://docs.racket-lang.org/rackunit/index.html?q%3Drackunit"&gt;Rackunit&lt;/a&gt; is Racket&amp;rsquo;s unit testing library, and it has a pretty cool set of features. It aims to support testing at every stage of development, from simple inline checks to large, programmatically manipulated test suites. Unfortunately, despite the many features rackunit provides to support this goal, I have many-a-time found myself struggling against rackunit&amp;rsquo;s model for defining new checks. Last weekend, I finally got around to writing a testing library that provides a simpler interface to write flexible, composable test predicates and macros.&lt;/p&gt;&lt;a href="https://llazarek.github.io/2018/12/experimenting-with-testing-syntax-and-composition.html?utm_source=testing&amp;amp;utm_medium=RSS"&gt;&lt;em&gt;More&amp;hellip;&lt;/em&gt;&lt;/a&gt;</description></item></channel></rss>

@@ -2,7 +2,7 @@
 
 # Tags seperated by commas and spaces
 #+BEGIN_SRC markdown
-Title: Composable testing syntax
+Title: Experimenting with testing syntax and composition
 Date: 2018-12-19T20:52:06
 Tags: racket, testing
 #+END_SRC
@@ -10,7 +10,7 @@ Tags: racket, testing
 #+ll-process: (ll-replace "^\\* " "<br></br><br></br>\n* ")
 
 * Header :notitle:
-Rackunit is Racket's unit testing library, and it has a pretty cool set of features.
+[[https://docs.racket-lang.org/rackunit/index.html?q%3Drackunit][Rackunit]] is Racket's unit testing library, and it has a pretty cool set of features.
 It aims to support testing at every stage of development, from simple inline checks to large, programmatically manipulated test suites.
 Unfortunately, despite the many features rackunit provides to support this goal, I have many-a-time found myself struggling against rackunit's model for defining new checks.
 Last weekend, I finally got around to writing a testing library that provides a simpler interface to write flexible, composable test predicates and macros.
@@ -23,7 +23,7 @@ I always run into two problems when using rackunit.
 2. Checks can't really be re-used, combined into bigger tests.
 
 To make this concrete, here's a progression of only-slightly-contrived checks that I might write in the process of testing some code.
-The progression is annotated with comments of reasoning and outcomes.
+The progression is annotated with comments of reasoning and outcomes (I also added line numbers for the failure messages).
 #+BEGIN_SRC racket
  1 #lang racket
  2 (require rackunit
@@ -73,7 +73,7 @@ The progression is annotated with comments of reasoning and outcomes.
 46   (syntax-parse stx
 47     [(_ ands:expr ... (~datum :) ors:expr ...)
 48      (syntax/loc stx
-49        ;; No implicit "or" to be had here...
+49        ;; No simple implicit "or" to be had here...
 50        #|???|#)]))
 #+END_SRC
 
@@ -81,7 +81,7 @@ And here are the failure messages.
 Notice how, as noted in the comments, the final failure identifies the wrong line.
 Furthermore, the check names are woefully unhelpful.
 Every failure of that test will point to a line within the macro body instead of the top-level test invocation.
-Note also the last test that I want to be able to write but would need to do some contortions to actually do in rackunit.
+Note also the last test that I want to be able to write but would need to do some contortions to actually do (e.g. catching failure exceptions).
 #+BEGIN_EXAMPLE
 --------------------
 ; FAILURE
@@ -106,26 +106,27 @@ params:     '(#f)
 --------------------
 #+END_EXAMPLE
 
-It turns out that =with-check-info= and =define-check= can be used to resolve the source location and check name problems, but it's not pretty.
-(It involves generating macros and custom checks together)
+It turns out that =with-check-info= and =define-check= can be used to resolve the source location and check name problems, but getting it to work automatically isn't pretty.
+(At least the solution I came up with involves generating macros and custom checks together, and is pretty brittle.)
 Additionally, this doesn't solve the problem of composability.
 
-After all this time fiddling with rackunit and trying to understand why I can't write the tests I want to write, I realized that the primary issue is that /rackunit's model of identifying and recording test failure is internal to every test/.
+After all this time fiddling with rackunit and trying to understand why I can't write the tests I want to write, I realized that the primary issue is that rackunit's model of identifying and recording test failure is internal to every test.
 Tests themselves determine their source location and register failures.
 This means that when tests get put in places that they don't expect -- that don't fit with the basic usage as an assertion within a set of tests -- they don't work.
 The two pertinent examples of such places are inside a macro or inside another test (as demonstrated above).
 
 The reason that tests managing failure recording/reporting is problematic is that in doing so they make assumptions about the context of their usage.
 Namely, they assume that they are /the/ test, and thus remove the burden of recording failures from the context.
-But for tests to be composable they must leave it up to the context to determine what their outcome means.
+This is usually pretty convenient.
+But to be able to glue tests together and make new tests, the tests must leave it up to the context to determine what their outcome means.
 If failure reporting is left up to the context, then failure reports can also always identify the actual source location of the top-level test that fails.
 
-The basic idea of the wrapper is thus this inversion of responsibility for interpreting failures.
+The basic idea of the wrapper is just this inversion of responsibility for interpreting failures.
 It allows tests to be considered just regular functions, because they don't have any extra stuff tied to them to manage recording outcomes.
 This makes tests composable.
 It also allows consistent identification of the source location of the actual top-level check in failure messages.
 
-Here's what the equivalent sequence looks like with my interface, which I called ruinit.
+Here's what the equivalent sequence looks like with my interface, which I called [[https://github.com/LLazarek/ruinit][ruinit]].
 Many elements are inspired by things that rackunit does, like the =fail= function available in custom tests.
 #+BEGIN_SRC racket
  1 #lang racket
@@ -135,8 +136,8 @@ Many elements are inspired by things that rackunit does, like the =fail= functio
  5 ;; For test syntax, can use `define-test-syntax`, which provides
  6 ;; a binding for `fail` to indicate a test failure with a message
  7 (define-test-syntax (check-ands ands ...)
- 8   (unless (and ands ...)
- 9     (fail "Not every value given (~v) was true!" (list ands ...))))
+ 8   #'(unless (and ands ...)
+ 9       (fail "Not every value given (~v) was true!" (list ands ...))))
 10 
 11 ;; Alternatively, just write a regular macro or function that returns
 12 ;; #f in the case of failure (`define-test-syntax` could be used here
@@ -159,8 +160,8 @@ Many elements are inspired by things that rackunit does, like the =fail= functio
 29 ;; e.g. (check-ands:ors #t #t : #f #t #f #t)
 30 ;;      (check-ands:ors : #f)
 31 (define-test-syntax (check-ands-and-ors ands:expr ... (~datum :) ors:expr ...)
-32   (test/and (check-ands ands ...)
-33             (check-ors ors ...)))
+32   #'(and/test (check-ands ands ...)
+33               (check-ors ors ...)))
 34 
 35 
 36 (test-begin
@@ -174,8 +175,8 @@ Many elements are inspired by things that rackunit does, like the =fail= functio
 44 
 45 ;; And writing the inverse is just as easy
 46 (define-test-syntax (check-ands-or-ors ands:expr ... (~datum :) ors:expr ...)
-47   (test/or (check-ands ands ...)
-48            (check-ors ors ...)))
+47   #'(or/test (check-ands ands ...)
+48              (check-ors ors ...)))
 49 (test-begin
 50   (check-ands-or-ors #t #f #t : #t)
 51   (check-ands-or-ors #t : #t)
@@ -198,56 +199,25 @@ test:     (check-ors #f)
 --------------- FAILURE ---------------
 location: temp.rkt:37:2
 test:     (check-ands-and-ors #t #f #t : #t)
+message:  Not every value given ('(#t #f #t)) was true!
 ---------------------------------------
 --------------- FAILURE ---------------
 location: temp.rkt:40:2
 test:     (check-ands-and-ors #f : #f)
+message:  Not every value given ('(#f)) was true!
 ---------------------------------------
 --------------- FAILURE ---------------
 location: temp.rkt:53:2
 test:     (check-ands-or-ors #f : #f)
+message:  or/test: all tests failed
 ---------------------------------------
 #+END_EXAMPLE
 
-Now I must admit that I have lied a little bit: the above failure messages are generated by a custom test handler independent of rackunit.
-I think they're a bit nicer than rackunit's, but the differences are minor.
-In order to preserve and leverage the tooling support etc that rackunit already has as racket's testing framework, I have also made it possible to integrate with rackunit rather than being independent.
-To do that, we can simply set the =use-rackunit-backend= parameter to true.
-Here's what the failures look like using the rackunit "backend".
-Note that the content is the same, like showing the original test syntax and identifying the correct source locations.
-But now the failure reporting plays nicer with =raco test=, and the interface could be used in combination with rackunits other features like test suites etc.
-#+BEGIN_EXAMPLE
---------------------
-; FAILURE
-; .../temp.rkt:19:2
-location:   temp.rkt:19:2
-test:       |(check-ands #t #t #f)|
 
-message:  Not every value given ('(#t #t #f)) was true!
 
---------------------
---------------------
-; FAILURE
-; .../temp.rkt:21:2
-location:   temp.rkt:21:2
-test:       |(check-ors #f)|
---------------------
---------------------
-; FAILURE
-; .../temp.rkt:37:2
-location:   temp.rkt:37:2
-test:       |(check-ands-and-ors #t #f #t : #t)|
---------------------
---------------------
-; FAILURE
-; .../temp.rkt:40:2
-location:   temp.rkt:40:2
-test:       |(check-ands-and-ors #f : #f)|
---------------------
---------------------
-; FAILURE
-; .../temp.rkt:53:2
-location:   temp.rkt:53:2
-test:       |(check-ands-or-ors #f : #f)|
---------------------
-#+END_EXAMPLE
+
+/Update: 2019-07-28/
+
+After using ruinit for a couple of months pretty much constantly, I'm pretty happy with it.
+It hasn't revolutionized my tests or anything like that, but it has pretty much eliminated the stumbling blocks that used to constantly frustrate me.
+It has turned out to be a fun and worthwhile experiment.
