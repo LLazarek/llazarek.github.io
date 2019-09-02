@@ -2,7 +2,7 @@
     Date: 2018-09-06T20:40:28
     Tags: emacs, org
 
-This is the second post on configuring the agenda. Find the first post [here](http://llazarek.github.io/2018/07/improving-the-agenda.html).
+This is the second post on configuring the agenda. Find the first post [here](https://llazarek.github.io/2018/07/improving-the-agenda.html).
 
 <!-- more -->
 

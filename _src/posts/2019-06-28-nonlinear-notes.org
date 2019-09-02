@@ -80,7 +80,7 @@ I find that it's slow and difficult to linearize ideas into coherent text while 
 When I write notes by hand, I use a mixed style of sentences grouped in a vaguely mind map-like style, with links between groups relating concepts.
 I also often freely use arrows to link smaller things like words or sentences within a group, or to annotate pieces of an idea or equation with further explanation.
 For example, here's a snippet of some old notes exemplifying these features.
-[[http:///img/non-linear-notes_algo-notes-example.jpg]]
+[[https:///img/non-linear-notes_algo-notes-example.jpg]]
 
 I would ideally like to be able to write notes like this in org mode, but this seems to be asking a lot (too much?).
 It's entirely unclear to me how to reasonably write text that captures the simplicity, the ease of both writing and reading this kind of handwritten notes.

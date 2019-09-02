@@ -88,10 +88,10 @@ While this doesn't give a clear picture of the specific cost of tolls per day, i
 #+TBLFM: @16$2=vsum(@2..@-1)
 
 * Pictures
-Out of the mist http:///img/07.26-mistmaiden.jpg
+Out of the mist https:///img/07.26-mistmaiden.jpg
 
-Full falls view http:///img/07.26-niagra.jpg
+Full falls view https:///img/07.26-niagra.jpg
 
-Can you spot us? http:///img/07.26-truckstop.jpg
+Can you spot us? https:///img/07.26-truckstop.jpg
 
 

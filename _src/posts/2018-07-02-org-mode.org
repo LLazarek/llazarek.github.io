@@ -195,7 +195,7 @@ The last important element of the agenda for my workflow is that using =org-open
 Thus, my usual workflow for starting a new task is to (from the agenda) clock into the task and then open whatever links it contains - because of this, _nearly all of my tasks contain links to something_.
 
 ** Aside: improving the agenda view
-For more about the agenda and optimizing its appearance to make surveying tasks quick and easy, check out [[http://llazarek.github.io/2018/07/improving-the-agenda.html][my other post]] on tweaking the agenda's display settings.
+For more about the agenda and optimizing its appearance to make surveying tasks quick and easy, check out [[https://llazarek.github.io/2018/07/improving-the-agenda.html][my other post]] on tweaking the agenda's display settings.
 
 * Evaluation and reflection
 ** Clocking work

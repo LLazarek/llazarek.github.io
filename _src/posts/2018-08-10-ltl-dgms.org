@@ -30,7 +30,7 @@ The next state has a determining condition of =p=, so if the next state satisfie
 
 Basic LTL formula combinators:
 <br></br>
-[[http:///img/ltl-dgms-1-small.png]]
+[[https:///img/ltl-dgms-1-small.png]]
 
 Thinking about these formulas operationally -- in terms of checking them against a sequence that occurs one state at a time -- provides an some interesting perspective, though.
 Returning to =X p=, for example; operationally, it "takes" (up to) two states to verify whether or not =X p= is satisfied for a given sequence.
@@ -72,4 +72,4 @@ For example, if the =B=-thread with index 3 accepts, then A threads with index 1
 
 Non-determinism in checking *U* for multi-step sub-formulas:
 <br></br>
-[[http:///img/ltl-dgms-2-small.png]]
+[[https:///img/ltl-dgms-2-small.png]]

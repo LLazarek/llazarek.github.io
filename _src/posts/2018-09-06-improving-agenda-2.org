@@ -10,7 +10,7 @@ Tags: emacs, org
 #+ll-process: (ll-replace "^\\* " "<br></br><br></br>\n* ")
 
 * Header :notitle:
-This is the second post on configuring the agenda. Find the first post [[http://llazarek.github.io/2018/07/improving-the-agenda.html][here]].
+This is the second post on configuring the agenda. Find the first post [[https://llazarek.github.io/2018/07/improving-the-agenda.html][here]].
 
 #+HTML: <!-- more -->
 

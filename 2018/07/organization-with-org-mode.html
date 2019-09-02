@@ -57,7 +57,7 @@
               </a>
 
               <div class="dropdown-menu">
-                <a class="dropdown-item" href="/tags/emacs.html">emacs</a><a class="dropdown-item" href="/tags/org.html">org</a><a class="dropdown-item" href="/tags/PL.html">PL</a><a class="dropdown-item" href="/tags/racket.html">racket</a>
+                <a class="dropdown-item" href="/tags/emacs.html">emacs</a><a class="dropdown-item" href="/tags/finance.html">finance</a><a class="dropdown-item" href="/tags/ledger.html">ledger</a><a class="dropdown-item" href="/tags/linux.html">linux</a><a class="dropdown-item" href="/tags/networking.html">networking</a><a class="dropdown-item" href="/tags/org.html">org</a><a class="dropdown-item" href="/tags/PL.html">PL</a><a class="dropdown-item" href="/tags/racket.html">racket</a><a class="dropdown-item" href="/tags/rt18.html">rt18</a><a class="dropdown-item" href="/tags/scribble.html">scribble</a><a class="dropdown-item" href="/tags/testing.html">testing</a><a class="dropdown-item" href="/tags/travel.html">travel</a>
               </div>
             </li>
 
@@ -130,7 +130,7 @@
 
 <p>The headings create a tree structure, and the leaves of the tree are tasks. I denote any heading marked with a <code>TODO</code> keyword as a task; conceptually, a task represents something discrete that needs to be done. Examples include a paper or report, a chore, an email to respond to, an appointment to complete, a flight to catch&#8230; Anything I can mark as having been completed. Tasks have a brief, informative heading on what needs to be done - this is important because the heading is what I see when looking through my tasks. The task may also have some notes, extra details, or (typically) links in it&rsquo;s body.</p>
 
-<p>I use a number of different <a href="https://orgmode.org/worg/org-glossary.html#todo-keywords">TODO keywords</a> in addition to the basic <code>TODO</code> and <code>DONE</code>. The full set of keywords I use is, in this order: <code>(TODO NEXT STARTED WAITING REVIEW SUBMIT | DONE DEFERRED CANCELLED)</code>. I use <code>TODO</code> generally to mark a task. <code>NEXT</code> indicates a task that I intend to work on next or today (it serves as a quick way to single out tasks). <code>STARTED</code> means that the task has been started and is in progress. <code>WAITING</code> marks tasks that are blocked and un-actionable pending something beyond my control - like getting an email response, or receiving information from someone else. <code>REVIEW</code> means that the task requires review before completing (or some similar other final actions), but is pretty much complete. <code>SUBMIT</code> is similar to <code>REVIEW</code>, but specifically marks tasks that are completely done but need to be submitted somewhere. <code>DONE</code> means that a task is completely done. <code>DEFERRED</code> marks tasks that I have decided not to do for the time being, though I may at a later time revive them. <code>CANCELLED</code> marks tasks that I have canceled outright. Note that the bar separating <code>DONE</code> <code>DEFERRED</code> and <code>CANCELLED</code> marks those states as all representing "done"ness, so that tasks with those keywords won&rsquo;t be considered when I am viewing tasks to do.</p>
+<p>I use a number of different <a href="https://orgmode.org/worg/org-glossary.html#todo-keywords">TODO keywords</a> in addition to the basic <code>TODO</code> and <code>DONE</code>. The full set of keywords I use is, in this order: <code>(TODO NEXT STARTED WAITING REVIEW SUBMIT | DONE DEFERRED CANCELED)</code>. I use <code>TODO</code> generally to mark a task. <code>NEXT</code> indicates a task that I intend to work on next or today (it serves as a quick way to single out tasks). <code>STARTED</code> means that the task has been started and is in progress. <code>WAITING</code> marks tasks that are blocked and un-actionable pending something beyond my control - like getting an email response, or receiving information from someone else. <code>REVIEW</code> means that the task requires review before completing (or some similar other final actions), but is pretty much complete. <code>SUBMIT</code> is similar to <code>REVIEW</code>, but specifically marks tasks that are completely done but need to be submitted somewhere. <code>DONE</code> means that a task is completely done. <code>DEFERRED</code> marks tasks that I have decided not to do for the time being, though I may at a later time revive them. <code>CANCELED</code> marks tasks that I have canceled outright. Note that the bar separating <code>DONE</code> <code>DEFERRED</code> and <code>CANCELED</code> marks those states as all representing "done"ness, so that tasks with those keywords won&rsquo;t be considered when I am viewing tasks to do.</p>
 
 <p>Finally, a task always has a date attached: either a <code>SCHEDULED</code> or a <code>DEADLINE</code> date (there is one exception to this: chaining tasks). Having one of these two dates is critical, because they are central to my task management. The primary factor by which I sort and view my tasks is date, so a task without a date won&rsquo;t be seen, and since I very rarely manually traverse my main file, it will certainly be forgotten.</p>
 
@@ -178,7 +178,7 @@ SCHEDULED: &lt;2018-07-09 Mon&gt;          ** TODO (2) Add new feature          
 
 <p>I think that <span class="underline">links are one of org modes greatest strengths.</span> Org has a <a href="https://orgmode.org/manual/Hyperlinks.html">particularly rich link system</a> that allows creating "clickable” links to quickly access related information. Links can refer to files and websites, of course, as well as more interesting things like specific headings in the same or other files, or chunks of text in a file, and can even evaluate arbitrary expressions, making them effectively general purpose buttons. Their flexibility makes them extremely useful for easily accessing disparate information. Any tasks I create relating to some other information has links to the relevant files, emails, websites, programs (remember that links can execute code?). This minimizes the inertia time involved in getting oriented to a new task; no need to think about where to find the right files or what to look at, because it&rsquo;s all in the links!</p>
 
-<p>The degree to which links simplify my organization cannot be overstated. For example, links completely eliminate typical email clutter; any emails that store useful information or require attention simply get linked to in a task and are archived. Thus, I never (or extremely rarely) need to sift through pages of emails to find something relating to a task. By following this principle of linking relevant documents and information, it&rsquo;s always available at my fingertips.</p>
+<p>The degree to which links simplify my organization cannot be overstated. Emails are a good illustration of a medium of information that often resists effective organization; however, using links completely eliminates typical email clutter. Any emails that store useful information or require attention simply get linked to in a task and are archived. Thus, I never (or extremely rarely) need to sift through pages of emails to find something relating to a task. By following this principle of linking relevant documents and information, it&rsquo;s always available at my fingertips.</p>
 
 <br />
 
@@ -202,7 +202,7 @@ SCHEDULED: &lt;2018-07-09 Mon&gt;          ** TODO (2) Add new feature          
 
 <h2 id="aside-improving-the-agenda-view">Aside: improving the agenda view</h2>
 
-<p>For more about the agenda and optimizing its appearance to make surveying tasks quick and easy, check out <a href="http://llazarek.github.io/2018/07/improving-the-agenda.html">my other post</a> on tweaking the agenda&rsquo;s display settings.</p>
+<p>For more about the agenda and optimizing its appearance to make surveying tasks quick and easy, check out <a href="https://llazarek.github.io/2018/07/improving-the-agenda.html">my other post</a> on tweaking the agenda&rsquo;s display settings.</p>
 
 <br />
 
@@ -237,7 +237,7 @@ SCHEDULED: &lt;2018-07-09 Mon&gt;          ** TODO (2) Add new feature          
 <pre><code>(setq org-todo-keywords
       (quote ((sequence "TODO(t)" "NEXT(n)" "STARTED(s)" "WAITING(w)"
                         "REVIEW(r)" "SUBMIT(m)"
-                        "|" "DONE(d)" "DEFERRED(f)" "CANCELLED(c)"))))
+                        "|" "DONE(d)" "DEFERRED(f)" "CANCELED(c)"))))
 (setq org-todo-keyword-faces
       (quote (("TODO"      :foreground "red"          :weight bold)
               ("NEXT"      :foreground "blue"         :weight bold)
@@ -247,7 +247,7 @@ SCHEDULED: &lt;2018-07-09 Mon&gt;          ** TODO (2) Add new feature          
               ("SUBMIT"    :foreground "sea green"    :weight bold)
               ("DONE"      :foreground "forest green" :weight bold)
               ("DEFERRED"  :foreground "dark red"     :weight bold)
-              ("CANCELLED" :foreground "dark red"     :weight bold))))</code></pre>
+              ("CANCELED" :foreground "dark red"     :weight bold))))</code></pre>
 
 <h2 id="agenda">Agenda</h2>
 
@@ -360,7 +360,7 @@ SCHEDULED: &lt;2018-07-09 Mon&gt;          ** TODO (2) Add new feature          
 
 (setq ll/org/agenda-todo-words
       '("TODO" "GOAL" "NEXT" "STARTED" "WAITING" "REVIEW" "SUBMIT"
-        "DONE" "DEFERRED" "CANCELLED"))
+        "DONE" "DEFERRED" "CANCELED"))
 
 (defun ll/org/agenda/find-todo-word-end ()
   (reduce (lambda (a b) (or a b))
