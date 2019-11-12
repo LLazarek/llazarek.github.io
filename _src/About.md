@@ -1,6 +1,6 @@
 # Lukas Lazarek
 
-<img src="img/me-hk18.jpg" alt="Me" style="width:300px">
+<img src="img/profile.jpg" alt="Me" style="width:300px">
 
 Hi! I'm a grad student studying Programming Languages at Northwestern.
 This page provides information about myself and what I have been doing recently.
