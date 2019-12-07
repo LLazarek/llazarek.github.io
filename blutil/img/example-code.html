@@ -1,0 +1,42 @@
+<div class="org-src-container">
+
+<pre class="src src-racket"><span style="color: #8D8D84;">;;</span><span style="color: #8D8D84; font-style: italic;">-----------------------------------------------------</span>
+<span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">Abridged example program</span>
+<span style="color: #8D8D84;">;;</span><span style="color: #8D8D84; font-style: italic;">-----------------------------------------------------</span>
+
+<span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">`count-from n` Build a stream of integers starting</span>
+<span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">from `n` and iteratively adding 1</span>
+<span style="color: #0000ff;">(</span>define/component <span style="color: #f08080;">(</span><span style="color: #006699;">count-from</span> n<span style="color: #f08080;">)</span> <span style="color: #0000FF;">...</span><span style="color: #0000ff;">)</span>
+
+<span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">`sift n st` Filter all elements in `st` that are</span>
+<span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">divisible by `n`. Return a new stream.</span>
+<span style="color: #0000ff;">(</span>define/component <span style="color: #f08080;">(</span><span style="color: #006699;">sift</span> n st<span style="color: #f08080;">)</span>
+  <span style="color: #f08080;">(</span>contract-map
+   <span style="color: #00ff00;">[</span><span style="color: #006FE0;">max</span> sift-max<span style="color: #00ff00;">]</span>
+   <span style="color: #00ff00;">[</span>types sift-types<span style="color: #00ff00;">]</span><span style="color: #f08080;">)</span>
+  <span style="color: #f08080;">(</span><span style="color: #0000FF;">define-values</span> <span style="color: #00ff00;">(</span><span style="color: #BA36A5;">hd tl</span><span style="color: #00ff00;">)</span> <span style="color: #00ff00;">(</span>stream-unfold st<span style="color: #00ff00;">)</span><span style="color: #f08080;">)</span>
+  <span style="color: #f08080;">(</span><span style="color: #0000FF;">cond</span> <span style="color: #00ff00;">[</span><span style="color: #00bfff;">(</span><span style="color: #006FE0;">=</span> <span style="color: #6a5acd;">(</span><span style="color: #006FE0;">modulo</span> hd n<span style="color: #6a5acd;">)</span> <span style="color: #2e8b57;">1</span> <span style="color: #8D8D84; font-style: italic;">#| BUG |#</span><span style="color: #00bfff;">)</span> <span style="color: #00bfff;">(</span>sift n tl<span style="color: #00bfff;">)</span><span style="color: #00ff00;">]</span>
+        <span style="color: #00ff00;">[</span><span style="color: #0000FF;">else</span> <span style="color: #00bfff;">(</span>make-stream hd <span style="color: #6a5acd;">(</span><span style="color: #0000FF;">&#955;</span> <span style="color: #da70d6;">()</span> <span style="color: #da70d6;">(</span>sift n tl<span style="color: #da70d6;">)</span><span style="color: #6a5acd;">)</span><span style="color: #00bfff;">)</span><span style="color: #00ff00;">]</span><span style="color: #f08080;">)</span><span style="color: #0000ff;">)</span>
+
+<span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">`sieve st` Sieve of Eratosthenes</span>
+<span style="color: #0000ff;">(</span>define/component <span style="color: #f08080;">(</span><span style="color: #006699;">sieve</span> st<span style="color: #f08080;">)</span>
+  <span style="color: #f08080;">(</span>contract-map
+   <span style="color: #00ff00;">[</span><span style="color: #006FE0;">max</span> sieve-max<span style="color: #00ff00;">]</span>
+   <span style="color: #00ff00;">[</span>types sieve-types<span style="color: #00ff00;">]</span><span style="color: #f08080;">)</span>
+  <span style="color: #f08080;">(</span><span style="color: #0000FF;">define-values</span> <span style="color: #00ff00;">(</span><span style="color: #BA36A5;">hd tl</span><span style="color: #00ff00;">)</span> <span style="color: #00ff00;">(</span>stream-unfold st<span style="color: #00ff00;">)</span><span style="color: #f08080;">)</span>
+  <span style="color: #f08080;">(</span>make-stream hd <span style="color: #00ff00;">(</span><span style="color: #0000FF;">&#955;</span> <span style="color: #00bfff;">()</span> <span style="color: #00bfff;">(</span>sieve <span style="color: #6a5acd;">(</span>sift hd tl<span style="color: #6a5acd;">)</span><span style="color: #00bfff;">)</span><span style="color: #00ff00;">)</span><span style="color: #f08080;">)</span><span style="color: #0000ff;">)</span>
+
+<span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">stream of prime numbers</span>
+<span style="color: #0000ff;">(</span>define/component <span style="color: #BA36A5;">primes</span>
+  <span style="color: #f08080;">(</span>contract-map
+   <span style="color: #00ff00;">[</span><span style="color: #006FE0;">max</span> primes-max<span style="color: #00ff00;">]</span>
+   <span style="color: #00ff00;">[</span>types primes-types<span style="color: #00ff00;">]</span><span style="color: #f08080;">)</span>
+  <span style="color: #f08080;">(</span>sieve <span style="color: #00ff00;">(</span>count-from <span style="color: #2e8b57;">2</span><span style="color: #00ff00;">)</span><span style="color: #f08080;">)</span><span style="color: #0000ff;">)</span>
+
+<span style="color: #0000ff;">(</span>define/component <span style="color: #f08080;">(</span><span style="color: #006699;">main</span><span style="color: #f08080;">)</span>
+  <span style="color: #f08080;">(</span><span style="color: #006FE0;">-&gt;</span> prime?<span style="color: #f08080;">)</span>
+  <span style="color: #f08080;">(</span>stream-get primes <span style="color: #2e8b57;">20</span><span style="color: #f08080;">)</span><span style="color: #0000ff;">)</span>
+
+<span style="color: #0000ff;">(</span>main<span style="color: #0000ff;">)</span>
+</pre>
+</div>

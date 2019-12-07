@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8" />
+<title>How Does Blame Shifting Work?</title>
+<script src="https://d3js.org/d3.v5.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lodash@4.17.15/lodash.min.js"></script>
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.right  { text-align: center;  }
+  th.left   { text-align: center;   }
+  th.center { text-align: center; }
+  td.right  { text-align: right;  }
+  td.left   { text-align: left;   }
+  td.center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara:nth-child(2) { display: inline; }
+  .footpara { display: block; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+
+<!-- CSS -->
+<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="/css/pygments.css">
+<link rel="stylesheet" type="text/css" href="/css/scribble.css">
+<link rel="stylesheet" type="text/css" href="/css/custom.css">
+<!-- Feeds -->
+<link rel="alternate" type="application/atom+xml"
+href="/feeds/all.atom.xml" title="Atom Feed">
+<link rel="alternate" type="application/rss+xml"
+href="/feeds/all.rss.xml" title="RSS Feed"></head>
+<body>    <div id="test"></div>
+
+     <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <div class="container">
+
+    <a href="/index.html" class="navbar-brand">llazarek</a>
+
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+            data-target="#navbar_collapse" aria-controls="navbar_collapse"
+            aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbar_collapse">
+        <ul class="navbar-nav mr-auto">
+          <li>
+            <a class="nav-link" href="/About.html">About</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/feeds/all.atom.xml">Atom</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/feeds/all.rss.xml">RSS</a>
+          </li>
+        </ul>
+    </div>
+
+    </div>
+  </nav>
+
+<div class="container">
+
+    <h1>How Does Blame Shifting Work?</h1>
+    <p>
+This is an explorable explanation of the evaluation methodology we propose in
+the paper <i>Does Blame Shifting Work?</i> to appear at
+<a href="https://popl20.sigplan.org/">POPL 2020</a>.
+
+This explanation aims to (interactively) provide an intuition for how we
+evaluate the pragmatics of blame in a contract system.
+
+Consider the following program snippet, which is intended to calculate the 20th
+prime number using the idea of the
+<a href="https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes">Sieve of Eratosthenes</a>.
+Specifically, the program does so using a simple lazy stream datatype and the following definitions
+<ul>
+<li>the definition <code>primes</code> should be a stream of all of the prime
+numbers</li>
+
+<li>        the helper function <code>sieve</code> consumes a stream and produces a new
+one with the same head and the recursively <code>sieve</code>d tail with the head
+<code>sift</code>ed out,</li>
+
+<li>        the function <code>sift</code> consumes a number and a stream and produces a
+stream with all the same numbers as its argument except those that are multiples
+of the argument number.</li>
+</ul>
+
+The program has a bug (annotated with the <code>#| BUG |#</code> comment), making it
+produce an incorrect answer: 42, which clearly isn't prime.
+
+Fortunately, the snippet includes sufficient
+<a href="https://docs.racket-lang.org/guide/contracts.html">contracts</a> to
+catch the problem. The contracts are specifications of the behavior of each of
+the top level definitions in the program. The definitions are defined with a
+contract using the <code>define/component</code> form, and the contract system
+monitors their behavior as the program runs to check those contracts. If a
+violation is detected, the contract system raises an error with <i>blame</i>
+identifying which part of the program failed to fulfill its contract.
+
+<aside>Suppose for now that the <code>contract-map</code> forms are equivalent to a
+trivial contract that is always satisfied.</aside>
+
+<br />
+
+In this particular case, the contract system produces the error
+(shown below the code) blaming <code>primes</code>.
+
+<b>Our methodology aims to evaluate whether blame information like this can be
+systematically translated into the location of the bug in the program.</b>
+
+<br />
+
+In particular, we should be able to increase the precision of the contracts on
+the blamed component of the program to <i>shift</i> the blame to another component.
+If we cannot make the contracts of the blamed component any more precise and
+blame does not shift to another component, then the blamed component should
+contain the bug.
+<aside>In this example, we consider the top level definitions
+(defined with <code>define/component</code>) to be components.</aside>
+
+<br />
+
+In terms of our example, this means that we should be able to increase the
+precision of <code>primes</code>'s contract to shift the blame to another component.
+By the program are three choices of contract for each component in the example;
+the contracts are listed in order of increasing precision and can be clicked to
+select one per component.
+The <code>contract-map</code> form represents the choices of contract for each
+component (the level <code>none</code> is always the trivial contract, so we omit it).
+
+<br />
+
+Try selecting a new contract for <code>primes</code> to shift the blame.
+The error message above will update with the new result of running the program.
+</p>
+
+</div>
+
+<div><div style="display:inline-block;vertical-align:top;">
+<div id="sieve-code"><h3>Program</h3>
+<div class="org-src-container">
+
+<pre class="src src-racket"><span style="color: #8D8D84;">;;</span><span style="color: #8D8D84; font-style: italic;">-----------------------------------------------------</span>
+<span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">Abridged example program</span>
+<span style="color: #8D8D84;">;;</span><span style="color: #8D8D84; font-style: italic;">-----------------------------------------------------</span>
+
+<span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">`count-from n` Build a stream of integers starting</span>
+<span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">from `n` and iteratively adding 1</span>
+<span style="color: #0000ff;">(</span>define/component <span style="color: #f08080;">(</span><span style="color: #006699;">count-from</span> n<span style="color: #f08080;">)</span> <span style="color: #0000FF;">...</span><span style="color: #0000ff;">)</span>
+
+<span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">`sift n st` Filter all elements in `st` that are</span>
+<span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">divisible by `n`. Return a new stream.</span>
+<span style="color: #0000ff;">(</span>define/component <span style="color: #f08080;">(</span><span style="color: #006699;">sift</span> n st<span style="color: #f08080;">)</span>
+  <span style="color: #f08080;">(</span>contract-map
+   <span style="color: #00ff00;">[</span><span style="color: #006FE0;">max</span> sift-max<span style="color: #00ff00;">]</span>
+   <span style="color: #00ff00;">[</span>types sift-types<span style="color: #00ff00;">]</span><span style="color: #f08080;">)</span>
+  <span style="color: #f08080;">(</span><span style="color: #0000FF;">define-values</span> <span style="color: #00ff00;">(</span><span style="color: #BA36A5;">hd tl</span><span style="color: #00ff00;">)</span> <span style="color: #00ff00;">(</span>stream-unfold st<span style="color: #00ff00;">)</span><span style="color: #f08080;">)</span>
+  <span style="color: #f08080;">(</span><span style="color: #0000FF;">cond</span> <span style="color: #00ff00;">[</span><span style="color: #00bfff;">(</span><span style="color: #006FE0;">=</span> <span style="color: #6a5acd;">(</span><span style="color: #006FE0;">modulo</span> hd n<span style="color: #6a5acd;">)</span> <span style="color: #2e8b57;">1</span> <span style="color: #8D8D84; font-style: italic;">#| BUG |#</span><span style="color: #00bfff;">)</span> <span style="color: #00bfff;">(</span>sift n tl<span style="color: #00bfff;">)</span><span style="color: #00ff00;">]</span>
+        <span style="color: #00ff00;">[</span><span style="color: #0000FF;">else</span> <span style="color: #00bfff;">(</span>make-stream hd <span style="color: #6a5acd;">(</span><span style="color: #0000FF;">&#955;</span> <span style="color: #da70d6;">()</span> <span style="color: #da70d6;">(</span>sift n tl<span style="color: #da70d6;">)</span><span style="color: #6a5acd;">)</span><span style="color: #00bfff;">)</span><span style="color: #00ff00;">]</span><span style="color: #f08080;">)</span><span style="color: #0000ff;">)</span>
+
+<span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">`sieve st` Sieve of Eratosthenes</span>
+<span style="color: #0000ff;">(</span>define/component <span style="color: #f08080;">(</span><span style="color: #006699;">sieve</span> st<span style="color: #f08080;">)</span>
+  <span style="color: #f08080;">(</span>contract-map
+   <span style="color: #00ff00;">[</span><span style="color: #006FE0;">max</span> sieve-max<span style="color: #00ff00;">]</span>
+   <span style="color: #00ff00;">[</span>types sieve-types<span style="color: #00ff00;">]</span><span style="color: #f08080;">)</span>
+  <span style="color: #f08080;">(</span><span style="color: #0000FF;">define-values</span> <span style="color: #00ff00;">(</span><span style="color: #BA36A5;">hd tl</span><span style="color: #00ff00;">)</span> <span style="color: #00ff00;">(</span>stream-unfold st<span style="color: #00ff00;">)</span><span style="color: #f08080;">)</span>
+  <span style="color: #f08080;">(</span>make-stream hd <span style="color: #00ff00;">(</span><span style="color: #0000FF;">&#955;</span> <span style="color: #00bfff;">()</span> <span style="color: #00bfff;">(</span>sieve <span style="color: #6a5acd;">(</span>sift hd tl<span style="color: #6a5acd;">)</span><span style="color: #00bfff;">)</span><span style="color: #00ff00;">)</span><span style="color: #f08080;">)</span><span style="color: #0000ff;">)</span>
+
+<span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">stream of prime numbers</span>
+<span style="color: #0000ff;">(</span>define/component <span style="color: #BA36A5;">primes</span>
+  <span style="color: #f08080;">(</span>contract-map
+   <span style="color: #00ff00;">[</span><span style="color: #006FE0;">max</span> primes-max<span style="color: #00ff00;">]</span>
+   <span style="color: #00ff00;">[</span>types primes-types<span style="color: #00ff00;">]</span><span style="color: #f08080;">)</span>
+  <span style="color: #f08080;">(</span>sieve <span style="color: #00ff00;">(</span>count-from <span style="color: #2e8b57;">2</span><span style="color: #00ff00;">)</span><span style="color: #f08080;">)</span><span style="color: #0000ff;">)</span>
+
+<span style="color: #0000ff;">(</span>define/component <span style="color: #f08080;">(</span><span style="color: #006699;">main</span><span style="color: #f08080;">)</span>
+  <span style="color: #f08080;">(</span><span style="color: #006FE0;">-&gt;</span> prime?<span style="color: #f08080;">)</span>
+  <span style="color: #f08080;">(</span>stream-get primes <span style="color: #2e8b57;">20</span><span style="color: #f08080;">)</span><span style="color: #0000ff;">)</span>
+
+<span style="color: #0000ff;">(</span>main<span style="color: #0000ff;">)</span>
+</pre>
+</div>
+</div>
+<div id="run-result"><h3>Run result</h3>
+<div id="blame-primes"><pre class="example" style="color:rgb(204, 0, 0);background-color:rgb(242, 242, 242)">primes: contract violation
+  expected: prime?
+  given: 4
+  in: an element of
+      (streamof prime?)
+  blaming: primes
+   (assuming the contract is correct)</pre></div>
+<div id="blame-sift"><pre class="example" style="color:rgb(204, 0, 0);background-color:rgb(242, 242, 242)">sift: contract violation
+  expected: (not/c (divisible-by/c 2))
+  given: 4
+  in: ...
+      the result result of
+      (-&gt;i ([n integer?]
+            [st (streamof number?)])
+           [result (n)
+                   (streamof
+                    (and/c
+                     number?
+                     (not/c (divisible-by/c n))))])
+  blaming: sift
+   (assuming the contract is correct)</pre></div>
+<div id="blame-sieve"><pre class="example" style="color:rgb(204, 0, 0);background-color:rgb(242, 242, 242)">sieve: contract violation
+  expected: (not/c (divisible-by/c 2))
+  given: 4
+  in: sieved-stream/c
+  blaming: sieve
+   (assuming the contract is correct)</pre></div></div>
+</div>
+<div id="ctcs" style="display:inline-block;width:35%;vertical-align:top;"><h3>Contracts</h3>
+<div id="primes"><b>primes</b><svg viewBox="0 0 60 12" style="background:none" id="none"><image href="./img/code-none.svg" x="7" y="6" width="12.8%" onclick="select_level(&quot;primes&quot;, &quot;none&quot;)" /><style>.small {font-family: monospace;font-size:2.4000000000000004px;
+                     }</style><text x="7" y="4.5" class="small" onclick="select_level(&quot;primes&quot;, &quot;none&quot;)">none</text><circle r="1" cx="2.5" cy="3.5" fill="white" stroke="black" stroke-width="0.2" onclick="select_level(&quot;primes&quot;, &quot;none&quot;)" /><rect x="1" y="6" width="3" height="5" fill="rgb(200,233,223)" /></svg><svg viewBox="0 0 60 12" style="background:none" id="primes-types"><image href="./img/code-primes-types.svg" x="7" y="6" width="46.72%" onclick="select_level(&quot;primes&quot;, &quot;primes-types&quot;)" /><style>.small {font-family: monospace;font-size:2.4000000000000004px;
+                     }</style><text x="7" y="4.5" class="small" onclick="select_level(&quot;primes&quot;, &quot;primes-types&quot;)">primes-types</text><circle r="1" cx="2.5" cy="3.5" fill="white" stroke="black" stroke-width="0.2" onclick="select_level(&quot;primes&quot;, &quot;primes-types&quot;)" /><rect x="1" y="6" width="3" height="5" fill="rgb(127,204,181)" /></svg><svg viewBox="0 0 60 14" style="background:none" id="primes-max"><image href="./img/code-primes-max.svg" x="7" y="6" width="59.2%" onclick="select_level(&quot;primes&quot;, &quot;primes-max&quot;)" /><style>.small {font-family: monospace;font-size:2.4000000000000004px;
+                     }</style><text x="7" y="4.5" class="small" onclick="select_level(&quot;primes&quot;, &quot;primes-max&quot;)">primes-max</text><circle r="1" cx="2.5" cy="3.5" fill="white" stroke="black" stroke-width="0.2" onclick="select_level(&quot;primes&quot;, &quot;primes-max&quot;)" /><rect x="1" y="6" width="3" height="5" fill="rgb(65,164,134)" /></svg></div>
+<div id="sift"><b>sift</b><svg viewBox="0 0 60 12" style="background:none" id="none"><image href="./img/code-none.svg" x="7" y="6" width="12.8%" onclick="select_level(&quot;sift&quot;, &quot;none&quot;)" /><style>.small {font-family: monospace;font-size:2.4000000000000004px;
+                     }</style><text x="7" y="4.5" class="small" onclick="select_level(&quot;sift&quot;, &quot;none&quot;)">none</text><circle r="1" cx="2.5" cy="3.5" fill="white" stroke="black" stroke-width="0.2" onclick="select_level(&quot;sift&quot;, &quot;none&quot;)" /><rect x="1" y="6" width="3" height="5" fill="rgb(253,201,180)" /></svg><svg viewBox="0 0 60 15" style="background:none" id="sift-types"><image href="./img/code-sift-types.svg" x="7" y="6" width="57.6%" onclick="select_level(&quot;sift&quot;, &quot;sift-types&quot;)" /><style>.small {font-family: monospace;font-size:2.4000000000000004px;
+                     }</style><text x="7" y="4.5" class="small" onclick="select_level(&quot;sift&quot;, &quot;sift-types&quot;)">sift-types</text><circle r="1" cx="2.5" cy="3.5" fill="white" stroke="black" stroke-width="0.2" onclick="select_level(&quot;sift&quot;, &quot;sift-types&quot;)" /><rect x="1" y="6" width="3" height="5" fill="rgb(251,147,106)" /></svg><svg viewBox="0 0 60 30" style="background:none" id="sift-max"><image href="./img/code-sift-max.svg" x="7" y="6" width="86.4%" onclick="select_level(&quot;sift&quot;, &quot;sift-max&quot;)" /><style>.small {font-family: monospace;font-size:2.4000000000000004px;
+                     }</style><text x="7" y="4.5" class="small" onclick="select_level(&quot;sift&quot;, &quot;sift-max&quot;)">sift-max</text><circle r="1" cx="2.5" cy="3.5" fill="white" stroke="black" stroke-width="0.2" onclick="select_level(&quot;sift&quot;, &quot;sift-max&quot;)" /><rect x="1" y="6" width="3" height="5" fill="rgb(249,75,6)" /></svg></div>
+<div id="sieve"><b>sieve</b><svg viewBox="0 0 60 12" style="background:none" id="none"><image href="./img/code-none.svg" x="7" y="6" width="12.8%" onclick="select_level(&quot;sieve&quot;, &quot;none&quot;)" /><style>.small {font-family: monospace;font-size:2.4000000000000004px;
+                     }</style><text x="7" y="4.5" class="small" onclick="select_level(&quot;sieve&quot;, &quot;none&quot;)">none</text><circle r="1" cx="2.5" cy="3.5" fill="white" stroke="black" stroke-width="0.2" onclick="select_level(&quot;sieve&quot;, &quot;none&quot;)" /><rect x="1" y="6" width="3" height="5" fill="rgb(203,211,231)" /></svg><svg viewBox="0 0 60 12" style="background:none" id="sieve-types"><image href="./img/code-sieve-types.svg" x="7" y="6" width="60.800000000000004%" onclick="select_level(&quot;sieve&quot;, &quot;sieve-types&quot;)" /><style>.small {font-family: monospace;font-size:2.4000000000000004px;
+                     }</style><text x="7" y="4.5" class="small" onclick="select_level(&quot;sieve&quot;, &quot;sieve-types&quot;)">sieve-types</text><circle r="1" cx="2.5" cy="3.5" fill="white" stroke="black" stroke-width="0.2" onclick="select_level(&quot;sieve&quot;, &quot;sieve-types&quot;)" /><rect x="1" y="6" width="3" height="5" fill="rgb(150,166,207)" /></svg><svg viewBox="0 0 60 12" style="background:none" id="sieve-max"><image href="./img/code-sieve-max.svg" x="7" y="6" width="56.0%" onclick="select_level(&quot;sieve&quot;, &quot;sieve-max&quot;)" /><style>.small {font-family: monospace;font-size:2.4000000000000004px;
+                     }</style><text x="7" y="4.5" class="small" onclick="select_level(&quot;sieve&quot;, &quot;sieve-max&quot;)">sieve-max</text><circle r="1" cx="2.5" cy="3.5" fill="white" stroke="black" stroke-width="0.2" onclick="select_level(&quot;sieve&quot;, &quot;sieve-max&quot;)" /><rect x="1" y="6" width="3" height="5" fill="rgb(80,107,175)" /></svg></div></div></div>
+
+</div> <div class="container">
+
+<p>
+Our methodology formalizes the idea of selecting contracts for each component in
+the program by calling a particular selection of contracts for every component a
+<i>configuration</i>. The space of possible configurations of the program forms a
+complete lattice, and increasing the precision of contracts in the program
+corresponds to moving up in the lattice.
+
+Below is the lattice for the example program, with the current configuration
+highlighted. Changing the selection of contracts above will highlight the new
+configuration.
+</p>
+
+    <div id="lattice"><div style="margin:0 auto; width: 50%; text-align:center"><input id="trail-track-button" type="button" value="Start/Reset Trail" onclick="reset_trail_tracking()" />
+
+<div id="trail-stats"></div></div>
+
+<div style="margin:0 auto; width: 50%; text-align:center"><svg viewBox="0 0 500 500" style="background:none"><image href="./img/lattice-colors.svg" x="0" y="0" width="100%" height="100%" /></svg></div></div>
+
+<p>
+The way that we evaluate whether blame can always be translated into the
+location of the bug via blame shifting centers around <i>blame trails</i>. A blame
+trail is a path through the lattice starting at any configuration that has blame
+and ending with a configuration blaming a component that already has the
+maximum-precision contract. In addition, every transition from one configuration
+in the lattice upward strengthens the contract of the component blamed by the
+originating configuration.
+
+This idea of a blame trail captures the intuitive idea of following blame to
+strengthen the contracts in a program.
+
+Our methodology aims to collect a large corpus of blame trails for a variety of
+programs and analyze two properties:
+<ul>
+<li><b>Blame Trail:</b> Does every blame trail end with blame on the buggy
+component?</li>
+
+<li><b>Search Progress:</b> Does every shift of blame along every blame trail move
+blame &quot;closer&quot; to the bug in the program?</li> </ul>
+
+These properties capture the essence of what it means to be able to using blame
+shifting to systematically locate the bug in a program.
+<aside>We do not discuss the idea of &quot;closeness&quot; between blame and the bug in
+this explanation. To learn more about that property, please see the paper.</aside>
+
+To make this concrete, try following a blame trail for the program above. Click
+the Start/Reset Trail button above the lattice to begin recording the configurations
+that you visit. Then, try following a blame trail up the lattice by
+strengthening (one level at a time) the contract on the blamed component.
+
+Above the lattice we report whether the sequence of configurations you have
+visited form a blame trail, and whether that trail satisfies the Blame Trail
+property.
+
+Feel free to reset the trail tracking at any time to start exploring a new trail
+starting at the current configuration.
+</p>
+
+    <script src="js/combined.js"></script>
+
+    <div id="footer">Author: Lukas Lazarek.
+
+This website was created using
+<a href="https://racket-lang.org/">Racket</a>.</div></body></html>
