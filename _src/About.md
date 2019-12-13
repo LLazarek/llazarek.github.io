@@ -32,6 +32,8 @@ I can be reached by email at
 
 ## Publications
 
+**L. Lazarek**, A. King, S. Sundar, R. B. Findler, C. Dimoulas. Does Blame Shifting Work? In *Proceedings of the 47th ACM SIGPLAN Symposium on Principles of Programming Languages (POPL 2020)*, New York, NY: ACM Press, January 2020. ([pdf](file:///docs/popl-2020-blame-shifting.pdf))
+
 C. Wong, J. Meinicke, **L. Lazarek**, and C. Kästner. Faster Variational Execution with Transparent Bytecode Transformation. In *Proceedings of the 33rd Annual ACM SIGPLAN Conference on Object-Oriented Programming, Systems, Languages, and Applications (OOPSLA)*, New York, NY: ACM Press, November 2018. ([pdf](https://www.cs.cmu.edu/~ckaestne/pdf/oopsla18.pdf))
 
 <br></br><br></br>
