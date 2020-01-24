@@ -1,21 +1,34 @@
-#+OPTIONS: toc:nil
+#+OPTIONS: toc:nil ':t
+#+ll-process: (setq-local org-scribble-lang "scribble/manual")
+#+TITLE:
+#+AUTHOR:
 
-#+ll-process: (ll-replace "^\\*\\* " "<br></br><br></br>\n** ")
+#+BEGIN_SRC racket
+@(require "citations.rkt"
+          "structure.rkt")
+#+END_SRC
+
+# #+ll-process: (ll-replace "^\\*\\* " "<br></br><br></br>\n** ")
 
 * Lukas Lazarek
 #+BEGIN_HTML
 <img src="img/profile.jpg" alt="Me" style="width:300px">
 #+END_HTML
+#+BEGIN_SRC racket
+@; Path must be a plain old path,
+@; and will be munged by the build script to make it point to /img/
+@; because for some reason Frog always puts it in /About/, which doesnt exist!
+@(external-img "profile.jpg" #:alt "Me" #:style "width:300px")
+#+END_SRC
 
 Hi! I'm a grad student studying Programming Languages at Northwestern.
 This page provides information about myself and what I have been doing recently.
 The other half of the site is a blog that I use to practice writing about technical things, my research, and my interests.
-Hopefully it's a little interesting.
 
 ** Research Interests
 Broadly, I'm interested in Programming Languages approaches to improving software development.
 This concretely means investigating how language features can improve program robustness, understandability, and maintainability.
-Doing so involves understanding the fundamental meanings of those features, how they interact, and how they impact programmers.
+My work involves understanding the fundamental meanings of those features, how they interact, and how they impact programmers.
 To those ends, I use reduction semantics as a primary tool for modeling and understanding various languages and their features.
 Additionally, I work on the [[https://racket-lang.org/][Racket]] programming language as a test bed for implementing, using, and evaluating new features or languages.
 
@@ -24,20 +37,35 @@ My github profile is [[https://github.com/llazarek][llazarek]].
 
 I can be reached by email at
 #+BEGIN_SRC elisp
-(or (concat "l" "lazarek" "@" "u.northwestern.edu")
+(or (concat "lukas" "." "lazarek" "@" "eecs.northwestern.edu")
     (concat "lukas" "a" "lazarek" "@" "gmail.com"))
 #+END_SRC
 
 ** Publications
 *** 2020
-*L. Lazarek*, A. King, S. Sundar, R. B. Findler, C. Dimoulas. Does Blame Shifting Work? In /Proceedings of the 47th ACM SIGPLAN Symposium on Principles of Programming Languages (POPL 2020)/, New York, NY: ACM Press, January 2020. ([[/docs/popl-2020-blame-shifting.pdf][pdf]])
+# *L. Lazarek*, A. King, S. Sundar, R. B. Findler, C. Dimoulas. Does Blame Shifting Work? In /Proceedings of the 47th ACM SIGPLAN Symposium on Principles of Programming Languages (POPL 2020)/, New York, NY: ACM Press, January 2020. ([[/docs/popl-2020-blame-shifting.pdf][pdf]])
+#+BEGIN_SRC racket
+@(render-citation lksfd-popl-20)
+#+END_SRC
 
 *** 2018
-C. Wong, J. Meinicke, *L. Lazarek*, and C. Kästner. Faster Variational Execution with Transparent Bytecode Transformation. In /Proceedings of the 33rd Annual ACM SIGPLAN Conference on Object-Oriented Programming, Systems, Languages, and Applications (OOPSLA)/, New York, NY: ACM Press, November 2018. ([[https://www.cs.cmu.edu/~ckaestne/pdf/oopsla18.pdf][pdf]])
+# C. Wong, J. Meinicke, *L. Lazarek*, and C. Kästner. Faster Variational Execution with Transparent Bytecode Transformation. In /Proceedings of the 33rd Annual ACM SIGPLAN Conference on Object-Oriented Programming, Systems, Languages, and Applications (OOPSLA)/, New York, NY: ACM Press, November 2018. ([[https://www.cs.cmu.edu/~ckaestne/pdf/oopsla18.pdf][pdf]])
+#+BEGIN_SRC racket
+@(render-citation wmlk-oopsla-18)
+#+END_SRC
 
+@(linebreak)
 ** Talks
-None yet!
+#+BEGIN_SRC racket
+@(render-talk "Does Blame Shifting Work?"
+              "POPL 2020, New Orleans"
+              "2020-01-22"
+              #f
+              (hash "slides" "/docs/popl20-talk.pdf"
+                    "video" "?")
+              "For the POPL20 paper by the same name.")
+#+END_SRC
 
+@(linebreak)
 ** Posters and Extended Abstracts
 *Lukas Lazarek*. How to Efficiently Process 2^100 List Variations. Extended abstract and poster, _first place in SPLASH 2017 ACM Student Research Competition_. ([[https://llazarek.github.io/docs/splash17_final.pdf][pdf]])
-
