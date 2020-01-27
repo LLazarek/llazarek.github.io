@@ -8,7 +8,7 @@
           "structure.rkt")
 #+END_SRC
 
-# #+ll-process: (ll-replace "^\\*\\* " "<br></br><br></br>\n** ")
+#+ll-process: (ll-replace "^\\*\\* " "@(linebreak)\n** ")
 
 * Lukas Lazarek
 #+BEGIN_HTML
@@ -54,18 +54,30 @@ I can be reached by email at
 @(render-citation wmlk-oopsla-18)
 #+END_SRC
 
-@(linebreak)
 ** Talks
 #+BEGIN_SRC racket
 @(render-talk "Does Blame Shifting Work?"
               "POPL 2020, New Orleans"
               "2020-01-22"
               #f
-              (hash "slides" "/docs/popl20-talk.pdf"
+              (hash "slides" "/docs/popl-2020-blame-shifting-talk.pdf"
                     "video" "?")
               "For the POPL20 paper by the same name.")
 #+END_SRC
 
-@(linebreak)
 ** Posters and Extended Abstracts
-*Lukas Lazarek*. How to Efficiently Process 2^100 List Variations. Extended abstract and poster, _first place in SPLASH 2017 ACM Student Research Competition_. ([[https://llazarek.github.io/docs/splash17_final.pdf][pdf]])
+#+BEGIN_SRC racket
+@(render-talk @elem{How to Efficiently Process 2@superscript{100} List Variations}
+              "SPLASH 2017, Vancouver"
+              "2017-10-22"
+              #f
+              (hash "abstract" "/docs/splash17_final.pdf"
+                    "poster" "/docs/poster_splash_2017.pdf")
+              "Extended abstract and poster, won first place in student research competition.")
+#+END_SRC
+# *How to Efficiently Process 2^100 List Variations* @(linebreak)
+# Lukas Lazarek @(linebreak)
+# #+BEGIN_SRC racket
+# @hyperlink["https://llazarek.github.io/docs/splash17_final.pdf"]{[pdf]} @(linebreak)
+# #+END_SRC
+# /Extended abstract and poster, won first place in SPLASH 2017 ACM Student Research Competition./
