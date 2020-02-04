@@ -1,6 +1,7 @@
 #lang at-exp racket
 
-(require (only-in scribble/base
+(require racket/runtime-path
+         (only-in scribble/base
                   hyperlink
                   para
                   bold
@@ -13,10 +14,12 @@
 
 (provide render-citation
          bib->tex
-         render-talk)
+         render-talk
+         export-and-render-citation!)
 
 (provide (all-from-out (file "~/ghs/grad/reading/refs.rkt")))
 
+(define-runtime-path website-root "..")
 
 (define people-websites
   (hash
@@ -90,6 +93,23 @@
         @(linebreak)
         @emph[(or summary "")]
         })
+
+(define/contract (export-citation! gb relative-website-path)
+  (generic-bib? relative-path? . -> . any)
+
+  (define path (build-path website-root relative-website-path))
+  (with-output-to-file path
+    #:exists 'truncate
+    (thunk (displayln @~a{
+                          <pre>
+                          @(bib->tex gb)
+                          </pre>
+                          }))))
+
+(define (export-and-render-citation! gb relative-website-path)
+  (export-citation! gb relative-website-path)
+  (define full-path @~a{/@relative-website-path})
+  (render-citation gb full-path))
 
 (define (render-talk title
                      location-str
