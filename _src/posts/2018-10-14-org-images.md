@@ -66,8 +66,11 @@ These three functions implement the behavior of taking screenshots, editing imag
 They are intended to be invoked within org mode, with the point at the location at which to insert the image or over the image to edit.
 
 A few notes:
+
 -   The screenshot function automatically creates a `resources` directory in same directory as current org file.
 -   These functions really just delegate to external programs in a convenient way, so they depend upon these programs being installed to work. The specific programs are `import`, `mogrify`, and `gimp`. The first two are part of the `imagemagick` package on Ubuntu and the last to the `gimp` package.
+
+Given those caveats, here's what I use.
 
     (defvar ll/org/insert-screenshot/redisplay-images t
       "Redisplay images after inserting a screenshot with

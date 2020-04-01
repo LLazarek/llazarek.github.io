@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <meta charset="utf-8">
+    <title>Reference management with Org mode</title>
+    <meta name="description" content="I manage all of my references using (guess) Org mode. This is a brief summary of what I do and why it works for me....">
+    <meta name="author"      content="Lukas Lazarek">
+    <meta name="keywords"    content="emacs, org, research">
+    <meta name="viewport"    content="width=device-width, initial-scale=1.0">
+    <link rel="icon"      href="/favicon.ico">
+    <link rel="canonical" href="https://llazarek.github.io/2020/04/reference-management-with-org-mode.html">
+    <link rel="next" href="/2019/07/non-linear-notes-with-org.html">
+
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/css/scribble.css">
+    <link rel="stylesheet" type="text/css" href="/css/custom.css">
+    <!-- Feeds -->
+    <link rel="alternate" type="application/atom+xml"
+          href="/feeds/all.atom.xml" title="Atom Feed">
+    <link rel="alternate" type="application/rss+xml"
+          href="/feeds/all.rss.xml" title="RSS Feed">
+    <!-- JS -->
+    <script type="text/javascript">
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-xxxxx', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </head>
+  <body>
+
+    <!-- A standard Twitter Bootstrap nav bar -->
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+      <div class="container">
+
+      <a href="/index.html" class="navbar-brand">llazarek</a>
+
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+              data-target="#navbar_collapse" aria-controls="navbar_collapse"
+              aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbar_collapse">
+          <ul class="navbar-nav mr-auto">
+
+
+            <li class="nav-item dropdown">
+              <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
+                Tags <b class="caret"></b>
+              </a>
+
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="/tags/emacs.html">emacs</a><a class="dropdown-item" href="/tags/finance.html">finance</a><a class="dropdown-item" href="/tags/ledger.html">ledger</a><a class="dropdown-item" href="/tags/linux.html">linux</a><a class="dropdown-item" href="/tags/networking.html">networking</a><a class="dropdown-item" href="/tags/org.html">org</a><a class="dropdown-item" href="/tags/PL.html">PL</a><a class="dropdown-item" href="/tags/racket.html">racket</a><a class="dropdown-item" href="/tags/research.html">research</a><a class="dropdown-item" href="/tags/rt18.html">rt18</a><a class="dropdown-item" href="/tags/scribble.html">scribble</a><a class="dropdown-item" href="/tags/testing.html">testing</a><a class="dropdown-item" href="/tags/travel.html">travel</a>
+              </div>
+            </li>
+
+            <li>
+              <a class="nav-link" href="/About.html">About</a>
+            </li> 
+
+            <li class="nav-item">
+              <a class="nav-link" href="/feeds/all.atom.xml">Atom</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="/feeds/all.rss.xml">RSS</a>
+            </li>
+          </ul>
+      </div>
+
+      </div>
+    </nav>
+
+
+    <div class="container">
+      <div class="row">
+
+        <!-- Main column -->
+        <div id="content" class="col-md-12">
+
+
+
+
+
+          <article>
+  <span style="display:block; height:40px;"></span>
+  <header>
+    <h1>Reference management with Org mode</h1>
+    <span style="display:inline-block; width:40px;"></span>
+    <p class='date-and-tags' style="color:grey;display:inline">
+<time datetime="2020-04-01" pubdate="true">2020-04-01</time> :: <span class="tags"><a href="/tags/emacs.html">emacs</a>, <a href="/tags/org.html">org</a>, <a href="/tags/research.html">research</a></span></p>
+    <!-- <p class='authors' style="color:grey;margin-left:3%">By: <span class="authors">Lukas Lazarek</span></p> -->
+  </header>
+
+<p>I manage all of my references using (guess) Org mode. This is a brief summary of what I do and why it works for me.</p>
+<!-- more-->
+
+<br />
+
+<br />
+
+<h1 id="reference-management-expectations">Reference management expectations</h1>
+
+<p>There are a few things that I expect from a system to manage research references.</p>
+
+<ol>
+ <li>Keep track of papers that I have read, and papers that I should read.</li>
+ <li>Record essential information for each, like
+  <ol>
+   <li>A copy of the paper (pdf).</li>
+   <li>The paper&rsquo;s citation information (e.g. bibtex).</li>
+   <li>My own notes on the paper.</li></ol></li>
+ <li>Organize the information so that I can find it later.</li>
+ <li>Link different papers and notes together.</li>
+ <li>Have papers and notes be individually referable from outside the system.
+  <ol>
+   <li>So that I can point to specific papers and notes from any of my other notes, even outside of the reference management system.</li></ol></li></ol>
+
+<p>Org mode neatly handles all of these points. I&rsquo;ll go through how I handle each point above, one at a time.</p>
+
+<br />
+
+<br />
+
+<h1 id="keeping-track-of-papers">Keeping track of papers</h1>
+
+<p>I store my papers and notes in a directory that looks like this:</p>
+
+<pre><code>reading
+  |-&gt; reading-list.org
+  |-&gt; refs.bib
+  |-- papers
+  |     |-&gt; a-paper.pdf
+  |     ...
+  `-- notes
+        |-&gt; a-paper.org
+        ...</code></pre>
+
+<p>The first file (<code>reading-list.org</code>) is a master org file that records all of the papers I have ever read or plan to read. At its simplest, the file looks like this.</p>
+
+<pre><code># reading-list.org
+#+TITLE: Reading list
+
+* Read
+** An Interesting Paper - Owens+
+[[file:papers/a-paper.pdf][a-paper.pdf]]
+[[file:notes/a-paper.org][notes]]
+
+...
+
+* To read
+** Contracts for First-Class Modules - Strickland+
+[[file:papers/dls09-sf.pdf][dls09-sf.pdf]]
+
+...</code></pre>
+
+<p>It has two main sections: read papers, and papers to read. Each section has one entry per paper. Whenever I learn of a paper that I think I should read, it goes into <code>To read</code> along with a link to a place where I can find the paper (either online, or already downloaded into the <code>papers</code> directory). When I finish reading it, I move the entry to the <code>Read</code> list (see <a href="https://orgmode.org/manual/Refile-and-Copy.html">org-refile</a>).</p>
+
+<p>The format for paper entries that I like to use is to have each heading be the title of the paper and the first author&rsquo;s last name. I don&rsquo;t include the other authors because then the headings tend to get long, and that information is kept elsewhere already.</p>
+
+<p>Thus, this master file provides a centralized location to track all of the papers that I have read or need to read.</p>
+
+<br />
+
+<br />
+
+<h1 id="recording-essential-information">Recording essential information</h1>
+
+<p>The master file has more than just a list of paper references, however. It also <a href="https://orgmode.org/manual/Hyperlinks.html">links</a> each reference to its essential information. The body of every paper entry has links to the paper pdf and the notes, if I have already read it.</p>
+
+<p>When I get around to reading the paper, I create a notes file with the same name as the paper pdf (that&rsquo;s not really important, it&rsquo;s just my convention) in the <code>notes</code> directory, and link to it in the paper&rsquo;s entry in the master list.</p>
+
+<p>The notes file looks like this.</p>
+
+<pre><code># a-paper.org
+#+TITLE: An Interesting Paper
+#+AUTHOR: Sacha Owens, Bill Jones
+
+[[file:../papers/a-paper.pdf][Paper]]
+
+* Reference
+[[file:../refs.bib::owens-pldi-1988][Owens &amp; Jones 1988: Interesting Paper]]
+
+* Notes
+Some notes...</code></pre>
+
+<p>It has the title of the paper, its full author list, a link to the paper, a link to its bibtex citation (which I put in the <code>refs.bib</code> file), and finally the actual notes.</p>
+
+<p>Hence, with this notes file we collect the three bits of essential information for every paper: the pdf, its citation information, and my notes on it.</p>
+
+<br />
+
+<br />
+
+<h1 id="organizing-information-so-i-can-find-it-later">Organizing information so I can find it later</h1>
+
+<h2 id="search-everything">Search everything</h2>
+
+<p>All of this information is stored in plain text, so unstructured information retrieval is easy with <a href="https://llazarek.com/2019/01/fuzzy-searching-notes-with-fzf.html">full text fuzzy searching</a>. This is how I typically find papers and notes on them, because I can just start searching with whatever came to mind and <code>fzf</code> finds it almost instantly.</p>
+
+<h2 id="tagging">Tagging</h2>
+
+<p>Sometimes I need something a little more structured, though. For instance, searching for all the papers I have read related to some topic. For these kinds of searches, I use <a href="https://orgmode.org/manual/Tags.html">tags</a> on every paper in the master reading list. I augment the basic reading list I showed before to look like this.</p>
+
+<pre><code># reading-list.org
+#+TITLE: Reading list
+* Tag meanings
+| Tag     | Meaning               |
+|---------+-----------------------|
+| fake    | a fake paper          |
+| racket  |                       |
+| pl      | programming languages |
+| se      | software engineering  |
+| compile | compilers             |
+| ctc     | contracts             |
+...
+
+* Read
+** An Interesting Paper - Owens+                                      :fake:
+[[file:papers/a-paper.pdf][a-paper.pdf]]
+[[file:notes/a-paper.org][notes]]
+
+...
+
+* To read
+** Contracts for First-Class Modules - Strickland+           :pl:racket:ctc:
+[[file:papers/dls09-sf.pdf][dls09-sf.pdf]]
+
+...</code></pre>
+
+<p>I add a section recording all of the tags that I&rsquo;m using along with an explanation. Then, I add tags to every paper entry (see <a href="https://orgmode.org/manual/Setting-Tags.html#Setting-Tags">setting tags</a>) for the topics it touches upon.</p>
+
+<p>Once everything is tagged, org can generate <a href="https://orgmode.org/manual/Sparse-Trees.html">sparse trees</a> to show all papers with a given tag(s), or the <a href="https://orgmode.org/manual/Agenda-Views.html">agenda</a> can be used to filter with more complex patterns (like <a href="https://llazarek.com/2018/07/improving-the-agenda.html">arbitrary boolean tag formulas &#8211; see the &ldquo;Filtering&rdquo; section</a>).</p>
+
+<br />
+
+<br />
+
+<h1 id="linking-papers-and-notes-together-and-referring-to-them-from-elsewhere">Linking papers and notes together (and referring to them from elsewhere)</h1>
+
+<p>At this point, this has already been demonstrated: I use <a href="https://orgmode.org/manual/Hyperlinks.html">org&rsquo;s builtin links</a> extensively to link the different parts of the system together.</p>
+
+<ul>
+ <li>The paper entries in the master reading list link to the paper and its notes.</li>
+ <li>The paper notes link to the paper, its citation, and can include arbitrary links to other papers and notes.</li>
+ <li>The notes can themselves be linked to from any other org notes that I have.</li></ul>
+
+<p>For example, the notes for &ldquo;An Interesting Paper&rdquo; might include a link like this.</p>
+
+<pre><code># a-paper.org
+#+TITLE: An Interesting Paper
+...
+* Notes
+Some notes...
+This paper is quite related to [[file:another-interesting-paper.org][Johnson's POPL 1998 paper]].
+...</code></pre>
+
+<br />
+
+<br />
+
+<h1 id="an-aside-organizing-everything-else">An aside: organizing everything else</h1>
+
+<p>This post is part of a series of posts describing how I use org mode. If you enjoyed it, check out the other ones:</p>
+
+<ul>
+ <li><a href="https://llazarek.com/2018/07/organization-with-org-mode.html">Organization with Org Mode</a></li>
+ <li><a href="https://llazarek.com/2018/07/improving-the-agenda.html">Improving the Agenda</a></li>
+ <li><a href="https://llazarek.com/2018/09/improving-the-agenda-part-2-custom-views.html">Improving the Agenda, part 2</a></li>
+ <li><a href="https://llazarek.com/2018/10/images-in-org-mode.html">Images in org notes</a></li></ul>
+  <footer>
+    <script type="text/javascript">
+      !function(d,s,id){
+          var js,fjs=d.getElementsByTagName(s)[0];
+          if(!d.getElementById(id)){
+              js=d.createElement(s);
+              js.id=id;
+              js.src="//platform.twitter.com/widgets.js";
+              fjs.parentNode.insertBefore(js,fjs);
+          }
+      }(document,"script","twitter-wjs");
+    </script>
+    <a href="https://twitter.com/share"
+       class="twitter-share-button"
+       data-url="https://llazarek.github.io/2020/04/reference-management-with-org-mode.html"
+       data-dnt="true">
+      "Tweet"</a>
+    <script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
+    <g:plusone size="medium" href="https://llazarek.github.io/2020/04/reference-management-with-org-mode.html"></g:plusone>
+    <script type="text/javascript">
+      var disqus_shortname = 'shortname';
+      (function() {
+          var dsq = document.createElement('script');
+          dsq.type = 'text/javascript';
+          dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+    <div id="disqus_thread"></div>
+
+    <div class="row justify-content-center">
+      <nav aria-label="Page Navigation">
+        <ul class="pagination">
+          <li class="page-item">
+            <a class="page-link" href="/2019/07/non-linear-notes-with-org.html" aria-label="Previous">
+              <span aria-hidden="true">&larr; Non-linear notes with Org</span>
+            </a>
+          </li>
+
+        </ul>
+      </nav>
+    </div>
+  </footer>
+</article>
+        </div>
+      </div>
+      <footer>
+        <hr />
+        <p>Site generated by <a href="https://github.com/greghendershott/frog">Frog</a>,
+        the <strong>fr</strong>ozen bl<strong>og</strong> tool,
+        using <a href="http://twitter.github.com/bootstrap/index.html">Bootstrap</a>.</p>
+        <p><em>Copyright Lukas Lazarek 2018 -- and the foreseeable future...</em></p>
+      </footer>
+    </div>
+    <!-- </body> JS -->
+    <script type="text/javascript" src="/js/jquery-3.2.1.slim.min.js"></script>
+    <script type="text/javascript" src="/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
