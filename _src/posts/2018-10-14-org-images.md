@@ -1,4 +1,4 @@
-    Title: Images in org-mode
+    Title: Images in Org mode
     Date: 2018-10-14T11:39:49
     Tags: emacs, org
 
@@ -42,7 +42,7 @@ Just add an `ATTR_ORG` line before the image specifying a width for the inserted
 The second way is to resize the image itself.
 This might seem like a hassle, which it can be, but it can be made pretty painless.
 It also integrates pretty well with the editing functions I describe below.
-To do this, I wrote a function that uses an external tool to resize the image under point, and binds this to a key of choice.
+To do this, I wrote a function that uses an external tool to resize the image under point, and bind this to a key of choice.
 The function can be found below, along with some other useful functions.
 
 <br></br><br></br>
@@ -133,3 +133,15 @@ Given those caveats, here's what I use.
         (when ll/org/edit-image/redisplay-images
           (org-remove-inline-images)
           (org-display-inline-images))))
+    
+    (defun ll/org/link-file-path-at-point ()
+      "Get the path of the file referred to by the link at point."
+      (let* ((org-element (org-element-context))
+             (is-subscript-p (equal (org-element-type org-element) 'subscript))
+             (is-link-p (equal (org-element-type org-element) 'link))
+             (is-file-p (equal (org-element-property :type org-element) "file")))
+        (when is-subscript-p
+          (user-error "Org thinks you're in a subscript. Move the point and try again."))
+        (unless (and is-link-p is-file-p)
+          (user-error "Not on file link"))
+        (expand-file-name (org-element-property :path org-element))))

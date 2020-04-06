@@ -42,7 +42,7 @@
    <description>
 &lt;p&gt;Org&amp;rsquo;s &lt;a href="https://orgmode.org/manual/Exporting.html"&gt;export system&lt;/a&gt; is a fantastic tool for writing various documents quickly and easily within org mode. The only thing it lacks is simple tools for user-defined content generation during export. It&amp;rsquo;s pretty easy to implement, though.&lt;/p&gt;&lt;a href="https://llazarek.github.io/2018/11/org-export-processing.html?utm_source=emacs&amp;amp;utm_medium=RSS"&gt;&lt;em&gt;More&amp;hellip;&lt;/em&gt;&lt;/a&gt;</description></item>
   <item>
-   <title>Images in org-mode</title>
+   <title>Images in Org mode</title>
    <link>https://llazarek.github.io/2018/10/images-in-org-mode.html?utm_source=emacs&amp;utm_medium=RSS</link>
    <guid isPermaLink="false">urn:https-llazarek-github-io:-2018-10-images-in-org-mode-html</guid>
    <pubDate>Sun, 14 Oct 2018 16:39:49 UT</pubDate>
