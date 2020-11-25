@@ -3,6 +3,10 @@
 #+TITLE:
 #+AUTHOR:
 
+# *To Export*
+# -----------
+# export with ox-scribble, then rebuild/preview
+
 #+BEGIN_SRC racket
 @(require "citations.rkt"
           "structure.rkt")
@@ -11,9 +15,9 @@
 #+ll-process: (ll-replace "^\\*\\* " "@(linebreak)\n** ")
 
 * Lukas Lazarek
-#+BEGIN_HTML
+#+BEGIN_EXPORT HTML
 <img src="img/profile.jpg" alt="Me" style="width:300px">
-#+END_HTML
+#+END_EXPORT
 #+BEGIN_SRC racket
 @; Path must be a plain old path,
 @; and will be munged by the build script to make it point to /img/
@@ -21,7 +25,7 @@
 @(external-img "profile.jpg" #:alt "Me" #:style "width:300px")
 #+END_SRC
 
-Hi! I'm a grad student studying Programming Languages at Northwestern.
+I'm a grad student studying Programming Languages at Northwestern.
 This page provides information about myself and what I have been doing recently.
 The other half of the site is a blog that I use to practice writing about technical things, my research, and my interests.
 

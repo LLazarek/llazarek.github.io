@@ -294,17 +294,28 @@ This paper is quite related to [[file:another-interesting-paper.org][Johnson's P
       "Tweet"</a>
     <script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
     <g:plusone size="medium" href="https://llazarek.github.io/2020/04/reference-management-with-org-mode.html"></g:plusone>
+    <div id="disqus_thread"></div>
     <script type="text/javascript">
+      var disqus_config = function () {
+        this.page.identifier = undefined;
+        this.page.url = undefined;
+        this.page.title = undefined;
+        this.page.category_id = undefined;
+      };
       var disqus_shortname = 'shortname';
       (function() {
           var dsq = document.createElement('script');
           dsq.type = 'text/javascript';
           dsq.async = true;
           dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          dsq.setAttribute('data-timestamp', +new Date());
+          (document.head || document.body).appendChild(dsq);
       })();
     </script>
-    <div id="disqus_thread"></div>
+    <noscript>
+      Please enable JavaScript to view the
+      <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+    </noscript>
 
     <div class="row justify-content-center">
       <nav aria-label="Page Navigation">
