@@ -23,7 +23,7 @@
 
 (define people-websites
   (hash
-   ;; (author "Lukas" "Lazarek") "https://llazarek.com/About.html"
+   ;; (author "Lukas" "Lazarek") "https://llazarek.com/about.html"
 
    (author "Alexis" "King") "https://lexi-lambda.github.io/"
    ;; (author "Samanvitha" "Sundar") ""
@@ -33,11 +33,15 @@
    (author "Chu-Pan" "Wong") "http://www.cs.cmu.edu/~chupanw/"
    (author "Jens" "Meinicke") "http://wwwiti.cs.uni-magdeburg.de/~meinicke/"
    (author "Christian" "Kästner") "https://www.cs.cmu.edu/~ckaestne/index.html"
+
+   (author "Ben" "Greenman") "https://ccs.neu.edu/home/types/"
+   (author "Matthias" "Felleisen") "https://felleisen.org/matthias/"
    ))
 
 (define location-shorthands
   (hash POPL "POPL"
-        OOPSLA "OOPSLA"))
+        OOPSLA "OOPSLA"
+        ICFP "ICFP"))
 
 (define me (author "Lukas" "Lazarek"))
 (define author->str

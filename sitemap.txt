@@ -16,4 +16,4 @@ https://llazarek.github.io/2019/07/non-linear-notes-with-org.html
 https://llazarek.github.io/2018/07/organization-with-org-mode.html
 https://llazarek.github.io/2018/05/language-oriented-programming-ptext.html
 https://llazarek.github.io/2020/04/reference-management-with-org-mode.html
-https://llazarek.github.io/About.html
+https://llazarek.github.io/about.html

@@ -46,6 +46,13 @@ I can be reached by email at
 #+END_SRC
 
 ** Publications
+
+*** 2021
+# *L. Lazarek*, A. King, S. Sundar, R. B. Findler, C. Dimoulas. Does Blame Shifting Work? In /Proceedings of the 47th ACM SIGPLAN Symposium on Principles of Programming Languages (POPL 2020)/, New York, NY: ACM Press, January 2020. ([[/docs/popl-2020-blame-shifting.pdf][pdf]])
+#+BEGIN_SRC racket
+@(export-and-render-citation! lgfd-icfp-21 "bib/lgfd-icfp-21.html")
+#+END_SRC
+
 *** 2020
 # *L. Lazarek*, A. King, S. Sundar, R. B. Findler, C. Dimoulas. Does Blame Shifting Work? In /Proceedings of the 47th ACM SIGPLAN Symposium on Principles of Programming Languages (POPL 2020)/, New York, NY: ACM Press, January 2020. ([[/docs/popl-2020-blame-shifting.pdf][pdf]])
 #+BEGIN_SRC racket
