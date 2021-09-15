@@ -9,7 +9,7 @@
   (list))
 
 (define postprocess-steps
-  (list (thunk (replace-in-file! about #rx"/About/" "/img/"))))
+  (list (thunk (replace-in-file! about #rx"/about/" "/img/"))))
 
 (main
  #:arguments {[flags positional-args]}
