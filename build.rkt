@@ -1,7 +1,7 @@
 #lang at-exp rscript
 
 (define-runtime-paths
-  [about "About.html"])
+  [about "about.html"])
 
 (define build-location "/home/lukas/github_sync/projects/website/")
 
