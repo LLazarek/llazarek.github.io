@@ -1,12 +1,13 @@
-    Title: Road Trip 2018: Departure
+        Title: Road Trip 2018: Departure
     Date: 2018-07-23T23:24:40
-    Tags: rt18, travel
+    Tags: rt18, travel, DRAFT
 
 Getting ready to leave.
 
 <!-- more -->
 
 <br></br><br></br>
+
 
 # The Plan
 
@@ -23,6 +24,7 @@ However, the previous owner had it sitting in an empty lot and was generally unw
 This was probably a mistake.
 
 <br></br><br></br>
+
 
 # Repairing the RV
 
@@ -41,6 +43,7 @@ Being without a generator will mean no AC while on the road, but that's better t
 
 <br></br><br></br>
 
+
 # Pre-departure Costs
 
 Repairing the RV cost significantly more money than we expected; we expected two or three thousand dollars of repairs but ended up with about five thousand.
@@ -51,82 +54,83 @@ I've itemized out costs below, identifying the major categories of the expenses.
 
 
 <colgroup>
-<col  class="left" />
+<col  class="org-left" />
 
-<col  class="right" />
+<col  class="org-right" />
 </colgroup>
 <thead>
 <tr>
-<th scope="col" class="left">Item</th>
-<th scope="col" class="right">Cost ($)</th>
+<th scope="col" class="org-left">Item</th>
+<th scope="col" class="org-right">Cost ($)</th>
 </tr>
 </thead>
 
 <tbody>
 <tr>
-<td class="left">RV</td>
-<td class="right">5000</td>
+<td class="org-left">RV</td>
+<td class="org-right">5000</td>
 </tr>
 
 
 <tr>
-<td class="left">Repairs</td>
-<td class="right">&#xa0;</td>
+<td class="org-left">Repairs</td>
+<td class="org-right">&#xa0;</td>
 </tr>
 
 
 <tr>
-<td class="left">- New Tires</td>
-<td class="right">1896.55</td>
+<td class="org-left">- New Tires</td>
+<td class="org-right">1896.55</td>
 </tr>
 
 
 <tr>
-<td class="left">- Fluid changes, tune-ups</td>
-<td class="right">474.14</td>
+<td class="org-left">- Fluid changes, tune-ups</td>
+<td class="org-right">474.14</td>
 </tr>
 
 
 <tr>
-<td class="left">- Misc repairs</td>
-<td class="right">1578.18</td>
+<td class="org-left">- Misc repairs</td>
+<td class="org-right">1578.18</td>
 </tr>
 
 
 <tr>
-<td class="left">Misc Supplies</td>
-<td class="right">&#xa0;</td>
+<td class="org-left">Misc Supplies</td>
+<td class="org-right">&#xa0;</td>
 </tr>
 
 
 <tr>
-<td class="left">- National parks pass</td>
-<td class="right">165</td>
+<td class="org-left">- National parks pass</td>
+<td class="org-right">165</td>
 </tr>
 
 
 <tr>
-<td class="left">- Bike rack</td>
-<td class="right">105.19</td>
+<td class="org-left">- Bike rack</td>
+<td class="org-right">105.19</td>
 </tr>
 
 
 <tr>
-<td class="left">- Insurance payments</td>
-<td class="right">502.40</td>
+<td class="org-left">- Insurance payments</td>
+<td class="org-right">502.40</td>
 </tr>
 
 
 <tr>
-<td class="left">- Mobile hotspot</td>
-<td class="right">80</td>
+<td class="org-left">- Mobile hotspot</td>
+<td class="org-right">80</td>
 </tr>
 </tbody>
 
 <tbody>
 <tr>
-<td class="left">**Total** pre-departure costs         </td>
-<td class="right">9721.46</td>
+<td class="org-left"><b>Total</b> pre-departure costs         </td>
+<td class="org-right">9721.46</td>
 </tr>
 </tbody>
 </table>
+
