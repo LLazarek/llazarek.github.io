@@ -57,7 +57,7 @@
               </a>
 
               <div class="dropdown-menu">
-                <a class="dropdown-item" href="/tags/emacs.html">emacs</a><a class="dropdown-item" href="/tags/finance.html">finance</a><a class="dropdown-item" href="/tags/ledger.html">ledger</a><a class="dropdown-item" href="/tags/linux.html">linux</a><a class="dropdown-item" href="/tags/networking.html">networking</a><a class="dropdown-item" href="/tags/org.html">org</a><a class="dropdown-item" href="/tags/PL.html">PL</a><a class="dropdown-item" href="/tags/racket.html">racket</a><a class="dropdown-item" href="/tags/research.html">research</a><a class="dropdown-item" href="/tags/rt18.html">rt18</a><a class="dropdown-item" href="/tags/scribble.html">scribble</a><a class="dropdown-item" href="/tags/testing.html">testing</a><a class="dropdown-item" href="/tags/travel.html">travel</a>
+                <a class="dropdown-item" href="/tags/emacs.html">emacs</a><a class="dropdown-item" href="/tags/finance.html">finance</a><a class="dropdown-item" href="/tags/ledger.html">ledger</a><a class="dropdown-item" href="/tags/linux.html">linux</a><a class="dropdown-item" href="/tags/networking.html">networking</a><a class="dropdown-item" href="/tags/org.html">org</a><a class="dropdown-item" href="/tags/PL.html">PL</a><a class="dropdown-item" href="/tags/racket.html">racket</a><a class="dropdown-item" href="/tags/research.html">research</a><a class="dropdown-item" href="/tags/scribble.html">scribble</a><a class="dropdown-item" href="/tags/testing.html">testing</a>
               </div>
             </li>
 
@@ -103,11 +103,15 @@ The other half of the site is a blog that I use to practice writing about techni
 
 <h2><a name="(part._.Research_.Interests)"></a>Research Interests</h2>
 
-<p>Broadly, I&rsquo;m interested in Programming Languages approaches to improving software development.
-This concretely means investigating how language features can improve program robustness, understandability, and maintainability.
-My work involves understanding the fundamental meanings of those features, how they interact, and how they impact programmers.
-To those ends, I use reduction semantics as a primary tool for modeling and understanding various languages and their features.
-Additionally, I work on the <a href="https://racket-lang.org/">Racket</a> programming language as a test bed for implementing, using, and evaluating new features or languages.</p>
+<p>I&rsquo;m interested in Programming Languages approaches to make programming accessible and practically useful for human beings.</p>
+
+<p>People and their programs are imperfect, so one part of that interest is in linguistic tools that support program robustness and debugging;
+my ongoing work on contract systems and gradual typing centers around evaluating how these specification tools, intended to improve robustness, may or may not assist with debugging.</p>
+
+<p>Relatively few people are programmers, however, so another part of my interest is understanding how and why everyone else might find value in programming;
+my current work in this direction explores languages, domains, and settings which enable novices to use computing as a useful tool, while simultaneously providing a rich setting for digging deeper into foundational computing concepts.</p>
+
+<p>I work on and use the <a href="https://racket-lang.org/">Racket</a> programming language as a concrete setting for most of my research.</p>
 
 <p>
  <br /></p>
@@ -138,7 +142,7 @@ Additionally, I work on the <a href="https://racket-lang.org/">Racket</a> progra
 
 <h3><a name="(part._2021)"></a>2021</h3>
 
-<p><span style="font-weight: bold">Does Blame Shifting Work? (ICFP 2020)</span>
+<p><span style="font-weight: bold">How to Evaluate Blame for Gradual Types (ICFP 2021)</span>
 
  <br />
 Lukas Lazarek, <a href="https://ccs.neu.edu/home/types/">Ben Greenman</a>, <a href="https://felleisen.org/matthias/">Matthias Felleisen</a>, <a href="http://users.eecs.northwestern.edu/~chrdimo/">Christos Dimoulas</a>
@@ -195,13 +199,45 @@ explore new optimization techniques.
 <p>
  <br /></p>
 
+<h2><a name="(part._.Software)"></a>Software</h2>
+
+<ul>
+ <li>
+  <p><a href="https://github.com/LLazarek/complot">complot</a> - language for compositional data visualization design</p></li>
+ <li>
+  <p><a href="https://github.com/LLazarek/configurable">configurable</a> - library for simple software configuration via config files</p></li>
+ <li>
+  <p><a href="https://github.com/LLazarek/process-queue">process-queue</a> - library for managing many parallel processes</p></li>
+ <li>
+  <p><a href="https://github.com/LLazarek/mutate">mutate</a> - mutation system for s-expression languages</p></li>
+ <li>
+  <p><a href="https://github.com/LLazarek/rscript">rscript</a> - language for scripts, mainly featuring an embedded declarative argument parsing language</p></li>
+ <li>
+  <p><a href="https://github.com/LLazarek/ruinit">ruinit</a> - unit testing library</p></li>
+ <li>
+  <p><a href="https://github.com/LLazarek/webgrep">webgrep</a> - CLI tool to search webpages recursively (descending into linked pages)</p></li>
+ <li>
+  <p><a href="https://github.com/LLazarek/asciigraph">asciigraph</a> - CLI tool that makes ASCII plots</p></li></ul>
+
+<p>
+ <br /></p>
+
 <h2><a name="(part._.Talks)"></a>Talks</h2>
+
+<p><span style="font-weight: bold">How to Evaluate Blame for Gradual Types (virtual 2021-08-24)</span>
+
+ <br /></p>
+
+<p><a href="https://www.youtube.com/watch?v=_S7BYbYb6Yk&amp;list=PLyrlk8Xaylp5ed_Yhg2oTdVhrtVohVaoa&amp;index=35">[video]</a>
+
+ <br />
+<span class="emph">For the ICFP21 paper by the same name.</span></p>
 
 <p><span style="font-weight: bold">Does Blame Shifting Work? (POPL 2020, New Orleans 2020-01-22)</span>
 
  <br /></p>
 
-<p><a href="/docs/popl-2020-blame-shifting-talk.pdf">[slides]</a> <a href="?">[video]</a>
+<p><a href="/docs/popl-2020-blame-shifting-talk.pdf">[slides]</a> <a href="https://youtu.be/EROZQwa-RuM">[video]</a>
 
  <br />
 <span class="emph">For the POPL20 paper by the same name.</span></p>
@@ -234,8 +270,4 @@ explore new optimization techniques.
     <script type="text/javascript" src="/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>
-
-
-
-
 

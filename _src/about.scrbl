@@ -15,11 +15,15 @@ The other half of the site is a blog that I use to practice writing about techni
 
 @(linebreak)
 @subsection{Research Interests}
-Broadly, I'm interested in Programming Languages approaches to improving software development.
-This concretely means investigating how language features can improve program robustness, understandability, and maintainability.
-My work involves understanding the fundamental meanings of those features, how they interact, and how they impact programmers.
-To those ends, I use reduction semantics as a primary tool for modeling and understanding various languages and their features.
-Additionally, I work on the @hyperlink["https://racket-lang.org/"]{Racket} programming language as a test bed for implementing, using, and evaluating new features or languages.
+I'm interested in Programming Languages approaches to make programming accessible and practically useful for human beings.
+
+People and their programs are imperfect, so one part of that interest is in linguistic tools that support program robustness and debugging;
+my ongoing work on contract systems and gradual typing centers around evaluating how these specification tools, intended to improve robustness, may or may not assist with debugging.
+
+Relatively few people are programmers, however, so another part of my interest is understanding how and why everyone else might find value in programming;
+my current work in this direction explores languages, domains, and settings which enable novices to use computing as a useful tool, while simultaneously providing a rich setting for digging deeper into foundational computing concepts.
+
+I work on and use the @hyperlink["https://racket-lang.org/"]{Racket} programming language as a concrete setting for most of my research.
 
 @(linebreak)
 @subsection{Contact information}
@@ -43,13 +47,41 @@ I can be reached by email at
 @(export-and-render-citation! wmlk-oopsla-18 "bib/wmlk-oopsla-18.html")
 
 @(linebreak)
+@subsection{Software}
+@itemlist[#:style #f
+@item{@hyperlink["https://github.com/LLazarek/complot"]{complot} - language for compositional data visualization design
+}
+@item{@hyperlink["https://github.com/LLazarek/configurable"]{configurable} - library for simple software configuration via config files
+}
+@item{@hyperlink["https://github.com/LLazarek/process-queue"]{process-queue} - library for managing many parallel processes
+}
+@item{@hyperlink["https://github.com/LLazarek/mutate"]{mutate} - mutation system for s-expression languages
+}
+@item{@hyperlink["https://github.com/LLazarek/rscript"]{rscript} - language for scripts, mainly featuring an embedded declarative argument parsing language
+}
+@item{@hyperlink["https://github.com/LLazarek/ruinit"]{ruinit} - unit testing library
+}
+@item{@hyperlink["https://github.com/LLazarek/webgrep"]{webgrep} - CLI tool to search webpages recursively (descending into linked pages)
+}
+@item{@hyperlink["https://github.com/LLazarek/asciigraph"]{asciigraph} - CLI tool that makes ASCII plots
+}
+]
+
+@(linebreak)
 @subsection{Talks}
+@(render-talk "How to Evaluate Blame for Gradual Types"
+              "virtual"
+              "2021-08-24"
+              #f
+              (hash "video" "https://www.youtube.com/watch?v=_S7BYbYb6Yk&list=PLyrlk8Xaylp5ed_Yhg2oTdVhrtVohVaoa&index=35")
+              "For the ICFP21 paper by the same name.")
+
 @(render-talk "Does Blame Shifting Work?"
               "POPL 2020, New Orleans"
               "2020-01-22"
               #f
               (hash "slides" "/docs/popl-2020-blame-shifting-talk.pdf"
-                    "video" "?")
+                    "video" "https://youtu.be/EROZQwa-RuM")
               "For the POPL20 paper by the same name.")
 
 @(linebreak)
