@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <meta charset="utf-8">
+    <title>Tracking Expenses with Ledger</title>
+    <meta name="description" content="How I track expenses using ledger, even on my phone....">
+    <meta name="author"      content="Lukas Lazarek">
+    <meta name="keywords"    content="ledger, finance, racket, scribble">
+    <meta name="viewport"    content="width=device-width, initial-scale=1.0">
+    <link rel="icon"      href="/favicon.ico">
+    <link rel="canonical" href="https://llazarek.github.io/blog/2018/07/tracking-expenses-with-ledger.html">
+    <link rel="next" href="/blog/2018/07/improving-the-agenda.html">
+    <link rel="prev" href="/2018/08/setting-up-a-home-cloud-server-with-nextcloud.html">
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/css/scribble.css">
+    <link rel="stylesheet" type="text/css" href="/css/custom.css">
+    <!-- Feeds -->
+    <link rel="alternate" type="application/atom+xml"
+          href="/feeds/all.atom.xml" title="Atom Feed">
+    <link rel="alternate" type="application/rss+xml"
+          href="/feeds/all.rss.xml" title="RSS Feed">
+    <!-- JS -->
+    <script type="text/javascript">
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-xxxxx', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </head>
+  <body>
+
+    <!-- A standard Twitter Bootstrap nav bar -->
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+      <div class="container">
+
+      <a href="/index.html" class="navbar-brand">llazarek</a>
+
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+              data-target="#navbar_collapse" aria-controls="navbar_collapse"
+              aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbar_collapse">
+          <ul class="navbar-nav mr-auto">
+
+
+            <li>
+              <a class="nav-link" href="/blog.html">Blog</a>
+            </li> 
+
+            <li class="nav-item dropdown">
+              <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
+                Post tags <b class="caret"></b>
+              </a>
+
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="/tags/emacs.html">emacs</a><a class="dropdown-item" href="/tags/finance.html">finance</a><a class="dropdown-item" href="/tags/ledger.html">ledger</a><a class="dropdown-item" href="/tags/linux.html">linux</a><a class="dropdown-item" href="/tags/networking.html">networking</a><a class="dropdown-item" href="/tags/org.html">org</a><a class="dropdown-item" href="/tags/PL.html">PL</a><a class="dropdown-item" href="/tags/racket.html">racket</a><a class="dropdown-item" href="/tags/research.html">research</a><a class="dropdown-item" href="/tags/scribble.html">scribble</a><a class="dropdown-item" href="/tags/testing.html">testing</a>
+              </div>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="/feeds/all.atom.xml">Atom</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="/feeds/all.rss.xml">RSS</a>
+            </li>
+          </ul>
+      </div>
+
+      </div>
+    </nav>
+
+
+    <div class="container">
+      <div class="row">
+
+        <!-- Main column -->
+        <div id="content" class="col-md-12">
+
+
+
+
+
+          <article>
+  <span style="display:block; height:40px;"></span>
+  <header>
+    <h1>Tracking Expenses with Ledger</h1>
+    <span style="display:inline-block; width:40px;"></span>
+    <p class='date-and-tags' style="color:grey;display:inline">
+<time datetime="2018-07-20" pubdate="true">2018-07-20</time> :: <span class="tags"><a href="/tags/ledger.html">ledger</a>, <a href="/tags/finance.html">finance</a>, <a href="/tags/racket.html">racket</a>, <a href="/tags/scribble.html">scribble</a></span></p>
+    <!-- <p class='authors' style="color:grey;margin-left:3%">By: <span class="authors">Lukas Lazarek</span></p> -->
+  </header>
+
+<p>How I track expenses using ledger, even on my phone.</p>
+<!-- more-->
+
+<br />
+
+<br />
+
+<h1 id="ledger">Ledger</h1>
+
+<p>I use <a href="https://www.ledger-cli.org/">ledger</a> to track my personal finances. Ledger is a commandline tool for <a href="https://en.wikipedia.org/wiki/Double-entry_bookkeeping_system">double-entry accounting</a>, and it&rsquo;s most salient feature is that all of my financial data is stored in plain text and ledger never automatically modifies it. This guarantees that my data will always be easily accessible (no software lock-in) and can&rsquo;t be corrupted by a bug, crash, etc.</p>
+
+<p>The ledger website has a pretty thorough guide to using the tool, so I won&rsquo;t explain in any detail here. The basic idea is to have entries for every financial transaction that look like this:</p>
+
+<pre><code>date * (Person or company the transaction is with)
+    ; (A note on what this transaction is)
+    (An account which is credited or debited)  (Amount to credit/debit)
+    (An account which is credited or debited)  (Amount to credit/debit)
+
+; Example:
+
+2018/07/17 * Ben's Noodles
+    ; Dinner
+    expenses:basics:food  25.0
+    liabilities:cards:visa  -25.0</code></pre>
+
+<p>Then, ledger can check my math and produce reports from the commandline, such as how much money I have left in my accounts, or how much I spent on food last month, or all of the transactions I made with Ben&rsquo;s Noodles since September of this year.</p>
+
+<br />
+
+<br />
+
+<h1 id="tracking-expenses-when-not-at-the-computer">Tracking expenses when not at the computer</h1>
+
+<p>While I greatly appreciate ledger&rsquo;s simplicity and compatibility with unix tools, one of my main quibbles with it early on was keeping track of expenses when I am not at the computer. Most of my expenses are incurred at times when I can&rsquo;t add them to my ledger file, so I needed a way to temporarily store entries and a mechanism to import them into my ledger file. The obvious solution was to use an expense-tracking app which supports data export.</p>
+
+<p>I use <a href="https://play.google.com/store/apps/details?id%3Dcom.monefy.app.lite&amp;hl%3Den_US">Monefy</a>, and it suits my needs pretty well. It has all of the basic components of a ledger entry as described above, so it suffices for the simple transactions that make up the majority.</p>
+
+<p>Monefy provides a facility to export its transactions to csv, so I wrote a few functions to automatically convert the csv export to ledger entries. The main entry point, <code>ll/ledger/parse-myexpenses-csv</code>, prompts for a filepath and then inserts the ledger entries into the <code>*scratch*</code> buffer, where I can review them and then copy-pasta them into my ledger file.</p>
+
+<pre><code>(defun ll/parse-csv (buf &amp;optional sep)
+  "ll/parse-csv: buffer [string] -&gt; (listof (listof string))
+
+Parse the contents of BUF as csv into a list of lines, optionally
+providing a seperator SEP."
+  (let ((result nil))
+    (with-current-buffer buf
+      (goto-char (point-min))
+      (while (not (eobp))
+        (let ((line (buffer-substring-no-properties
+                     (line-beginning-position) (line-end-position))))
+          (push (split-string line (or sep ",")) result))
+        (forward-line 1)))
+    (reverse result)))
+
+(defun ll/ledger/insert-as-entry/myexpenses (csv-entry)
+  "ll/ledger/insert-as-entry/myexpenses: (listof string) -&gt; void
+
+Insert (into the current buffer) a ledger entry corresponding to
+ CSV-ENTRY (an entry as those returned by `ll/parse-csv')."
+  (let ((date (second csv-entry))
+        (payee (third csv-entry))
+        (amount (string-to-number
+                 (if (string-equal (fourth csv-entry) "0")
+                     (fifth csv-entry)
+                   (concat "-" (fourth csv-entry)))))
+        (to-account (sixth csv-entry))
+        (from-account (ninth csv-entry))
+        (comment (eighth csv-entry)))
+    (insert date " * " payee "\n"
+            "    ; " comment "\n"
+            "    " to-account "  " (number-to-string amount) "\n"
+            "    " from-account "  " (number-to-string (- amount)) "\n\n\n")))
+
+
+(defun ll/ledger/parse-myexpenses-csv (&amp;optional filepath)
+  "Parse the My Expenses csv file at FILEPATH and append its contents to
+ the *scratch* buffer as ledger entries."
+  (interactive)
+  (let* ((filepath (or filepath
+                       (helm-read-file-name "My Expenses csv file: ")))
+         (buffer (find-file-noselect filepath)))
+    (with-current-buffer buffer
+      (replace-string "\"" ""))
+    (switch-to-buffer "*scratch*")
+    (end-of-buffer)
+    (mapc (function ll/ledger/insert-as-entry/myexpenses)
+          (cdr (ll/parse-csv buffer ";")))
+    (kill-buffer buffer)))</code></pre>
+
+<br />
+
+<br />
+
+<h1 id="recurring-ledger-entries">Recurring ledger entries</h1>
+
+<p>The other main hitch that I have encountered with ledger is that it provides no builtin mechanism for repeating transactions. For example, I need to pay rent for the same amount on the same day every month. I don&rsquo;t want to manually insert this identical transaction every month, and an automated approach ensures I can&rsquo;t forget to do it.</p>
+
+<p>Fortunately, this is where ledger&rsquo;s data being stored in plaintext becomes a great advantage. Any number of tools can be employed to augment ledger&rsquo;s features to fix issues like this. For this particular issue, I use a text preprocessor - specifically, <a href="https://docs.racket-lang.org/scribble-pp/index.html">scribble</a> - to programmatically generate the recurring ledger entries. Since I use scribble, I implement the recurring ledger entries as a few simple racket functions that return the text to be inserted. Then I invoke the functions within my ledger file. This involves executing my ledger file as a step before running ledger for reports and queries, but it works pretty well (I just have a wrapper script that takes care of this whenever I run ledger).</p>
+
+<p>Using these definitions (I put it in a module called <code>ledger-repeat.rkt</code>):</p>
+
+<pre><code>#lang racket/base
+
+(require racket/date racket/string)
+
+(define (!= a b)
+  (not (= a b)))
+
+;; ldate is just a simpler struct for representing dates than
+;; racket/date's
+(define-struct ldate (year month day) #:prefab)
+
+(define (ltoday)
+  (let ([date-today (seconds-&gt;date (current-seconds))])
+    (make-ldate (date-year date-today)
+                (date-month date-today)
+                (date-day date-today))))
+
+(define (ldate-&lt; d1 d2)
+  (cond [(!= (ldate-year d1) (ldate-year d2))
+         (&lt; (ldate-year d1) (ldate-year d2))]
+
+        [(!= (ldate-month d1) (ldate-month d2))
+         (&lt; (ldate-month d1) (ldate-month d2))]
+
+        [else
+         (&lt;  (ldate-day d1) (ldate-day d2))]))
+
+(define (next-month a-date)
+  (if (= (ldate-month a-date) 12)
+      (make-ldate (add1 (ldate-year a-date))
+                  1
+                  (ldate-day a-date))
+      (make-ldate (ldate-year a-date)
+                  (add1 (ldate-month a-date))
+                  (ldate-day a-date))))
+
+(define (next-year a-date)
+  (make-ldate (add1 (ldate-year a-date))
+              (ldate-month a-date)
+              (ldate-day a-date)))
+
+(define (number-&gt;datestr n)
+  (if (&lt; n 10)
+      (string-append "0" (number-&gt;string n))
+      (number-&gt;string n)))
+
+;; format str contains any of "%y %m %d"
+(define (format-date format-str a-date)
+  (string-replace
+   (string-replace
+    (string-replace format-str
+                    "%y"
+                    (number-&gt;string (ldate-year a-date)))
+    "%m"
+    (number-&gt;datestr (ldate-month a-date)))
+   "%d"
+   (number-&gt;datestr (ldate-day a-date))))
+
+(define (repeat-biweekly format-str-base
+                         #:from from
+                         #:until [until #f]
+                         . other-format-strs)
+  (define format-str (apply string-append
+                            (cons format-str-base other-format-strs)))
+  (repeat-monthly (string-append (string-replace format-str "%d" "01")
+                                 (string-replace format-str "%d" "14"))
+                  #:from from
+                  #:until until))
+
+(define (repeat-yearly format-str-base
+                       #:from from
+                       #:until [until #f]
+                       . other-format-strs)
+  (define format-str (apply string-append
+                            (cons format-str-base other-format-strs)))
+  (let repeat ([output-so-far ""]
+               [from from]
+               [until (or until (ltoday))])
+    (if (ldate-&lt; from until)
+        (repeat (string-append output-so-far
+                               (format-date format-str from))
+                (next-year from)
+                until)
+        output-so-far)))
+
+(define (repeat-monthly format-str-base
+                        #:from from
+                        #:until [until #f]
+                        . other-format-strs)
+  (define format-str (apply string-append
+                            (cons format-str-base other-format-strs)))
+  (let repeat ([output-so-far ""]
+               [from from]
+               [until (or until (ltoday))])
+    (if (ldate-&lt; from until)
+        (repeat (string-append output-so-far
+                               (format-date format-str from))
+                (next-month from)
+                until)
+        output-so-far)))
+
+(provide repeat-monthly repeat-yearly repeat-biweekly ldate)</code></pre>
+
+<p>I can repeat items yearly, monthly, and biweekly in my ledger file like so</p>
+
+<pre><code>#lang scribble/text
+
+@require{ledger-repeat.rkt}
+; rent
+@repeat-monthly[#:from (ldate 2016 1 1) #:until (ldate 2018 5 30)]{
+%y/%m/%d * Management
+    ; Monthly rent
+    expenses:basics:rent  300
+    checkings
+@; Ensure newline
+@"\n"
+}</code></pre>
+
+<p>Running</p>
+
+<pre><code>racket ledger.dat</code></pre>
+
+<p>produces the &ldquo;plain&rdquo; ledger data file that can be fed into ledger by piping the output to ledger and passing the <code>-f -</code> flag (indicating to read data from stdin). For example, getting the balance report looks like this:</p>
+
+<pre><code>racket ledger.dat | /usr/bin/ledger bal -f -</code></pre>
+  <footer>
+
+    <div class="row justify-content-center">
+      <nav aria-label="Page Navigation">
+        <ul class="pagination">
+          <li class="page-item">
+            <a class="page-link" href="/blog/2018/07/improving-the-agenda.html" aria-label="Previous">
+              <span aria-hidden="true">&larr; Improving the Agenda</span>
+            </a>
+          </li>
+          <li class="page-item">
+            <a class="page-link" href="/2018/08/setting-up-a-home-cloud-server-with-nextcloud.html" aria-label="Next">
+              <span aria-hidden="true">Setting up a home cloud server with Nextcloud &rarr;</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </footer>
+</article>
+        </div>
+      </div>
+      <footer>
+        <hr />
+        <p>Site generated by <a href="https://github.com/greghendershott/frog">Frog</a>,
+        the <strong>fr</strong>ozen bl<strong>og</strong> tool,
+        using <a href="http://twitter.github.com/bootstrap/index.html">Bootstrap</a>.</p>
+        <p><em>Copyright Lukas Lazarek 2018 -- and the foreseeable future...</em></p>
+      </footer>
+    </div>
+    <!-- </body> JS -->
+    <script type="text/javascript" src="/js/jquery-3.2.1.slim.min.js"></script>
+    <script type="text/javascript" src="/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

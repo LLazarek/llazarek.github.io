@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <meta charset="utf-8">
+    <title>Scripting Emacs</title>
+    <meta name="description" content="I recently realized how easy it is to make emacs automatically do even more repetitive things I used to do manually....">
+    <meta name="author"      content="Lukas Lazarek">
+    <meta name="keywords"    content="emacs">
+    <meta name="viewport"    content="width=device-width, initial-scale=1.0">
+    <link rel="icon"      href="/favicon.ico">
+    <link rel="canonical" href="https://llazarek.github.io/blog/2018/08/scripting-emacs.html">
+    <link rel="next" href="/2018/08/setting-up-a-home-cloud-server-with-nextcloud.html">
+    <link rel="prev" href="/blog/2018/09/improving-the-agenda-part-2-custom-views.html">
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/css/scribble.css">
+    <link rel="stylesheet" type="text/css" href="/css/custom.css">
+    <!-- Feeds -->
+    <link rel="alternate" type="application/atom+xml"
+          href="/feeds/all.atom.xml" title="Atom Feed">
+    <link rel="alternate" type="application/rss+xml"
+          href="/feeds/all.rss.xml" title="RSS Feed">
+    <!-- JS -->
+    <script type="text/javascript">
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-xxxxx', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </head>
+  <body>
+
+    <!-- A standard Twitter Bootstrap nav bar -->
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+      <div class="container">
+
+      <a href="/index.html" class="navbar-brand">llazarek</a>
+
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+              data-target="#navbar_collapse" aria-controls="navbar_collapse"
+              aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbar_collapse">
+          <ul class="navbar-nav mr-auto">
+
+
+            <li>
+              <a class="nav-link" href="/blog.html">Blog</a>
+            </li> 
+
+            <li class="nav-item dropdown">
+              <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
+                Post tags <b class="caret"></b>
+              </a>
+
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="/tags/emacs.html">emacs</a><a class="dropdown-item" href="/tags/finance.html">finance</a><a class="dropdown-item" href="/tags/ledger.html">ledger</a><a class="dropdown-item" href="/tags/linux.html">linux</a><a class="dropdown-item" href="/tags/networking.html">networking</a><a class="dropdown-item" href="/tags/org.html">org</a><a class="dropdown-item" href="/tags/PL.html">PL</a><a class="dropdown-item" href="/tags/racket.html">racket</a><a class="dropdown-item" href="/tags/research.html">research</a><a class="dropdown-item" href="/tags/scribble.html">scribble</a><a class="dropdown-item" href="/tags/testing.html">testing</a>
+              </div>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="/feeds/all.atom.xml">Atom</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="/feeds/all.rss.xml">RSS</a>
+            </li>
+          </ul>
+      </div>
+
+      </div>
+    </nav>
+
+
+    <div class="container">
+      <div class="row">
+
+        <!-- Main column -->
+        <div id="content" class="col-md-12">
+
+
+
+
+
+          <article>
+  <span style="display:block; height:40px;"></span>
+  <header>
+    <h1>Scripting Emacs</h1>
+    <span style="display:inline-block; width:40px;"></span>
+    <p class='date-and-tags' style="color:grey;display:inline">
+<time datetime="2018-08-15" pubdate="true">2018-08-15</time> :: <span class="tags"><a href="/tags/emacs.html">emacs</a></span></p>
+    <!-- <p class='authors' style="color:grey;margin-left:3%">By: <span class="authors">Lukas Lazarek</span></p> -->
+  </header>
+
+<p>I recently realized how easy it is to make emacs automatically do even more repetitive things I used to do manually.</p>
+<!-- more-->
+
+<p>Emacs is great for easily automating repetitive tasks, from macros to the design that every manual action performed in emacs is available in elisp as a function. While I have been aware of this and leverage it regularly to automate tasks within emacs, I have never really thought about using emacs to do the kind of work I typically write a shell script to do. This is probably because I&rsquo;m usually always in emacs anyway, so my typical workflow for automating a task is to write a function to do it, and then bind that function to some key.</p>
+
+<p>Some scenarios lend themselves more to a shell script style of automation, however; yet, the task may still involve nontrivial text processing or emacs-specific things. In these cases, the workflow is really only slightly different. Again, I write a function to do it, test with that function, and once it is ready I place the body of the function in its own file and run it with</p>
+
+<pre><code>emacs -Q --load &lt;the-file.el&gt;</code></pre>
+
+<p>Note that this will open a new gui instance, which may be desirable &#8211; it means that the &ldquo;script&rdquo; behaves exactly as if the task was done manually. (The slowdown and popping up of windows can probably be mitigated by using <code>-nw</code>, but then some things that may only load when in X mode won&rsquo;t be available.) Emacs also provides a <code>--script</code> switch (use it instead of <code>--load</code>) which won&rsquo;t open the gui and does other nice things like exiting emacs automatically at the end, but it sometimes doesn&rsquo;t behave exactly the same way as when X is used. I suspect that certain libraries aren&rsquo;t loaded with that option (similar to <code>-nw</code> not loading X-related settings). This has tripped me up in the past when trying to automate exporting org files: the exported files are monochrome using <code>--script</code>, but colored using <code>--load</code>!</p>
+
+<br />
+
+<br />
+
+<h1 id="example-generating-agendas-for-others">Example: generating agendas for others</h1>
+
+<p>One of the typical cases where I want to script emacs is exporting information from org mode for non-emacs users to consume. For example, <a href="https://orgmode.org/manual/Weekly_002fdaily-agenda.html">the agenda</a> provides such a convenient and automatic way to organize and represent information that I use it any time I have a timeline of tasks to complete. This kind of situation often occurs in group contexts as well, but of course rarely does anyone else use emacs, never mind org mode. So I often find myself in a situation where I would like to build and export custom agenda views for non-emacs users to have. Additionally, as the project progresses I may want to add tasks or mark tasks completed, and re-generate agendas for the others to see the progress.</p>
+
+<p>Org mode makes it pretty easy to do this, so it&rsquo;s simple to write a quick script that will automatically generate the necessary agenda views. One of the ways that I like to do this, for example, is to tag every task with the person it is delegated to. Then, I can create custom agenda view todo lists for each person by just filtering the agenda based on their tag and then exporting the view. I also like to leverage the <code>CATEGORY</code> property to provide more context in the agenda view for where tasks belong.</p>
+
+<p>Below is an example script that exports agenda views to postscript files using the above strategy.</p>
+
+<pre><code>(setq org-agenda-exporter-settings
+      '((ps-left-header (list 'org-agenda-write-buffer-name))
+        (ps-right-header
+         (list "/pagenumberstring load"
+               (lambda () (format-time-string "%d/%m/%Y"))))
+        (ps-print-color-p t)
+        (ps-font-size '(14 . 11))       ; Lanscape . Portrait
+        (ps-top-margin 55)
+        (ps-left-margin 35)
+        (ps-right-margin 30)))
+(setq org-agenda-scheduled-leaders '("" "** LATE .%2dx: **"))
+(setq org-agenda-span 'year)
+(setq org-agenda-show-all-dates nil)
+
+(find-file "&lt;/path/to/the/source.org&gt;")
+(org-agenda-file-to-front)
+(org-agenda-list)
+
+(defun export-view-for (tag)
+  (defun insert-tag ()
+    (insert (format ":\\(%s\\|all\\):" tag))
+    (execute-kbd-macro (kbd "RET")))
+  (run-with-timer 0.1 nil #'insert-tag)
+  (call-interactively #'org-agenda-filter-by-regexp)
+  (org-agenda-write (format "%s.ps" tag))
+  (org-agenda-filter-remove-all))
+
+(export-view-for "joe")
+(export-view-for "schmoe")
+(export-view-for "fred")
+
+(save-buffers-kill-terminal)</code></pre>
+
+<p>This could also pretty easily be abstracted to take a configuration file with the path to source and names to export views for.</p>
+
+<p>An extra fun fact is that exporting the views after updating the org source can be made easy with a link in the source that runs the script.</p>
+
+<pre><code>[[elisp:(async-shell-command "emacs -Q -l ./export-views.el")][export agenda views]]</code></pre>
+  <footer>
+
+    <div class="row justify-content-center">
+      <nav aria-label="Page Navigation">
+        <ul class="pagination">
+          <li class="page-item">
+            <a class="page-link" href="/2018/08/setting-up-a-home-cloud-server-with-nextcloud.html" aria-label="Previous">
+              <span aria-hidden="true">&larr; Setting up a home cloud server with Nextcloud</span>
+            </a>
+          </li>
+          <li class="page-item">
+            <a class="page-link" href="/blog/2018/09/improving-the-agenda-part-2-custom-views.html" aria-label="Next">
+              <span aria-hidden="true">Improving the Agenda (part 2: custom views) &rarr;</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </footer>
+</article>
+        </div>
+      </div>
+      <footer>
+        <hr />
+        <p>Site generated by <a href="https://github.com/greghendershott/frog">Frog</a>,
+        the <strong>fr</strong>ozen bl<strong>og</strong> tool,
+        using <a href="http://twitter.github.com/bootstrap/index.html">Bootstrap</a>.</p>
+        <p><em>Copyright Lukas Lazarek 2018 -- and the foreseeable future...</em></p>
+      </footer>
+    </div>
+    <!-- </body> JS -->
+    <script type="text/javascript" src="/js/jquery-3.2.1.slim.min.js"></script>
+    <script type="text/javascript" src="/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

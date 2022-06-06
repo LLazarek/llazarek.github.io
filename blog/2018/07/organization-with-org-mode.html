@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <meta charset="utf-8">
+    <title>Organization with Org Mode</title>
+    <meta name="description" content="I organize myself and my work using emacs' org mode. It has served me extremely well over the past few years and has helped me better organize both my working and personal life. In this post, I describe how I use org mode for everything from long-term pro...">
+    <meta name="author"      content="Lukas Lazarek">
+    <meta name="keywords"    content="emacs, org">
+    <meta name="viewport"    content="width=device-width, initial-scale=1.0">
+    <link rel="icon"      href="/favicon.ico">
+    <link rel="canonical" href="https://llazarek.github.io/blog/2018/07/organization-with-org-mode.html">
+    <link rel="next" href="/blog/2018/05/language-oriented-programming-ptext.html">
+    <link rel="prev" href="/blog/2018/07/modal-editing-in-emacs.html">
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/css/scribble.css">
+    <link rel="stylesheet" type="text/css" href="/css/custom.css">
+    <!-- Feeds -->
+    <link rel="alternate" type="application/atom+xml"
+          href="/feeds/all.atom.xml" title="Atom Feed">
+    <link rel="alternate" type="application/rss+xml"
+          href="/feeds/all.rss.xml" title="RSS Feed">
+    <!-- JS -->
+    <script type="text/javascript">
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-xxxxx', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </head>
+  <body>
+
+    <!-- A standard Twitter Bootstrap nav bar -->
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+      <div class="container">
+
+      <a href="/index.html" class="navbar-brand">llazarek</a>
+
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+              data-target="#navbar_collapse" aria-controls="navbar_collapse"
+              aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbar_collapse">
+          <ul class="navbar-nav mr-auto">
+
+
+            <li>
+              <a class="nav-link" href="/blog.html">Blog</a>
+            </li> 
+
+            <li class="nav-item dropdown">
+              <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
+                Post tags <b class="caret"></b>
+              </a>
+
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="/tags/emacs.html">emacs</a><a class="dropdown-item" href="/tags/finance.html">finance</a><a class="dropdown-item" href="/tags/ledger.html">ledger</a><a class="dropdown-item" href="/tags/linux.html">linux</a><a class="dropdown-item" href="/tags/networking.html">networking</a><a class="dropdown-item" href="/tags/org.html">org</a><a class="dropdown-item" href="/tags/PL.html">PL</a><a class="dropdown-item" href="/tags/racket.html">racket</a><a class="dropdown-item" href="/tags/research.html">research</a><a class="dropdown-item" href="/tags/scribble.html">scribble</a><a class="dropdown-item" href="/tags/testing.html">testing</a>
+              </div>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="/feeds/all.atom.xml">Atom</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="/feeds/all.rss.xml">RSS</a>
+            </li>
+          </ul>
+      </div>
+
+      </div>
+    </nav>
+
+
+    <div class="container">
+      <div class="row">
+
+        <!-- Main column -->
+        <div id="content" class="col-md-12">
+
+
+
+
+
+          <article>
+  <span style="display:block; height:40px;"></span>
+  <header>
+    <h1>Organization with Org Mode</h1>
+    <span style="display:inline-block; width:40px;"></span>
+    <p class='date-and-tags' style="color:grey;display:inline">
+<time datetime="2018-07-02" pubdate="true">2018-07-02</time> :: <span class="tags"><a href="/tags/emacs.html">emacs</a>, <a href="/tags/org.html">org</a></span></p>
+    <!-- <p class='authors' style="color:grey;margin-left:3%">By: <span class="authors">Lukas Lazarek</span></p> -->
+  </header>
+
+<p>I organize myself and my work using emacs&rsquo; org mode. It has served me extremely well over the past few years and has helped me better organize both my working and personal life. In this post, I describe how I use org mode for everything from long-term projects to appointments and ideas.</p>
+<!-- more-->
+
+<br />
+
+<br />
+
+<h1 id="context">Context</h1>
+
+<p>I used to use a paper calendar to keep track of tasks, deadlines, and events. I pretty quickly found it generally ineffective for all the obvious reasons - inability to search, clutter, poor handwriting&#8230;</p>
+
+<p>I then transitioned to Google calendar, using events for tasks and deadlines. I liked it because the month view gave a nice birds-eye view of my work, and I could color code things into categories. This also had its share of problems, though. The calendar frequently became cluttered and difficult to parse, especially when I had a large number of tasks. Wanting to avoid this clutter, I was unwilling to track personal tasks; which, upon reflection, was absurd: my organization system deterred me from being organized. Add in some other annoyances about the unsupported ways I wanted to use the calendar, and I wasn&rsquo;t terribly happy with it. Furthermore, I decided that it was perhaps not the best idea for Google to know and be in control of every significant detail of my life.</p>
+
+<p>So after some searching, I decided to try org mode as a flexible offline solution to organize myself. It had the extra benefit of keeping everything completely in plain text, eliminating any concern about lock-in and making it easy to compose with standard Unix tools.</p>
+
+<p>It has been a few years since then, and I have never really looked back; org is flexible and expressive enough to do everything I wanted and more. What I present below has undergone many iterations since I began using org. It incorporates influences from Bernt Hansen&rsquo;s excellent <a href="http://doc.norang.ca/org-mode.html">&ldquo;Organize Your Life in Plaintext&rdquo; guide</a>, GTD, and other myriad sources. I consider the system something of a continually evolving experiment, and I often try new approaches or ideas in a constant drive to improve it. Nonetheless, it already far surpasses any other system I have used or heard of.</p>
+
+<br />
+
+<br />
+
+<h1 id="basic-organization">Basic Organization</h1>
+
+<h2 id="file-structure">File structure</h2>
+
+<p>I keep all of my task and appointment information in a single file. Within that file, I use headings to group everything into major categories; for example, my top-level headings include (<code>school, grad school, work, personal, appointments</code>). Within each category I use subcategories of arbitrary depth as I see fit. For example, under <code>school</code> I used a second level heading for each course I was taking, and under <code>work</code> headings for each project I worked on. When it&rsquo;s not clear what the subcategories need to be upon making a new category, I won&rsquo;t have any until it becomes clear what they should be. I don&rsquo;t worry about this file being heavily nested or difficult to navigate, because I almost never look at it or navigate through it directly (more on that in Seeing what needs to be done: the agenda).</p>
+
+<h2 id="tasks">Tasks</h2>
+
+<p>The headings create a tree structure, and the leaves of the tree are tasks. I denote any heading marked with a <code>TODO</code> keyword as a task; conceptually, a task represents something discrete that needs to be done. Examples include a paper or report, a chore, an email to respond to, an appointment to complete, a flight to catch&#8230; Anything I can mark as having been completed. Tasks have a brief, informative heading on what needs to be done - this is important because the heading is what I see when looking through my tasks. The task may also have some notes, extra details, or (typically) links in it&rsquo;s body.</p>
+
+<p>I use a number of different <a href="https://orgmode.org/worg/org-glossary.html#todo-keywords">TODO keywords</a> in addition to the basic <code>TODO</code> and <code>DONE</code>. The full set of keywords I use is, in this order: <code>(TODO NEXT STARTED WAITING REVIEW SUBMIT | DONE DEFERRED CANCELED)</code>. I use <code>TODO</code> generally to mark a task. <code>NEXT</code> indicates a task that I intend to work on next or today (it serves as a quick way to single out tasks). <code>STARTED</code> means that the task has been started and is in progress. <code>WAITING</code> marks tasks that are blocked and un-actionable pending something beyond my control - like getting an email response, or receiving information from someone else. <code>REVIEW</code> means that the task requires review before completing (or some similar other final actions), but is pretty much complete. <code>SUBMIT</code> is similar to <code>REVIEW</code>, but specifically marks tasks that are completely done but need to be submitted somewhere. <code>DONE</code> means that a task is completely done. <code>DEFERRED</code> marks tasks that I have decided not to do for the time being, though I may at a later time revive them. <code>CANCELED</code> marks tasks that I have canceled outright. Note that the bar separating <code>DONE</code> <code>DEFERRED</code> and <code>CANCELED</code> marks those states as all representing "done"ness, so that tasks with those keywords won&rsquo;t be considered when I am viewing tasks to do.</p>
+
+<p>Finally, a task always has a date attached: either a <code>SCHEDULED</code> or a <code>DEADLINE</code> date (there is one exception to this: chaining tasks). Having one of these two dates is critical, because they are central to my task management. The primary factor by which I sort and view my tasks is date, so a task without a date won&rsquo;t be seen, and since I very rarely manually traverse my main file, it will certainly be forgotten.</p>
+
+<p>The two types of dates have very different meanings, however. A <code>DEADLINE</code> date represents, intuitively, a hard deadline for a task. Failure to complete a task by its deadline is usually a big problem, so these dates have a heavy weight in my prioritization scheme. I usually give all important tasks a deadline to ensure I actually do them and have fair warning about them. A <code>SCHEDULED</code> date, on the other hand, has a less rigid meaning. Scheduling a task for a given day generally just means that I want to be reminded of the task on that day. Thus, I use scheduling for less important tasks that I want reminders for, but that needn&rsquo;t necessarily be done exactly then. For example, exercising, small chores, and soft-deadline tasks.</p>
+
+<p>Note that this approach to using scheduled dates is <strong>not</strong> what is described in the org manual or most org guides. I tried using scheduled dates in the manner they were intended, which is to mark the day I should <strong>start</strong> working on a task, but I found that this never really worked usefully because it&rsquo;s really hard to predict when I can start working on things. In particular, individual tasks almost always take more or less time than I expect, and there are often circumstances that make working on specific tasks more or less desirable at a given time (including my mood) but which are impossible to predict ahead of time. In short, I prefer to just be able to see the full set of what needs to get done and pick what to do when I&rsquo;m actually going to do it.</p>
+
+<h2 id="chaining-tasks">Chaining tasks</h2>
+
+<p>The only case when I intentionally leave a task without a date is if I have a series of tasks that naturally form a chain. That is, I have a series of tasks A, B, and C that must be done in order. In that case, I number the tasks in the title to indicate that they are part of a chain, and then I only put a date on the foremost non-done task. For example, this is how a chain of three tasks would progress over time:</p>
+
+<pre><code>* Some project               --&gt;     * Some project               --&gt;     * Some project
+** TODO (1) Fix bug                  ** DONE (1) Fix bug                  ** DONE (1) Fix bug
+SCHEDULED: &lt;2018-07-09 Mon&gt;          ** TODO (2) Add new feature          ** DONE (2) Add new feature
+** TODO (2) Add new feature          SCHEDULED: &lt;2018-07-09 Mon&gt;          ** TODO (3) Update docs
+** TODO (3) Update docs              ** TODO (3) Update docs              SCHEDULED: &lt;2018-07-09 Mon&gt;</code></pre>
+
+<h2 id="capturing-new-tasks">Capturing new tasks</h2>
+
+<p>I almost always add new tasks using <a href="https://orgmode.org/manual/Capture.html#Capture">org-capture</a>. Rather than searching through my entire file for the place to put a new task, with capture I can quickly create a new task and then <a href="https://orgmode.org/manual/Refile-and-copy.html#Refile-and-copy">refile it</a> into a good spot (using fuzzy search!) from anywhere in emacs.</p>
+
+<h2 id="notes">Notes</h2>
+
+<p>Extended notes (for or about pretty much everything) <span class="underline">do not go into my main file</span>. It is a place for tasks and tasks only. I keep all my notes in separate org files, and usually link to them from the relevant tasks. If they don&rsquo;t necessarily relate to any tasks - or any active tasks anyway - then I have them accessible through <a href="https://jblevins.org/projects/deft/">deft</a> which is a fantastic package for searching plain text notes. Since org is just plain text, it all works perfectly!</p>
+
+<h2 id="cleaning-things-up-archiving">Cleaning things up: archiving</h2>
+
+<p>Since I keep track of just about everything I do using tasks, my main org file gets very cluttered with completed tasks over time. This isn&rsquo;t necessarily problem, since I rarely look at it anyway, except that it slows down org and the agenda a bit. So around once a year I go through the file and clean out completed tasks. I do this using <a href="https://orgmode.org/manual/Archiving.html#Archiving">org&rsquo;s built-in archiving mechanism</a>.</p>
+
+<br />
+
+<br />
+
+<h1 id="non-structural-organization">Non structural organization</h1>
+
+<p>There are two primary ways that I further organize information and tasks beyond the tree structure of headings.</p>
+
+<h2 id="tags">Tags</h2>
+
+<p>I use tags to categorize and prioritize tasks. Specifically, tags are useful for narrowing my agenda view and for searching and grouping tasks in clock reports. The most obvious way I use tags is to group things, such as tagging all the tasks related to a course with a tag for the course. The second way I use them is to mark tasks with priority labels like high, low, etc. Actually, I experimented with multiple levels of priority for a while and found that just two levels works best for me. That is, I mark prioritized tasks with the tag <code>:goal:</code>, and all other tasks are not prioritized. That doesn&rsquo;t mean I can&rsquo;t or won&rsquo;t do other tasks, just that they won&rsquo;t be emphasized in the agenda.</p>
+
+<p>I use another dimension to prioritize tasks, inspired by something like the <a href="https://www.developgoodhabits.com/eisenhower-matrix/">Eisenhower prioritization matrix</a>, where I tag tasks as either <code>:must:</code> or <code>:want:</code>, depending on if I must or simply want to do them. I find that this further helps me to quickly and easily decide which tasks to work on and in what order.</p>
+
+<h2 id="links">Links</h2>
+
+<p>I think that <span class="underline">links are one of org modes greatest strengths.</span> Org has a <a href="https://orgmode.org/manual/Hyperlinks.html">particularly rich link system</a> that allows creating "clickable” links to quickly access related information. Links can refer to files and websites, of course, as well as more interesting things like specific headings in the same or other files, or chunks of text in a file, and can even evaluate arbitrary expressions, making them effectively general purpose buttons. Their flexibility makes them extremely useful for easily accessing disparate information. Any tasks I create relating to some other information has links to the relevant files, emails, websites, programs (remember that links can execute code?). This minimizes the inertia time involved in getting oriented to a new task; no need to think about where to find the right files or what to look at, because it&rsquo;s all in the links!</p>
+
+<p>The degree to which links simplify my organization cannot be overstated. Emails are a good illustration of a medium of information that often resists effective organization; however, using links completely eliminates typical email clutter. Any emails that store useful information or require attention simply get linked to in a task and are archived. Thus, I never (or extremely rarely) need to sift through pages of emails to find something relating to a task. By following this principle of linking relevant documents and information, it&rsquo;s always available at my fingertips.</p>
+
+<br />
+
+<br />
+
+<h1 id="seeing-what-needs-to-be-done-the-agenda">Seeing what needs to be done: the agenda</h1>
+
+<p><a href="https://orgmode.org/manual/Agenda-views.html#Agenda-views">The agenda</a> is the tool for viewing tasks. Instead of looking at my org file (which I in some ways consider to be the &ldquo;source&rdquo; for generating the agenda), I exclusively look at the agenda to see what needs to be done. At it&rsquo;s most basic, the agenda shows the tasks with scheduled and deadline dates for each day in the current week, starting with today. It also shows &ldquo;warnings&rdquo; for upcoming deadlines and the number of days until they become due. Thus, from looking at my agenda for today it is clear from the upcoming deadlines which important tasks need to get done and how soon, and from the scheduled items I am reminded of less important tasks and information.</p>
+
+<p>The agenda also provides a better interface for manipulating tasks. Tasks&rsquo; <code>TODO</code> state can be changed, their scheduled and deadline dates shifted, tags updated, and priority updated. You can also quickly clock in to or out of tasks right in the agenda.</p>
+
+<p>Since the main job of the agenda is to help me quickly see the tasks that need to be done, <a href="https://orgmode.org/manual/Filtering_002flimiting-agenda-items.html#Filtering_002flimiting-agenda-items">its filtering capabilities</a> can be useful for focusing on specific groups of tasks. The most common filter I use is tag filtering or, for something more complex, regexp filtering (usually again on tags, however).</p>
+
+<h2 id="emphasizing-prioritized-tasks">Emphasizing prioritized tasks</h2>
+
+<p>Filtering often isn&rsquo;t the best solution, however; <em>emphasis</em> often works just as well or better, especially for general task selection. Filtering is not ideal because I usually want to be aware of the other tasks, even if I&rsquo;m not working on them right now. To de-emphasize unprioritized tasks instead of hiding them, I adapted a solution for color coding tagged agenda tasks to render all tasks missing the :goal: tag in a light gray font, leaving :goal: tagged tasks in full black. I have found this to be a perfect middle ground: my prioritized tasks clearly stand out from the rest, while still leaving the others visible and accessible.</p>
+
+<h2 id="starting-tasks-quickly">Starting tasks quickly</h2>
+
+<p>The last important element of the agenda for my workflow is that using <code>org-open-at-point</code> (<a href="https://orgmode.org/manual/Handling-links.html">manual</a>) the links in the body of a task can be opened directly from the agenda, making it that much easier to jump into a task. Thus, my usual workflow for starting a new task is to (from the agenda) clock into the task and then open whatever links it contains - because of this, <span class="underline">nearly all of my tasks contain links to something</span>.</p>
+
+<h2 id="aside-improving-the-agenda-view">Aside: improving the agenda view</h2>
+
+<p>For more about the agenda and optimizing its appearance to make surveying tasks quick and easy, check out <a href="https://llazarek.github.io/2018/07/improving-the-agenda.html">my other post</a> on tweaking the agenda&rsquo;s display settings.</p>
+
+<br />
+
+<br />
+
+<h1 id="evaluation-and-reflection">Evaluation and reflection</h1>
+
+<h2 id="clocking-work">Clocking work</h2>
+
+<p>As I have mentioned, I use <a href="https://orgmode.org/manual/Clocking-work-time.html#Clocking-work-time">org&rsquo;s clocking facilities</a> to track how I spend my time working. I have found that, of nothing else, knowing that the clock is running helps to keep me focused on the task at hand. Additionally, knowing how long I actually spend working on things has helped put my work and habits into perspective.</p>
+
+<p>In conjunction with clocking, I have for some time used a <a href="https://en.wikipedia.org/wiki/Pomodoro_Technique">pomodoro approach</a> to structuring my work. I find that it helps me stay focused and gives an even better sense of time wrt work when I can think of working time in terms of pomodoros. I usually use 50-minute pomodoros, but depending on the task and my mood I have used 30m and 90m as well. To do this with org, I have hooked a pomodoro timer into my clock-in function so that the timer starts automatically every time I clock into a task.</p>
+
+<h2 id="seeing-the-work-i-have-done">Seeing the work I have done</h2>
+
+<p>The agenda provides an option to display the tasks clocked and completed today (called <a href="https://orgmode.org/manual/Agenda-commands.html">logbook mode</a>) which I greatly appreciate. I find it motivating and pleasing to see the fruits of my labor recorded in the agenda.</p>
+
+<p>Finally, for more comprehensive, long-term review of the work I have done over some period of time I use <a href="https://orgmode.org/manual/The-clock-table.html#The-clock-table">org&rsquo;s clock reports</a>. With a clock report org mode can generate a table summarizing all of the time clocked over any period of time. I use this to do a regular review of my work every few days. Again, I find it helps me to see what I have been working on and where my time has been spent, which ultimately helps me plan work more effectively in the future.</p>
+
+<br />
+
+<br />
+
+<h1 id="the-code">The code</h1>
+
+<p>I have heavily customized my org configuration to support the workflow I have described. Below is all of the code that enables the above workflow, as well as a few other minor things I have not described but have also found useful.</p>
+
+<h2 id="todo-keywords">Todo keywords</h2>
+
+<p>This sets the todo keyword sequence and their colors.</p>
+
+<pre><code>(setq org-todo-keywords
+      (quote ((sequence "TODO(t)" "NEXT(n)" "STARTED(s)" "WAITING(w)"
+                        "REVIEW(r)" "SUBMIT(m)"
+                        "|" "DONE(d)" "DEFERRED(f)" "CANCELED(c)"))))
+(setq org-todo-keyword-faces
+      (quote (("TODO"      :foreground "red"          :weight bold)
+              ("NEXT"      :foreground "blue"         :weight bold)
+              ("STARTED"   :foreground "cyan"         :weight bold)
+              ("WAITING"   :foreground "gold"         :weight bold)
+              ("REVIEW"    :foreground "magenta"      :weight bold)
+              ("SUBMIT"    :foreground "sea green"    :weight bold)
+              ("DONE"      :foreground "forest green" :weight bold)
+              ("DEFERRED"  :foreground "dark red"     :weight bold)
+              ("CANCELED" :foreground "dark red"     :weight bold))))</code></pre>
+
+<h2 id="agenda">Agenda</h2>
+
+<h3 id="basic-formatting">Basic formatting</h3>
+
+<p>This modifies agenda formatting; refer to comments for specific changes.</p>
+
+<pre><code>;; Don't display holidays that I don't follow
+(customize-set-variable 'holiday-bahai-holidays nil)
+(customize-set-variable 'holiday-hebrew-holidays
+                        (quote ((holiday-hebrew-hanukkah)
+                                (if calendar-hebrew-all-holidays-flag
+                                    (append (holiday-hebrew-tisha-b-av)
+                                            (holiday-hebrew-misc))))))
+(customize-set-variable 'holiday-islamic-holidays nil)
+
+;; Modify the way that entries with time specifications are displayed
+(customize-set-variable 'org-agenda-use-time-grid t)
+(customize-set-variable 'org-agenda-time-grid
+                        (quote ((daily today require-timed)
+                                #("-----------------------------------"
+                                  0 35 (org-heading t))
+                                (0 2400))))
+(customize-set-variable 'org-agenda-current-time-string
+                        #("now - - - - - - - - - - - - - - - -"
+                          0 35 (org-heading t)))
+;; Modify the way that deadlines are displayed
+(customize-set-variable 'org-agenda-deadline-leaders
+                        '("Deadline:  " "----- In %3d d.: -----"))
+;; And scheduled items
+(customize-set-variable 'org-agenda-scheduled-leaders
+                        '("&gt;&gt; Scheduled: &lt;&lt;" "** Sched.%2dx: **"))
+
+;; Don't warn me of an upcoming deadline if I schedule the entry
+(customize-set-variable 'org-agenda-skip-deadline-prewarning-if-scheduled t)
+;; Don't show scheduled entries that have been completed
+(customize-set-variable 'org-agenda-skip-scheduled-if-done t)
+
+;; Don't start with context lines from entry body
+(customize-set-variable 'org-agenda-start-with-entry-text-mode nil)
+;; If context lines are enabled, show up to 4 lines
+(customize-set-variable 'org-agenda-entry-text-maxlines 4)
+
+;; Pull data for agenda from these files
+(customize-set-variable 'org-agenda-files
+                        '("~/notes/main.org"))
+
+;; Don't slow down startup when generating the agenda
+(customize-set-variable 'org-agenda-inhibit-startup nil)
+
+;; Show 14 days per page in the agenda
+(customize-set-variable 'org-agenda-span 14)
+;; Show upcoming deadlines for the 4 weeks
+(customize-set-variable 'org-deadline-warning-days 28)
+;; Start the agenda on today
+(customize-set-variable 'org-agenda-start-on-weekday nil)
+
+;; Set default priority to C
+(customize-set-variable 'org-default-priority 67)
+;; Color-code priorities
+(customize-set-variable 'org-agenda-fontify-priorities t)
+(customize-set-variable 'org-priority-faces
+                        (quote ((65 :foreground "magenta" :weight bold)
+                                (66 :foreground "green3")
+                                (67 :foreground "orange"))))
+
+;; Increase line spacing and highlight current line
+(defun ll/org/agenda/appearance-hook ()
+  (setq line-spacing 4)
+  (hl-line-mode 1))
+(add-hook 'org-finalize-agenda-hook #'ll/org/agenda/appearance-hook)
+
+;; Log when tasks completed
+(customize-set-variable 'org-log-done t)
+;; Show clocked items for the day in the agenda
+(customize-set-variable 'org-agenda-start-with-log-mode t)</code></pre>
+
+<h3 id="emphasis-and-prioritization">Emphasis and prioritization</h3>
+
+<p>This implements tag-based emphasis in the agenda.</p>
+
+<pre><code>;; Color code tags
+;; `focus-mode' is what I call the toggle switch for de-emphasizing tasks
+(setq ll/org/agenda/focus-mode t)
+(defun ll/org/agenda/focus-mode-hook ()
+  (save-excursion
+    (progn
+      (when ll/org/agenda/focus-mode
+        ;; De-emphasize all headings by making them lighter
+        (ll/org/agenda/color-headers-with ":" "dark gray"))
+      ;; Re-emphasize priority headings by making them black
+      (ll/org/agenda/color-headers-with ":goal:" "black"))))
+(add-hook 'org-finalize-agenda-hook #'ll/org/agenda/focus-mode-hook)
+
+(defun ll/org/agenda/toggle-focus-mode ()
+  "Toggle greying out of non-goal lines in the agenda."
+  (interactive)
+  (setq ll/org/agenda/focus-mode (not ll/org/agenda/focus-mode)))
+
+(defun find-in-line (needle &amp;optional beginning count)
+  "Find the position of the start of NEEDLE in the current line.
+  If BEGINNING is non-nil, find the beginning of NEEDLE in the current
+  line. If COUNT is non-nil, find the COUNT'th occurrence from the left."
+  (save-excursion
+    (beginning-of-line)
+    (let ((found (re-search-forward needle (point-at-eol) t count)))
+      (if beginning
+          (match-beginning 0)
+        found))))
+
+(setq ll/org/agenda-todo-words
+      '("TODO" "GOAL" "NEXT" "STARTED" "WAITING" "REVIEW" "SUBMIT"
+        "DONE" "DEFERRED" "CANCELED"))
+
+(defun ll/org/agenda/find-todo-word-end ()
+  (reduce (lambda (a b) (or a b))
+          (mapcar #'find-in-line ll/org/agenda-todo-words)))
+
+;; This comes from a stackoverflow question I forgot to record..
+(defun ll/org/agenda/color-headers-with (tag col)
+  "Color agenda lines matching TAG with color COL."
+  (interactive)
+  (goto-char (point-min))
+  (while (re-search-forward tag nil t)
+    (unless (find-in-line "\\[#[A-Z]\\]")
+      (let ((todo-end (or (ll/org/agenda/find-todo-word-end)
+                          (point-at-bol)))
+            (tags-beginning (or (find-in-line " :" t)
+                                (point-at-eol))))
+        (add-text-properties todo-end
+                             tags-beginning
+                             `(face (:foreground ,col)))))))</code></pre>
+
+<h2 id="refiling">Refiling</h2>
+
+<p>This configures refiling with <code>org-refile</code>.</p>
+
+<pre><code>;; Refile to current file, main file, or "someday" file
+;; (in that order of precedence)
+(setq org-refile-targets '((nil :maxlevel . 2) ; current file
+                           (org-agenda-files :maxlevel . 5)
+                           ("oneday-someday.org" :maxlevel . 2)))
+;; Narrow refile targets by heading &gt; subheading
+(setq org-outline-path-complete-in-steps nil)
+;; Show full heading paths for refiling
+(setq org-refile-use-outline-path t)</code></pre>
+
+<h2 id="capture">Capture</h2>
+
+<p>This configured capturing tasks with <code>org-capture</code>.</p>
+
+<pre><code>(global-set-key (kbd "C-c j") 'org-capture)
+(customize-set-variable 'org-capture-templates (quote (
+    ("t" "Insert a new TODO" entry
+     (file+headline "~/github_sync/Notes/Main.org" "Refile")
+     "** TODO %?
+")
+    ("n" "Insert a new NEXT" entry
+     (file+headline "~/github_sync/Notes/Main.org" "Refile")
+     "** NEXT %?
+"))))</code></pre>
+
+<h2 id="clocking">Clocking</h2>
+
+<p>This configured clocking and pomodoro timers.</p>
+
+<pre><code>(customize-set-variable 'org-clock-into-drawer "LOGBOOK")
+(customize-set-variable 'org-time-clocksum-format (quote (:hours "%d"
+                                                          :require-hours t
+                                                          :minutes ":%02d"
+                                                          :require-minutes t)))
+(setq org-time-clocksum-use-fractional t)
+
+;; Clocktable spacing appearance
+(defun ll/org/clocktable-indent-string (level)
+  (if (= level 1)
+      ""
+    (let ((str "└"))
+      (while (&gt; level 2)
+        (setq level (1- level)
+              str (concat str "──")))
+      (concat str "─&gt; "))))
+
+(advice-add 'org-clocktable-indent-string
+            :override #'ll/org/clocktable-indent-string)
+
+;; Pomodoro timer upon clocking in
+(customize-set-variable 'org-clock-sound
+                        "/home/lukas/github_sync/notification.wav")
+;; Default timer length
+(customize-set-variable 'org-timer-default-timer 50) ; minutes
+(add-hook 'org-clock-in-hook (lambda ()
+                               ;; '(4) means just use default duration
+                               (org-timer-set-timer '(4))))</code></pre>
+
+<h2 id="archiving">Archiving</h2>
+
+<p>This configures where archive files are kept/named.</p>
+
+<pre><code>(customize-set-variable 'org-archive-location "archive_%s::")</code></pre>
+
+<h2 id="tags">Tags</h2>
+
+<p>This helper function makes it easier to set the tags of the current heading.</p>
+
+<pre><code>(defun ll/org/set-tags ()
+  "Set the tags of the current heading, like
+`org-agenda-set-tags' for outside the agenda."
+  (interactive)
+  (save-excursion
+    (end-of-line) ;; Prevent getting prev heading if at start of curr heading
+    (let* ((org-context (org-element-type (org-element-context)))
+           (on-heading (equal org-context 'heading)))
+      (unless on-heading
+        (outline-previous-heading))
+      (call-interactively 'org-set-tags))))</code></pre>
+
+<h2 id="appearance">Appearance</h2>
+
+<p>These settings modify the appearance of org files.</p>
+
+<pre><code>;; Indent headings by level
+(customize-set-variable 'org-startup-indented t)
+;; Don't turn on truncating long lines in org mode
+(customize-set-variable 'org-startup-truncated nil)</code></pre>
+  <footer>
+
+    <div class="row justify-content-center">
+      <nav aria-label="Page Navigation">
+        <ul class="pagination">
+          <li class="page-item">
+            <a class="page-link" href="/blog/2018/05/language-oriented-programming-ptext.html" aria-label="Previous">
+              <span aria-hidden="true">&larr; Language-oriented Programming: ptext</span>
+            </a>
+          </li>
+          <li class="page-item">
+            <a class="page-link" href="/blog/2018/07/modal-editing-in-emacs.html" aria-label="Next">
+              <span aria-hidden="true">Modal Editing in Emacs &rarr;</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </footer>
+</article>
+        </div>
+      </div>
+      <footer>
+        <hr />
+        <p>Site generated by <a href="https://github.com/greghendershott/frog">Frog</a>,
+        the <strong>fr</strong>ozen bl<strong>og</strong> tool,
+        using <a href="http://twitter.github.com/bootstrap/index.html">Bootstrap</a>.</p>
+        <p><em>Copyright Lukas Lazarek 2018 -- and the foreseeable future...</em></p>
+      </footer>
+    </div>
+    <!-- </body> JS -->
+    <script type="text/javascript" src="/js/jquery-3.2.1.slim.min.js"></script>
+    <script type="text/javascript" src="/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

@@ -4,6 +4,7 @@
 ;; in frog/params.
 (define/contract (init)
   (-> any)
+  (current-decorate-feed-uris? #f)
   (current-scheme/host "https://llazarek.github.io")
   (current-title "llazarek")
   (current-author "Lukas Lazarek"))

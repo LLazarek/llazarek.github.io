@@ -1,20 +1,33 @@
 #lang at-exp rscript
 
-(define-runtime-paths
-  [about "about.html"])
+(require file/glob)
 
-(define build-location "/home/lukas/github_sync/projects/website/")
+(define-runtime-paths
+  [home "home.html"]
+  [index "index.html"]
+  [here "."])
+
+(define build-location here)
 
 (define prepare-steps
   (list))
 
+(define (rename-index->blog path)
+  (regexp-replace #rx"/index(.*)\\.html$" (~a path) "/blog\\1.html"))
+
 (define postprocess-steps
-  (list (thunk (replace-in-file! about #rx"/about/" "/img/"))))
+  (list (thunk (replace-in-file! home #rx"/home/" "/img/"))
+        (thunk (parameterize ([current-directory (simple-form-path here)])
+                 (for ([index (in-glob "index*.html")])
+                   (copy-file index
+                              (rename-index->blog index)
+                              #t))))
+        (thunk (copy-file home index #t))))
 
 (main
  #:arguments {[flags positional-args]}
- #:check [(path-to-existant-file? about)
-          @~a{Unable to find About page at @about}]
+ #:check [(path-to-existant-file? home)
+          @~a{Unable to find Home page at @home}]
 
  (parameterize ([current-directory build-location])
    (displayln "Performing prepare steps...")

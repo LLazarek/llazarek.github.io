@@ -80,7 +80,7 @@ I can be reached by email at
               "POPL 2020, New Orleans"
               "2020-01-22"
               #f
-              (hash "slides" "/docs/popl-2020-blame-shifting-talk.pdf"
+              (hash "slides" "/doc/popl-2020-blame-shifting-talk.pdf"
                     "video" "https://youtu.be/EROZQwa-RuM")
               "For the POPL20 paper by the same name.")
 
@@ -90,6 +90,6 @@ I can be reached by email at
               "SPLASH 2017, Vancouver"
               "2017-10-22"
               #f
-              (hash "abstract" "/docs/splash17_final.pdf"
-                    "poster" "/docs/poster_splash_2017.pdf")
+              (hash "abstract" "/doc/splash17_final.pdf"
+                    "poster" "/doc/poster_splash_2017.pdf")
               "Extended abstract and poster, won first place in student research competition.")

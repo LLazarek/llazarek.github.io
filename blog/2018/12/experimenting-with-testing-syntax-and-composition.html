@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <meta charset="utf-8">
+    <title>Experimenting with testing syntax and composition</title>
+    <meta name="description" content="Rackunit is Racket's unit testing library, and it has a pretty cool set of features. It aims to support testing at every stage of development, from simple inline checks to large, programmatically manipulated test suites. Unfortunately, despite the many fe...">
+    <meta name="author"      content="Lukas Lazarek">
+    <meta name="keywords"    content="racket, testing">
+    <meta name="viewport"    content="width=device-width, initial-scale=1.0">
+    <link rel="icon"      href="/favicon.ico">
+    <link rel="canonical" href="https://llazarek.github.io/blog/2018/12/experimenting-with-testing-syntax-and-composition.html">
+    <link rel="next" href="/blog/2018/11/org-export-processing.html">
+    <link rel="prev" href="/blog/2019/01/fuzzy-searching-notes-with-fzf.html">
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/css/scribble.css">
+    <link rel="stylesheet" type="text/css" href="/css/custom.css">
+    <!-- Feeds -->
+    <link rel="alternate" type="application/atom+xml"
+          href="/feeds/all.atom.xml" title="Atom Feed">
+    <link rel="alternate" type="application/rss+xml"
+          href="/feeds/all.rss.xml" title="RSS Feed">
+    <!-- JS -->
+    <script type="text/javascript">
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-xxxxx', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </head>
+  <body>
+
+    <!-- A standard Twitter Bootstrap nav bar -->
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+      <div class="container">
+
+      <a href="/index.html" class="navbar-brand">llazarek</a>
+
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+              data-target="#navbar_collapse" aria-controls="navbar_collapse"
+              aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbar_collapse">
+          <ul class="navbar-nav mr-auto">
+
+
+            <li>
+              <a class="nav-link" href="/blog.html">Blog</a>
+            </li> 
+
+            <li class="nav-item dropdown">
+              <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
+                Post tags <b class="caret"></b>
+              </a>
+
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="/tags/emacs.html">emacs</a><a class="dropdown-item" href="/tags/finance.html">finance</a><a class="dropdown-item" href="/tags/ledger.html">ledger</a><a class="dropdown-item" href="/tags/linux.html">linux</a><a class="dropdown-item" href="/tags/networking.html">networking</a><a class="dropdown-item" href="/tags/org.html">org</a><a class="dropdown-item" href="/tags/PL.html">PL</a><a class="dropdown-item" href="/tags/racket.html">racket</a><a class="dropdown-item" href="/tags/research.html">research</a><a class="dropdown-item" href="/tags/scribble.html">scribble</a><a class="dropdown-item" href="/tags/testing.html">testing</a>
+              </div>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="/feeds/all.atom.xml">Atom</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="/feeds/all.rss.xml">RSS</a>
+            </li>
+          </ul>
+      </div>
+
+      </div>
+    </nav>
+
+
+    <div class="container">
+      <div class="row">
+
+        <!-- Main column -->
+        <div id="content" class="col-md-12">
+
+
+
+
+
+          <article>
+  <span style="display:block; height:40px;"></span>
+  <header>
+    <h1>Experimenting with testing syntax and composition</h1>
+    <span style="display:inline-block; width:40px;"></span>
+    <p class='date-and-tags' style="color:grey;display:inline">
+<time datetime="2018-12-19" pubdate="true">2018-12-19</time> :: <span class="tags"><a href="/tags/racket.html">racket</a>, <a href="/tags/testing.html">testing</a></span></p>
+    <!-- <p class='authors' style="color:grey;margin-left:3%">By: <span class="authors">Lukas Lazarek</span></p> -->
+  </header>
+
+<p><a href="https://docs.racket-lang.org/rackunit/index.html?q%3Drackunit">Rackunit</a> is Racket&rsquo;s unit testing library, and it has a pretty cool set of features. It aims to support testing at every stage of development, from simple inline checks to large, programmatically manipulated test suites. Unfortunately, despite the many features rackunit provides to support this goal, I have many-a-time found myself struggling against rackunit&rsquo;s model for defining new checks. Last weekend, I finally got around to writing a testing library that provides a simpler interface to write flexible, composable test predicates and macros.</p>
+<!-- more-->
+
+<p>I always run into two problems when using rackunit.</p>
+
+<ol>
+ <li>Writing macros to provide nice test syntax kills source location reporting.</li>
+ <li>Checks can&rsquo;t really be re-used, combined into bigger tests.</li></ol>
+
+<p>To make this concrete, here&rsquo;s a progression of only-slightly-contrived checks that I might write in the process of testing some code. The progression is annotated with comments of reasoning and outcomes (I also added line numbers for the failure messages).</p>
+
+<pre><code> 1 #lang racket
+ 2 (require rackunit
+ 3          (for-syntax syntax/parse))
+ 4 
+ 5 ;; Want some test syntax, let's try wrapping a check in a macro...
+ 6 (define-syntax-rule (check-ands ands ...)
+ 7   (check-true (and ands ...)))
+ 8 (define-syntax-rule (check-ors ors ...)
+ 9   (check-true (or ors ...)))
+10 
+11 (check-ands #t #t) ;; OK, no message
+12 (check-ands #t #t #f) ;; Fails, with pointer to this line
+13 (check-ors #t #t #f)
+14 (check-ors #f) ;; Fails
+15 
+16 
+17 ;; So far so good.
+18 
+19 ;; Now let's write some more syntax that combines these tests into a
+20 ;; more complex test.
+21 
+22 ;; e.g. (check-ands:ors #t #t : #f #t #f #t)
+23 ;;      (check-ands:ors : #f)
+24 (define-syntax (check-ands-and-ors stx)
+25   (syntax-parse stx
+26     [(_ ands:expr ... (~datum :) ors:expr ...)
+27      (syntax/loc stx
+28        (begin
+29          ;; Can't combine the results of each check explicitly..
+30          ;; Luckily, we have an implicit "and" because both checks happen
+31          ;; by sequencing them
+32          (check-ands ands ...)
+33          (check-ors ors ...)))]))
+34 
+35 
+36 (check-ands-and-ors : #t)
+37 (check-ands-and-ors #t : #t)
+38 (check-ands-and-ors #t : #t #f)
+39 (check-ands-and-ors : #f) ;; Fails, but with the wrong location,
+40 ;; and name "check-true
+41 
+42 
+43 ;; And what if I want to write this?
+44 ;; I can't.
+45 #;(define-syntax (check-ands-or-ors stx)
+46   (syntax-parse stx
+47     [(_ ands:expr ... (~datum :) ors:expr ...)
+48      (syntax/loc stx
+49        ;; No simple implicit "or" to be had here...
+50        #|???|#)]))</code></pre>
+
+<p>And here are the failure messages.  Notice how, as noted in the comments, the final failure identifies the wrong line. Furthermore, the check names are woefully unhelpful. Every failure of that test will point to a line within the macro body instead of the top-level test invocation. Note also the last test that I want to be able to write but would need to do some contortions to actually do (e.g. catching failure exceptions).</p>
+
+<pre><code>--------------------
+; FAILURE
+; .../temp.rkt:12:0
+name:       check-true
+location:   temp.rkt:12:0
+params:     '(#f)
+--------------------
+--------------------
+; FAILURE
+; .../temp.rkt:14:0
+name:       check-true
+location:   temp.rkt:14:0
+params:     '(#f)
+--------------------
+--------------------
+; FAILURE
+; .../temp.rkt:33:9
+name:       check-true
+location:   temp.rkt:33:9
+params:     '(#f)
+--------------------</code></pre>
+
+<p>It turns out that <code>with-check-info</code> and <code>define-check</code> can be used to resolve the source location and check name problems, but getting it to work automatically isn&rsquo;t pretty. (At least the solution I came up with involves generating macros and custom checks together, and is pretty brittle.) Additionally, this doesn&rsquo;t solve the problem of composability.</p>
+
+<p>After all this time fiddling with rackunit and trying to understand why I can&rsquo;t write the tests I want to write, I realized that the primary issue is that rackunit&rsquo;s model of identifying and recording test failure is internal to every test. Tests themselves determine their source location and register failures. This means that when tests get put in places that they don&rsquo;t expect &#8211; that don&rsquo;t fit with the basic usage as an assertion within a set of tests &#8211; they don&rsquo;t work. The two pertinent examples of such places are inside a macro or inside another test (as demonstrated above).</p>
+
+<p>The reason that tests managing failure recording/reporting is problematic is that in doing so they make assumptions about the context of their usage. Namely, they assume that they are <em>the</em> test, and thus remove the burden of recording failures from the context. This is usually pretty convenient. But to be able to glue tests together and make new tests, the tests must leave it up to the context to determine what their outcome means. If failure reporting is left up to the context, then failure reports can also always identify the actual source location of the top-level test that fails.</p>
+
+<p>The basic idea of the wrapper is just this inversion of responsibility for interpreting failures. It allows tests to be considered just regular functions, because they don&rsquo;t have any extra stuff tied to them to manage recording outcomes. This makes tests composable. It also allows consistent identification of the source location of the actual top-level check in failure messages.</p>
+
+<p>Here&rsquo;s what the equivalent sequence looks like with my interface, which I called <a href="https://github.com/LLazarek/ruinit">ruinit</a>. Many elements are inspired by things that rackunit does, like the <code>fail</code> function available in custom tests.</p>
+
+<pre><code> 1 #lang racket
+ 2 (require ruinit
+ 3          (for-syntax syntax/parse))
+ 4 
+ 5 ;; For test syntax, can use `define-test-syntax`, which provides
+ 6 ;; a binding for `fail` to indicate a test failure with a message
+ 7 (define-test-syntax (check-ands ands ...)
+ 8   #'(unless (and ands ...)
+ 9       (fail "Not every value given (~v) was true!" (list ands ...))))
+10 
+11 ;; Alternatively, just write a regular macro or function that returns
+12 ;; #f in the case of failure (`define-test-syntax` could be used here
+13 ;; just as well)
+14 (define-syntax-rule (check-ors ors ...)
+15   (or ors ...))
+16 
+17 (test-begin
+18   (check-ands #t #t) ;; OK, no message
+19   (check-ands #t #t #f) ;; Fails, with pointer to this line
+20   (check-ors #t #t #f)
+21   (check-ors #f)) ;; Fails
+22 
+23 
+24 ;; So far so good.
+25 
+26 ;; Now let's write some more syntax that combines these tests into a
+27 ;; more complex test.
+28 
+29 ;; e.g. (check-ands:ors #t #t : #f #t #f #t)
+30 ;;      (check-ands:ors : #f)
+31 (define-test-syntax (check-ands-and-ors ands:expr ... (~datum :) ors:expr ...)
+32   #'(and/test (check-ands ands ...)
+33               (check-ors ors ...)))
+34 
+35 
+36 (test-begin
+37   (check-ands-and-ors #t #f #t : #t) ;; Fails
+38   (check-ands-and-ors #t : #t)
+39   (check-ands-and-ors #t : #t #f)
+40   (check-ands-and-ors #f : #f)) ;; Fails
+41 ;; Now the locations point exactly to the failing test, and it has
+42 ;; the actual top-level syntax of the test.
+43 
+44 
+45 ;; And writing the inverse is just as easy
+46 (define-test-syntax (check-ands-or-ors ands:expr ... (~datum :) ors:expr ...)
+47   #'(or/test (check-ands ands ...)
+48              (check-ors ors ...)))
+49 (test-begin
+50   (check-ands-or-ors #t #f #t : #t)
+51   (check-ands-or-ors #t : #t)
+52   (check-ands-or-ors #t : #t #f)
+53   (check-ands-or-ors #f : #f)) ;; Fails</code></pre>
+
+<p>And here are the failure reports. Every failure identifies the real top-level invocation of the test and shows the actual syntax of the failing test.</p>
+
+<pre><code>--------------- FAILURE ---------------
+location: temp.rkt:19:2
+test:     (check-ands #t #t #f)
+message:  Not every value given ('(#t #t #f)) was true!
+---------------------------------------
+--------------- FAILURE ---------------
+location: temp.rkt:21:2
+test:     (check-ors #f)
+---------------------------------------
+--------------- FAILURE ---------------
+location: temp.rkt:37:2
+test:     (check-ands-and-ors #t #f #t : #t)
+message:  Not every value given ('(#t #f #t)) was true!
+---------------------------------------
+--------------- FAILURE ---------------
+location: temp.rkt:40:2
+test:     (check-ands-and-ors #f : #f)
+message:  Not every value given ('(#f)) was true!
+---------------------------------------
+--------------- FAILURE ---------------
+location: temp.rkt:53:2
+test:     (check-ands-or-ors #f : #f)
+message:  or/test: all tests failed
+---------------------------------------</code></pre>
+
+<p><em>Update: 2019&ndash;07&ndash;28</em></p>
+
+<p>After using ruinit for a couple of months pretty much constantly, I&rsquo;m pretty happy with it. It hasn&rsquo;t revolutionized my tests or anything like that, but it has pretty much eliminated the stumbling blocks that used to constantly frustrate me. It has turned out to be a fun and worthwhile experiment.</p>
+  <footer>
+
+    <div class="row justify-content-center">
+      <nav aria-label="Page Navigation">
+        <ul class="pagination">
+          <li class="page-item">
+            <a class="page-link" href="/blog/2018/11/org-export-processing.html" aria-label="Previous">
+              <span aria-hidden="true">&larr; Org Export Processing</span>
+            </a>
+          </li>
+          <li class="page-item">
+            <a class="page-link" href="/blog/2019/01/fuzzy-searching-notes-with-fzf.html" aria-label="Next">
+              <span aria-hidden="true">Fuzzy-searching notes with fzf &rarr;</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </footer>
+</article>
+        </div>
+      </div>
+      <footer>
+        <hr />
+        <p>Site generated by <a href="https://github.com/greghendershott/frog">Frog</a>,
+        the <strong>fr</strong>ozen bl<strong>og</strong> tool,
+        using <a href="http://twitter.github.com/bootstrap/index.html">Bootstrap</a>.</p>
+        <p><em>Copyright Lukas Lazarek 2018 -- and the foreseeable future...</em></p>
+      </footer>
+    </div>
+    <!-- </body> JS -->
+    <script type="text/javascript" src="/js/jquery-3.2.1.slim.min.js"></script>
+    <script type="text/javascript" src="/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

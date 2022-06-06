@@ -9,25 +9,25 @@
   <ttl>1800</ttl>
   <item>
    <title>Experimenting with testing syntax and composition</title>
-   <link>https://llazarek.github.io/2018/12/experimenting-with-testing-syntax-and-composition.html?utm_source=racket&amp;utm_medium=RSS</link>
-   <guid isPermaLink="false">urn:https-llazarek-github-io:-2018-12-experimenting-with-testing-syntax-and-composition-html</guid>
+   <link>https://llazarek.github.io/blog/2018/12/experimenting-with-testing-syntax-and-composition.html</link>
+   <guid isPermaLink="false">urn:https-llazarek-github-io:-blog-2018-12-experimenting-with-testing-syntax-and-composition-html</guid>
    <pubDate>Thu, 20 Dec 2018 02:52:06 UT</pubDate>
    <author>Lukas Lazarek</author>
    <description>
-&lt;p&gt;&lt;a href="https://docs.racket-lang.org/rackunit/index.html?q%3Drackunit"&gt;Rackunit&lt;/a&gt; is Racket&amp;rsquo;s unit testing library, and it has a pretty cool set of features. It aims to support testing at every stage of development, from simple inline checks to large, programmatically manipulated test suites. Unfortunately, despite the many features rackunit provides to support this goal, I have many-a-time found myself struggling against rackunit&amp;rsquo;s model for defining new checks. Last weekend, I finally got around to writing a testing library that provides a simpler interface to write flexible, composable test predicates and macros.&lt;/p&gt;&lt;a href="https://llazarek.github.io/2018/12/experimenting-with-testing-syntax-and-composition.html?utm_source=racket&amp;amp;utm_medium=RSS"&gt;&lt;em&gt;More&amp;hellip;&lt;/em&gt;&lt;/a&gt;</description></item>
+&lt;p&gt;&lt;a href="https://docs.racket-lang.org/rackunit/index.html?q%3Drackunit"&gt;Rackunit&lt;/a&gt; is Racket&amp;rsquo;s unit testing library, and it has a pretty cool set of features. It aims to support testing at every stage of development, from simple inline checks to large, programmatically manipulated test suites. Unfortunately, despite the many features rackunit provides to support this goal, I have many-a-time found myself struggling against rackunit&amp;rsquo;s model for defining new checks. Last weekend, I finally got around to writing a testing library that provides a simpler interface to write flexible, composable test predicates and macros.&lt;/p&gt;&lt;a href="https://llazarek.github.io/blog/2018/12/experimenting-with-testing-syntax-and-composition.html"&gt;&lt;em&gt;More&amp;hellip;&lt;/em&gt;&lt;/a&gt;</description></item>
   <item>
    <title>Tracking Expenses with Ledger</title>
-   <link>https://llazarek.github.io/2018/07/tracking-expenses-with-ledger.html?utm_source=racket&amp;utm_medium=RSS</link>
-   <guid isPermaLink="false">urn:https-llazarek-github-io:-2018-07-tracking-expenses-with-ledger-html</guid>
+   <link>https://llazarek.github.io/blog/2018/07/tracking-expenses-with-ledger.html</link>
+   <guid isPermaLink="false">urn:https-llazarek-github-io:-blog-2018-07-tracking-expenses-with-ledger-html</guid>
    <pubDate>Fri, 20 Jul 2018 18:34:47 UT</pubDate>
    <author>Lukas Lazarek</author>
    <description>
-&lt;p&gt;How I track expenses using ledger, even on my phone.&lt;/p&gt;&lt;a href="https://llazarek.github.io/2018/07/tracking-expenses-with-ledger.html?utm_source=racket&amp;amp;utm_medium=RSS"&gt;&lt;em&gt;More&amp;hellip;&lt;/em&gt;&lt;/a&gt;</description></item>
+&lt;p&gt;How I track expenses using ledger, even on my phone.&lt;/p&gt;&lt;a href="https://llazarek.github.io/blog/2018/07/tracking-expenses-with-ledger.html"&gt;&lt;em&gt;More&amp;hellip;&lt;/em&gt;&lt;/a&gt;</description></item>
   <item>
    <title>Language-oriented Programming: ptext</title>
-   <link>https://llazarek.github.io/2018/05/language-oriented-programming-ptext.html?utm_source=racket&amp;utm_medium=RSS</link>
-   <guid isPermaLink="false">urn:https-llazarek-github-io:-2018-05-language-oriented-programming-ptext-html</guid>
+   <link>https://llazarek.github.io/blog/2018/05/language-oriented-programming-ptext.html</link>
+   <guid isPermaLink="false">urn:https-llazarek-github-io:-blog-2018-05-language-oriented-programming-ptext-html</guid>
    <pubDate>Wed, 23 May 2018 00:06:27 UT</pubDate>
    <author>Lukas Lazarek</author>
    <description>
-&lt;p&gt;Language-oriented programming in action with racket.&lt;/p&gt;&lt;a href="https://llazarek.github.io/2018/05/language-oriented-programming-ptext.html?utm_source=racket&amp;amp;utm_medium=RSS"&gt;&lt;em&gt;More&amp;hellip;&lt;/em&gt;&lt;/a&gt;</description></item></channel></rss>
+&lt;p&gt;Language-oriented programming in action with racket.&lt;/p&gt;&lt;a href="https://llazarek.github.io/blog/2018/05/language-oriented-programming-ptext.html"&gt;&lt;em&gt;More&amp;hellip;&lt;/em&gt;&lt;/a&gt;</description></item></channel></rss>
