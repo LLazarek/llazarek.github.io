@@ -59,7 +59,7 @@ I can be reached by email at
 }
 @item{@hyperlink["https://github.com/LLazarek/rscript"]{rscript} - language for scripts, mainly featuring an embedded declarative command-line argument description language
 }
-@item{@hyperlink["https://github.com/LLazarek/github-actions"]{github-actions} - library for managing github actions
+@item{@hyperlink["https://github.com/LLazarek/github-actions"]{github-actions} - library for using the github actions api
 }
 @item{@hyperlink["https://github.com/LLazarek/ruinit"]{ruinit} - unit testing library
 }
