@@ -75,7 +75,7 @@ I can be reached by email at
 - [[https://github.com/LLazarek/process-queue][process-queue]] - library for managing many parallel processes
 - [[https://github.com/LLazarek/mutate][mutate]] - mutation system for s-expression languages
 - [[https://github.com/LLazarek/rscript][rscript]] - language for scripts, mainly featuring an embedded declarative command-line argument description language
-- [[https://github.com/LLazarek/github-actions][github-actions]] - library for managing github actions
+- [[https://github.com/LLazarek/github-actions][github-actions]] - library for using the github actions api
 - [[https://github.com/LLazarek/ruinit][ruinit]] - unit testing library
 - [[https://github.com/LLazarek/webgrep][webgrep]] - CLI tool to search webpages recursively (descending into linked pages)
 - [[https://github.com/LLazarek/asciigraph][asciigraph]] - CLI tool that makes ASCII plots
