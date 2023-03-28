@@ -95,7 +95,11 @@
         @(linebreak)
         @x-refs-elements
         @(linebreak)
-        @emph[(or summary "")]
+        @emph[(if summary
+                  (add-between (string-split summary "\n\n")
+                               (list (linebreak)
+                                     (linebreak)))
+                  "")]
         })
 
 (define/contract (export-citation! gb relative-website-path)
