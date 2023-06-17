@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<head>
+  
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<script src="https://d3js.org/queue.v1.min.js"></script>
+<script src="https://d3js.org/topojson.v1.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+<meta charset="utf-8">
+<style>
+
+nav {
+    text-align: center;
+}
+
+</style>
+</head>
+<body>
+  <div style="text-align: center; width: 100%">
+    <title>How does Chicago distribute its sewage capital investments?</title>
+    <h1>How does Chicago distribute its sewage capital investments?</h1>
+    <p>Select a year to see the city's budget allocation in that year's Capital Investment Plan.</p>
+
+    <br/>
+
+    <nav id="navigator"> </nav>
+
+    Percent of budget allocated for sewage:
+    <br/>
+    0% <img src="https://raw.githubusercontent.com/LLazarek/tmp-json/master/legend.svg"/> 11.25%
+
+    <div>
+    <svg id="map_vis"></svg>
+    </div>
+  </div>
+<script>
+
+// chart parameters
+
+var height = 800,
+    width = height*740/800;
+
+let mapDefinitions = {
+    _upto2022: {
+        name: "All combined up to 2022",
+        path: "https://raw.githubusercontent.com/LLazarek/tmp-json/master/zipcode2021_allocation_up_to_2022.json.f",
+        color: [ "#deebf7", "#3182bd" ],
+        min: 0, max: 11.25
+    },
+    _2022: {
+        name: "2022",
+        path: "https://raw.githubusercontent.com/LLazarek/tmp-json/master/zipcode2021_allocation_only_2022.json.f",
+        color: [ "#deebf7", "#3182bd" ],
+        min: 0, max: 11.25
+    },
+    _2019: {
+        name: "2019",
+        path: "https://raw.githubusercontent.com/LLazarek/tmp-json/master/zipcode2021_allocation_only_2019.json.f",
+        color: [ "#deebf7", "#3182bd" ],
+        min: 0, max: 11.25
+    },
+    _2018: {
+        name: "2018",
+        path: "https://raw.githubusercontent.com/LLazarek/tmp-json/master/zipcode2021_allocation_only_2018.json.f",
+        color: [ "#deebf7", "#3182bd" ],
+        min: 0, max: 11.25
+    },
+    _2017: {
+        name: "2017",
+        path: "https://raw.githubusercontent.com/LLazarek/tmp-json/master/zipcode2021_allocation_only_2017.json.f",
+        color: [ "#deebf7", "#3182bd" ],
+        min: 0, max: 11.25
+    },
+    _2016: {
+        name: "2016",
+        path: "https://raw.githubusercontent.com/LLazarek/tmp-json/master/zipcode2021_allocation_only_2016.json.f",
+        color: [ "#deebf7", "#3182bd" ],
+        min: 0, max: 11.25
+    },
+    _2015: {
+        name: "2015",
+        path: "https://raw.githubusercontent.com/LLazarek/tmp-json/master/zipcode2021_allocation_only_2015.json.f",
+        color: [ "#deebf7", "#3182bd" ],
+        min: 0, max: 11.25
+    },
+    _2014: {
+        name: "2014",
+        path: "https://raw.githubusercontent.com/LLazarek/tmp-json/master/zipcode2021_allocation_only_2014.json.f",
+        color: [ "#deebf7", "#3182bd" ],
+        min: 0, max: 11.25
+    }
+}
+
+// var svg = d3.select("body").append("svg")
+var svg = d3.select("#map_vis")
+    .attr("width", width)
+    .attr("height", height)
+    // .style("border", "1px solid gray");
+
+  async function drawMap(mapDef) {
+      let _data = await d3.json(mapDef.path, {crossOrigin: "anonymous"});
+      // data prep
+      let total_allocation = _data.reduce((acc, cur) => acc + cur.proportional_allocation, 0);
+      let features = _data.map((o) => {
+        let d = {}
+        d.geometry = o.geom;
+        d.type = "Feature";
+        d.properties ={
+            zip: o.zip,
+            proportional_allocation: o.proportional_allocation,
+            proportional_allocation_percent: o.proportional_allocation / total_allocation * 100,
+            locations_within_area: o.locations_within_area
+        };
+        return d;
+      });
+      // let min_allocation = mapDef.zero ? 0 : d3.min(features.map(d => d.properties.proportional_allocation_percent));
+      // let max_allocation = d3.max(features.map(d => d.properties.proportional_allocation_percent));
+      let min_allocation = mapDef.min
+      let max_allocation = mapDef.max
+      let colorScale = d3.scaleLinear().domain([min_allocation, max_allocation]).range(mapDef.color);
+      console.log(colorScale(2));
+      let geojson = { type: "FeatureCollection", features };
+      let projection = d3.geoMercator();
+      projection.center([-87.6, 41.905]);
+      projection.scale(height * 100);
+      let mapGroup = svg.append("g");
+      mapGroup.attr("id", "map_path");
+      mapGroup.selectAll("path")
+        .data(features)
+        .join(
+            (enter) => enter.append("path")
+                .attr("class", "path_item")
+                .attr("d", d3.geoPath(projection))
+                .attr("fill", (d) => colorScale(d.properties.proportional_allocation_percent))
+                .attr("text", (d) => d.properties.zip)
+        );
+  }
+
+function readyNav() {
+    let navArea = d3.select("nav#navigator");
+    navArea.selectAll("button")
+        .data(Object.keys(mapDefinitions).reverse())
+        .join(
+            (enter) => enter.append("button")
+                .attr("class", "btn btn-light")
+                .text(d => mapDefinitions[d].name)
+                .on("click", (event, d) => {
+                    // d3.selectAll("svg > *").remove()
+                    drawMap(mapDefinitions[d]);
+                    d3.selectAll("button").attr("class", "btn btn-light");
+                    d3.select(event.target).attr("class", "btn btn-primary");
+                })
+        );
+
+}
+
+
+readyNav();
+</script>
