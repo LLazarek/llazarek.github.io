@@ -37,6 +37,9 @@ I can be reached by email at
 
 @(linebreak)
 @subsection{Publications}
+@subsubsection{2023}
+@(export-and-render-citation! lgfd-icfp-23 "bib/lgfd-icfp-23.html")
+
 @subsubsection{2022}
 @(export-and-render-citation! gldf-programming-22 "bib/gldf-programming-22.html")
 

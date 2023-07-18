@@ -51,6 +51,11 @@ I can be reached by email at
 
 ** Publications
 
+*** 2023
+#+BEGIN_SRC racket
+@(export-and-render-citation! lgfd-icfp-23 "bib/lgfd-icfp-23.html")
+#+END_SRC
+
 *** 2022
 #+BEGIN_SRC racket
 @(export-and-render-citation! gldf-programming-22 "bib/gldf-programming-22.html")
