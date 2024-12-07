@@ -9,22 +9,20 @@
 @; because for some reason Frog always puts it in /About/, which doesnt exist!
 @(external-img "profile.jpg" #:alt "Me" #:style "width:300px")
 
-I'm a grad student studying Programming Languages at Northwestern.
+I'm a postdoc at Brown university working with @hyperlink["https://nikos.vasilak.is/"]{Nikos Vasilakis} and the @hyperlink["https://atlas.cs.brown.edu/"]{ATLAS group}.
 This page provides information about myself and what I have been doing recently.
 The other half of the site is a blog that I use to practice writing about technical things, my research, and my interests.
 
 @(linebreak)
 @subsection{Research Interests}
-I am a PhD student studying Programming Languages at Northwestern University, graduating in winter 2024 and on the job market for my next step.
+My research is about empirically-driven Programming Languages approaches to understanding what and how language features are practically useful for regular people trying to build useful software.
 
-My research has been about data-driven Programming Languages approaches to understanding what and how language features are practically useful.
+People and their programs are imperfect, so one part of that work is in linguistic tools that support program robustness, monitoring, and debugging.
+My dissertation work on contract systems and gradual typing centered around empirically evaluating how these specification tools, intended to improve robustness, may or may not assist with debugging through experimental data collection and analysis.
+My ongoing work investigates how specification tooling for the Shell can provide practical robustness benefits in complex and imperfect existing systems.
 
-People and their programs are imperfect, so one part of that work is in linguistic tools that support program robustness, monitoring, and debugging;
-my ongoing work on contract systems and gradual typing centers around empirically evaluating how these specification tools, intended to improve robustness, may or may not assist with debugging through experimental data collection and analysis.
+Relatively few people are programmers, however, so another direction of my research is understanding how and why everyone else might find value in programming; my work in this direction explores languages, domains, and tools which enable non-experts to quickly make use of computing, while simultaneously providing a rich setting to learn about and apply powerful computing ideas to practical problems.
 
-Relatively few people are programmers, however, so another part of my research is understanding how and why everyone else might find value in programming; my work in this direction explores languages, domains, and tools which enable non-experts to quickly make use of computing, while simultaneously providing a rich setting to learn about and apply powerful computing ideas to practical problems.
-
-I work on and use the @hyperlink["https://racket-lang.org/"]{Racket} programming language as a concrete setting for most of my research.
 
 @(linebreak)
 @subsection{Contact information}
@@ -32,7 +30,7 @@ My github profile is @hyperlink["https://github.com/llazarek"]{llazarek}.
 
 I can be reached by email at
 @verbatim|{
-(or (concat "lukas" "." "lazarek" "@" "eecs.northwestern.edu")
+(or (concat "lukas" "lazarek" "@" "brown.edu")
     (concat "lukas" "a" "lazarek" "@" "gmail.com"))
 }|
 
