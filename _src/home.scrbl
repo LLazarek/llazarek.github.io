@@ -30,7 +30,7 @@ My github profile is @hyperlink["https://github.com/llazarek"]{llazarek}.
 
 I can be reached by email at
 @verbatim|{
-(or (concat "lukas" "lazarek" "@" "brown.edu")
+(or (concat "lukas" "_" "lazarek" "@" "brown.edu")
     (concat "lukas" "a" "lazarek" "@" "gmail.com"))
 }|
 
