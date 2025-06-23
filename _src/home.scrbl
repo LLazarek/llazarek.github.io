@@ -38,6 +38,9 @@ I can be reached by email at
 @subsection{Publications}
 @subsubsection{2025}
 @(export-and-render-citation! koala-atc-25 "bib/koala-atc-25.html")
+
+@(linebreak)
+
 @(export-and-render-citation! static-hotos-25 "bib/hotos-static-25.html")
 
 @subsubsection{2023}

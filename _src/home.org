@@ -53,6 +53,11 @@ I can be reached by email at
 *** 2025
 #+begin_src racket
 @(export-and-render-citation! koala-atc-25 "bib/koala-atc-25.html")
+#+end_src
+
+@(linebreak)
+
+#+begin_src racket
 @(export-and-render-citation! static-hotos-25 "bib/hotos-static-25.html")
 #+end_src
 
