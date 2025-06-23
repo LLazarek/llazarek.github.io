@@ -50,6 +50,12 @@ I can be reached by email at
 
 ** Publications
 
+*** 2025
+#+begin_src racket
+@(export-and-render-citation! koala-atc-25 "bib/koala-atc-25.html")
+@(export-and-render-citation! static-hotos-25 "bib/hotos-static-25.html")
+#+end_src
+
 *** 2023
 #+BEGIN_SRC racket
 @(export-and-render-citation! lgfd-icfp-23 "bib/lgfd-icfp-23.html")

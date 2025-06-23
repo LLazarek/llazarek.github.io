@@ -36,6 +36,18 @@
 
    (author "Ben" "Greenman") "https://ccs.neu.edu/home/types/"
    (author "Matthias" "Felleisen") "https://felleisen.org/matthias/"
+
+   (author "Seong-Heon" "Jung") "seong-heon_jung@brown.edu"
+   (author "Evangelos" "Lamprou") "evangelos_lamprou@brown.edu"
+   (author "Zekai" "Li") "zekai_li@brown.edu"
+   (author "Anirudh" "Narsipur") "anirudh_narsipur@brown.edu"
+   (author "Eric" "Zhao") "eric_c_zhao@brown.edu"
+   (author "Michael" "Greenberg") "michael@greenberg.science"
+   (author "Konstantinos" "Kallas") "kkallas@ucla.edu"
+   (author "Konstantinos" "Mamouras") "mamouras@rice.edu"
+   (author "Nikos" "Vasilakis") "https://nikos.vasilak.is"
+   ;; (author "Ethan" "Williams")
+   ;; (author "Zhuoxuan" "Zhang")
    ))
 
 (define location-shorthands
