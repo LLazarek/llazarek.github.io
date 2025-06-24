@@ -24,3 +24,7 @@ article img {
   max-width: 100%;
   height: auto;
 }
+
+.heading-anchor {
+    display: none !important;
+}
