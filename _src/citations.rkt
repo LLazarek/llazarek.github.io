@@ -38,13 +38,13 @@
    (author "Matthias" "Felleisen") "https://felleisen.org/matthias/"
 
    (author "Seong-Heon" "Jung") "seong-heon_jung@brown.edu"
-   (author "Evangelos" "Lamprou") "evangelos_lamprou@brown.edu"
+   (author "Evangelos" "Lamprou") "https://vagos.lamprou.xyz/" ;; "evangelos_lamprou@brown.edu"
    (author "Zekai" "Li") "zekai_li@brown.edu"
-   (author "Anirudh" "Narsipur") "anirudh_narsipur@brown.edu"
-   (author "Eric" "Zhao") "eric_c_zhao@brown.edu"
-   (author "Michael" "Greenberg") "michael@greenberg.science"
-   (author "Konstantinos" "Kallas") "kkallas@ucla.edu"
-   (author "Konstantinos" "Mamouras") "mamouras@rice.edu"
+   (author "Anirudh" "Narsipur") "https://anarsipur.com/" ;; "anirudh_narsipur@brown.edu"
+   (author "Eric" "Zhao") "https://mustardfox.org" ;;  "eric_c_zhao@brown.edu"
+   (author "Michael" "Greenberg") "https://greenberg.science/" ;; "michael@greenberg.science"
+   (author "Konstantinos" "Kallas") "https://angelhof.github.io/" ;; "kkallas@ucla.edu"
+   (author "Konstantinos" "Mamouras") "https://kmamouras.github.io/" ;; "mamouras@rice.edu"
    (author "Nikos" "Vasilakis") "https://nikos.vasilak.is"
    ;; (author "Ethan" "Williams")
    ;; (author "Zhuoxuan" "Zhang")
