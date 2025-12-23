@@ -8,20 +8,20 @@
     <meta name="author"      content="Lukas Lazarek">
     <meta name="keywords"    content="emacs">
     <meta name="viewport"    content="width=device-width, initial-scale=1.0">
-    <link rel="icon"      href="/blog/favicon.ico">
-    <link rel="canonical" href="https://llazarek.github.io/blog/2018/07/modal-editing-in-emacs.html">
-    <link rel="next" href="/blog/2018/07/organization-with-org-mode.html">
-    <link rel="prev" href="/blog/2018/07/improving-the-agenda.html">
+    <link rel="icon"      href="/favicon.ico">
+    <link rel="canonical" href="https://llazarek.github.io/2018/07/modal-editing-in-emacs.html">
+    <link rel="next" href="/2018/07/organization-with-org-mode.html">
+    <link rel="prev" href="/2018/07/improving-the-agenda.html">
     <!-- CSS -->
-    <link rel="stylesheet" type="text/css" href="/blog/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="/blog/css/pygments.css">
-    <link rel="stylesheet" type="text/css" href="/blog/css/scribble.css">
-    <link rel="stylesheet" type="text/css" href="/blog/css/custom.css">
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/css/scribble.css">
+    <link rel="stylesheet" type="text/css" href="/css/custom.css">
     <!-- Feeds -->
     <link rel="alternate" type="application/atom+xml"
-          href="/blog/feeds/all.atom.xml" title="Atom Feed">
+          href="/feeds/all.atom.xml" title="Atom Feed">
     <link rel="alternate" type="application/rss+xml"
-          href="/blog/feeds/all.rss.xml" title="RSS Feed">
+          href="/feeds/all.rss.xml" title="RSS Feed">
     <!-- JS -->
     <script type="text/javascript">
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -39,7 +39,7 @@
     <nav class="navbar navbar-expand-md navbar-dark bg-dark">
       <div class="container">
 
-      <a href="/blog/index.html" class="navbar-brand">llazarek</a>
+      <a href="/index.html" class="navbar-brand">llazarek</a>
 
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
               data-target="#navbar_collapse" aria-controls="navbar_collapse"
@@ -51,26 +51,26 @@
           <ul class="navbar-nav mr-auto">
 
 
+            <li>
+              <a class="nav-link" href="/blog.html">Blog</a>
+            </li> 
+
             <li class="nav-item dropdown">
               <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
-                Tags <b class="caret"></b>
+                Post tags <b class="caret"></b>
               </a>
 
               <div class="dropdown-menu">
-                <a class="dropdown-item" href="/blog/tags/emacs.html">emacs</a><a class="dropdown-item" href="/blog/tags/finance.html">finance</a><a class="dropdown-item" href="/blog/tags/ledger.html">ledger</a><a class="dropdown-item" href="/blog/tags/linux.html">linux</a><a class="dropdown-item" href="/blog/tags/networking.html">networking</a><a class="dropdown-item" href="/blog/tags/org.html">org</a><a class="dropdown-item" href="/blog/tags/PL.html">PL</a><a class="dropdown-item" href="/blog/tags/racket.html">racket</a><a class="dropdown-item" href="/blog/tags/research.html">research</a><a class="dropdown-item" href="/blog/tags/scribble.html">scribble</a><a class="dropdown-item" href="/blog/tags/testing.html">testing</a>
+                <a class="dropdown-item" href="/tags/emacs.html">emacs</a><a class="dropdown-item" href="/tags/finance.html">finance</a><a class="dropdown-item" href="/tags/ledger.html">ledger</a><a class="dropdown-item" href="/tags/linux.html">linux</a><a class="dropdown-item" href="/tags/networking.html">networking</a><a class="dropdown-item" href="/tags/org.html">org</a><a class="dropdown-item" href="/tags/PL.html">PL</a><a class="dropdown-item" href="/tags/racket.html">racket</a><a class="dropdown-item" href="/tags/research.html">research</a><a class="dropdown-item" href="/tags/scribble.html">scribble</a><a class="dropdown-item" href="/tags/testing.html">testing</a>
               </div>
             </li>
 
-            <li>
-              <a class="nav-link" href="/blog/about.html">About</a>
-            </li> 
-
             <li class="nav-item">
-              <a class="nav-link" href="/blog/feeds/all.atom.xml">Atom</a>
+              <a class="nav-link" href="/feeds/all.atom.xml">Atom</a>
             </li>
 
             <li class="nav-item">
-              <a class="nav-link" href="/blog/feeds/all.rss.xml">RSS</a>
+              <a class="nav-link" href="/feeds/all.rss.xml">RSS</a>
             </li>
           </ul>
       </div>
@@ -95,7 +95,7 @@
     <h1>Modal Editing in Emacs</h1>
     <span style="display:inline-block; width:40px;"></span>
     <p class='date-and-tags' style="color:grey;display:inline">
-<time datetime="2018-07-09" pubdate="true">2018-07-09</time> :: <span class="tags"><a href="/blog/tags/emacs.html">emacs</a></span></p>
+<time datetime="2018-07-09" pubdate="true">2018-07-09</time> :: <span class="tags"><a href="/tags/emacs.html">emacs</a></span></p>
     <!-- <p class='authors' style="color:grey;margin-left:3%">By: <span class="authors">Lukas Lazarek</span></p> -->
   </header>
 
@@ -260,12 +260,12 @@ _p_: Insert from register       _w_: Window config to register
       <nav aria-label="Page Navigation">
         <ul class="pagination">
           <li class="page-item">
-            <a class="page-link" href="/blog/2018/07/organization-with-org-mode.html" aria-label="Previous">
+            <a class="page-link" href="/2018/07/organization-with-org-mode.html" aria-label="Previous">
               <span aria-hidden="true">&larr; Organization with Org Mode</span>
             </a>
           </li>
           <li class="page-item">
-            <a class="page-link" href="/blog/2018/07/improving-the-agenda.html" aria-label="Next">
+            <a class="page-link" href="/2018/07/improving-the-agenda.html" aria-label="Next">
               <span aria-hidden="true">Improving the Agenda &rarr;</span>
             </a>
           </li>
@@ -285,7 +285,7 @@ _p_: Insert from register       _w_: Window config to register
       </footer>
     </div>
     <!-- </body> JS -->
-    <script type="text/javascript" src="/blog/js/jquery-3.6.4.slim.min.js"></script>
-    <script type="text/javascript" src="/blog/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="/js/jquery-3.6.4.slim.min.js"></script>
+    <script type="text/javascript" src="/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>

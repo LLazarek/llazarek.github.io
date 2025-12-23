@@ -4,120 +4,120 @@
   <title>llazarek: llazarek</title>
   <description>llazarek: llazarek</description>
   <link>https://llazarek.github.io/index.html</link>
-  <lastBuildDate>Wed, 01 Apr 2020 19:03:58 UT</lastBuildDate>
-  <pubDate>Wed, 01 Apr 2020 19:03:58 UT</pubDate>
+  <lastBuildDate>Wed, 01 Apr 2020 12:03:58 UT</lastBuildDate>
+  <pubDate>Wed, 01 Apr 2020 12:03:58 UT</pubDate>
   <ttl>1800</ttl>
   <item>
    <title>Reference management with Org mode</title>
-   <link>https://llazarek.github.io/blog/2020/04/reference-management-with-org-mode.html</link>
-   <guid isPermaLink="false">urn:https-llazarek-github-io:-blog-2020-04-reference-management-with-org-mode-html</guid>
-   <pubDate>Wed, 01 Apr 2020 19:03:58 UT</pubDate>
+   <link>https://llazarek.github.io/2020/04/reference-management-with-org-mode.html</link>
+   <guid isPermaLink="false">urn:https-llazarek-github-io:-2020-04-reference-management-with-org-mode-html</guid>
+   <pubDate>Wed, 01 Apr 2020 12:03:58 UT</pubDate>
    <author>Lukas Lazarek</author>
    <description>
-&lt;p&gt;I manage all of my references using (guess) Org mode. This is a brief summary of what I do and why it works for me.&lt;/p&gt;&lt;a href="https://llazarek.github.io/blog/2020/04/reference-management-with-org-mode.html"&gt;&lt;em&gt;More&amp;hellip;&lt;/em&gt;&lt;/a&gt;</description></item>
+&lt;p&gt;I manage all of my references using (guess) Org mode. This is a brief summary of what I do and why it works for me.&lt;/p&gt;&lt;a href="https://llazarek.github.io/2020/04/reference-management-with-org-mode.html"&gt;&lt;em&gt;More&amp;hellip;&lt;/em&gt;&lt;/a&gt;</description></item>
   <item>
    <title>Non-linear notes with Org</title>
-   <link>https://llazarek.github.io/blog/2019/07/non-linear-notes-with-org.html</link>
-   <guid isPermaLink="false">urn:https-llazarek-github-io:-blog-2019-07-non-linear-notes-with-org-html</guid>
-   <pubDate>Wed, 24 Jul 2019 21:48:06 UT</pubDate>
+   <link>https://llazarek.github.io/2019/07/non-linear-notes-with-org.html</link>
+   <guid isPermaLink="false">urn:https-llazarek-github-io:-2019-07-non-linear-notes-with-org-html</guid>
+   <pubDate>Wed, 24 Jul 2019 14:48:06 UT</pubDate>
    <author>Lukas Lazarek</author>
    <description>
 &lt;p&gt;For all that I rave about org mode, I generally prefer taking notes by hand. Org wins out when my notes are certain kinds of technical or reference notes, including code snippets, links to resources, etc. In those cases, embedded code blocks, inline images, links, and more make org mode a perfect medium. Luckily, a large portion of the notes I take fall into those categories. But for the kind of notes that I take while trying to understand something, or build a high level idea of a lecture or book, handwritten notes are far superior in my opinion. This kind of note taking is also often more rewarding.&lt;/p&gt;
 
-&lt;p&gt;It would be great if org mode could handle these kinds of notes as well. Why can&amp;rsquo;t it?&lt;/p&gt;&lt;a href="https://llazarek.github.io/blog/2019/07/non-linear-notes-with-org.html"&gt;&lt;em&gt;More&amp;hellip;&lt;/em&gt;&lt;/a&gt;</description></item>
+&lt;p&gt;It would be great if org mode could handle these kinds of notes as well. Why can&amp;rsquo;t it?&lt;/p&gt;&lt;a href="https://llazarek.github.io/2019/07/non-linear-notes-with-org.html"&gt;&lt;em&gt;More&amp;hellip;&lt;/em&gt;&lt;/a&gt;</description></item>
   <item>
    <title>Fuzzy-searching notes with fzf</title>
-   <link>https://llazarek.github.io/blog/2019/01/fuzzy-searching-notes-with-fzf.html</link>
-   <guid isPermaLink="false">urn:https-llazarek-github-io:-blog-2019-01-fuzzy-searching-notes-with-fzf-html</guid>
-   <pubDate>Sat, 12 Jan 2019 23:39:54 UT</pubDate>
+   <link>https://llazarek.github.io/2019/01/fuzzy-searching-notes-with-fzf.html</link>
+   <guid isPermaLink="false">urn:https-llazarek-github-io:-2019-01-fuzzy-searching-notes-with-fzf-html</guid>
+   <pubDate>Sat, 12 Jan 2019 15:39:54 UT</pubDate>
    <author>Lukas Lazarek</author>
    <description>
-&lt;p&gt;I have a lot of plain text notes, from years of using org mode for nearly everything. Finding specific pieces of information in that sea of information can be difficult; I am unwilling and unable to remember where exactly I wrote something down. Of course, since it&amp;rsquo;s all plain text, grep/ag and friends seem ideally suited to the task &amp;#8211; except that requires remembering exactly how the information was worded. Also too much. What about fuzzy search?&lt;/p&gt;&lt;a href="https://llazarek.github.io/blog/2019/01/fuzzy-searching-notes-with-fzf.html"&gt;&lt;em&gt;More&amp;hellip;&lt;/em&gt;&lt;/a&gt;</description></item>
+&lt;p&gt;I have a lot of plain text notes, from years of using org mode for nearly everything. Finding specific pieces of information in that sea of information can be difficult; I am unwilling and unable to remember where exactly I wrote something down. Of course, since it&amp;rsquo;s all plain text, grep/ag and friends seem ideally suited to the task &amp;#8211; except that requires remembering exactly how the information was worded. Also too much. What about fuzzy search?&lt;/p&gt;&lt;a href="https://llazarek.github.io/2019/01/fuzzy-searching-notes-with-fzf.html"&gt;&lt;em&gt;More&amp;hellip;&lt;/em&gt;&lt;/a&gt;</description></item>
   <item>
    <title>Experimenting with testing syntax and composition</title>
-   <link>https://llazarek.github.io/blog/2018/12/experimenting-with-testing-syntax-and-composition.html</link>
-   <guid isPermaLink="false">urn:https-llazarek-github-io:-blog-2018-12-experimenting-with-testing-syntax-and-composition-html</guid>
-   <pubDate>Thu, 20 Dec 2018 02:52:06 UT</pubDate>
+   <link>https://llazarek.github.io/2018/12/experimenting-with-testing-syntax-and-composition.html</link>
+   <guid isPermaLink="false">urn:https-llazarek-github-io:-2018-12-experimenting-with-testing-syntax-and-composition-html</guid>
+   <pubDate>Wed, 19 Dec 2018 18:52:06 UT</pubDate>
    <author>Lukas Lazarek</author>
    <description>
-&lt;p&gt;&lt;a href="https://docs.racket-lang.org/rackunit/index.html?q%3Drackunit"&gt;Rackunit&lt;/a&gt; is Racket&amp;rsquo;s unit testing library, and it has a pretty cool set of features. It aims to support testing at every stage of development, from simple inline checks to large, programmatically manipulated test suites. Unfortunately, despite the many features rackunit provides to support this goal, I have many-a-time found myself struggling against rackunit&amp;rsquo;s model for defining new checks. Last weekend, I finally got around to writing a testing library that provides a simpler interface to write flexible, composable test predicates and macros.&lt;/p&gt;&lt;a href="https://llazarek.github.io/blog/2018/12/experimenting-with-testing-syntax-and-composition.html"&gt;&lt;em&gt;More&amp;hellip;&lt;/em&gt;&lt;/a&gt;</description></item>
+&lt;p&gt;&lt;a href="https://docs.racket-lang.org/rackunit/index.html?q%3Drackunit"&gt;Rackunit&lt;/a&gt; is Racket&amp;rsquo;s unit testing library, and it has a pretty cool set of features. It aims to support testing at every stage of development, from simple inline checks to large, programmatically manipulated test suites. Unfortunately, despite the many features rackunit provides to support this goal, I have many-a-time found myself struggling against rackunit&amp;rsquo;s model for defining new checks. Last weekend, I finally got around to writing a testing library that provides a simpler interface to write flexible, composable test predicates and macros.&lt;/p&gt;&lt;a href="https://llazarek.github.io/2018/12/experimenting-with-testing-syntax-and-composition.html"&gt;&lt;em&gt;More&amp;hellip;&lt;/em&gt;&lt;/a&gt;</description></item>
   <item>
    <title>Org Export Processing</title>
-   <link>https://llazarek.github.io/blog/2018/11/org-export-processing.html</link>
-   <guid isPermaLink="false">urn:https-llazarek-github-io:-blog-2018-11-org-export-processing-html</guid>
-   <pubDate>Sun, 04 Nov 2018 01:33:06 UT</pubDate>
+   <link>https://llazarek.github.io/2018/11/org-export-processing.html</link>
+   <guid isPermaLink="false">urn:https-llazarek-github-io:-2018-11-org-export-processing-html</guid>
+   <pubDate>Sat, 03 Nov 2018 18:33:06 UT</pubDate>
    <author>Lukas Lazarek</author>
    <description>
-&lt;p&gt;Org&amp;rsquo;s &lt;a href="https://orgmode.org/manual/Exporting.html"&gt;export system&lt;/a&gt; is a fantastic tool for writing various documents quickly and easily within org mode. The only thing it lacks is simple tools for user-defined content generation during export. It&amp;rsquo;s pretty easy to implement, though.&lt;/p&gt;&lt;a href="https://llazarek.github.io/blog/2018/11/org-export-processing.html"&gt;&lt;em&gt;More&amp;hellip;&lt;/em&gt;&lt;/a&gt;</description></item>
+&lt;p&gt;Org&amp;rsquo;s &lt;a href="https://orgmode.org/manual/Exporting.html"&gt;export system&lt;/a&gt; is a fantastic tool for writing various documents quickly and easily within org mode. The only thing it lacks is simple tools for user-defined content generation during export. It&amp;rsquo;s pretty easy to implement, though.&lt;/p&gt;&lt;a href="https://llazarek.github.io/2018/11/org-export-processing.html"&gt;&lt;em&gt;More&amp;hellip;&lt;/em&gt;&lt;/a&gt;</description></item>
   <item>
    <title>Images in Org mode</title>
-   <link>https://llazarek.github.io/blog/2018/10/images-in-org-mode.html</link>
-   <guid isPermaLink="false">urn:https-llazarek-github-io:-blog-2018-10-images-in-org-mode-html</guid>
-   <pubDate>Sun, 14 Oct 2018 16:39:49 UT</pubDate>
+   <link>https://llazarek.github.io/2018/10/images-in-org-mode.html</link>
+   <guid isPermaLink="false">urn:https-llazarek-github-io:-2018-10-images-in-org-mode-html</guid>
+   <pubDate>Sun, 14 Oct 2018 09:39:49 UT</pubDate>
    <author>Lukas Lazarek</author>
    <description>
-&lt;p&gt;Org-mode prides itself on being purely plain text. That doesn&amp;rsquo;t mean that it can&amp;rsquo;t do images, though!&lt;/p&gt;&lt;a href="https://llazarek.github.io/blog/2018/10/images-in-org-mode.html"&gt;&lt;em&gt;More&amp;hellip;&lt;/em&gt;&lt;/a&gt;</description></item>
+&lt;p&gt;Org-mode prides itself on being purely plain text. That doesn&amp;rsquo;t mean that it can&amp;rsquo;t do images, though!&lt;/p&gt;&lt;a href="https://llazarek.github.io/2018/10/images-in-org-mode.html"&gt;&lt;em&gt;More&amp;hellip;&lt;/em&gt;&lt;/a&gt;</description></item>
   <item>
    <title>Improving the Agenda (part 2: custom views)</title>
-   <link>https://llazarek.github.io/blog/2018/09/improving-the-agenda-part-2-custom-views.html</link>
-   <guid isPermaLink="false">urn:https-llazarek-github-io:-blog-2018-09-improving-the-agenda-part-2-custom-views-html</guid>
-   <pubDate>Fri, 07 Sep 2018 01:40:28 UT</pubDate>
+   <link>https://llazarek.github.io/2018/09/improving-the-agenda-part-2-custom-views.html</link>
+   <guid isPermaLink="false">urn:https-llazarek-github-io:-2018-09-improving-the-agenda-part-2-custom-views-html</guid>
+   <pubDate>Thu, 06 Sep 2018 18:40:28 UT</pubDate>
    <author>Lukas Lazarek</author>
    <description>
-&lt;p&gt;This is the second post on configuring the agenda. Find the first post &lt;a href="https://llazarek.github.io/2018/07/improving-the-agenda.html"&gt;here&lt;/a&gt;.&lt;/p&gt;&lt;a href="https://llazarek.github.io/blog/2018/09/improving-the-agenda-part-2-custom-views.html"&gt;&lt;em&gt;More&amp;hellip;&lt;/em&gt;&lt;/a&gt;</description></item>
+&lt;p&gt;This is the second post on configuring the agenda. Find the first post &lt;a href="https://llazarek.github.io/2018/07/improving-the-agenda.html"&gt;here&lt;/a&gt;.&lt;/p&gt;&lt;a href="https://llazarek.github.io/2018/09/improving-the-agenda-part-2-custom-views.html"&gt;&lt;em&gt;More&amp;hellip;&lt;/em&gt;&lt;/a&gt;</description></item>
   <item>
    <title>Scripting Emacs</title>
-   <link>https://llazarek.github.io/blog/2018/08/scripting-emacs.html</link>
-   <guid isPermaLink="false">urn:https-llazarek-github-io:-blog-2018-08-scripting-emacs-html</guid>
-   <pubDate>Wed, 15 Aug 2018 15:46:59 UT</pubDate>
+   <link>https://llazarek.github.io/2018/08/scripting-emacs.html</link>
+   <guid isPermaLink="false">urn:https-llazarek-github-io:-2018-08-scripting-emacs-html</guid>
+   <pubDate>Wed, 15 Aug 2018 08:46:59 UT</pubDate>
    <author>Lukas Lazarek</author>
    <description>
-&lt;p&gt;I recently realized how easy it is to make emacs automatically do even more repetitive things I used to do manually.&lt;/p&gt;&lt;a href="https://llazarek.github.io/blog/2018/08/scripting-emacs.html"&gt;&lt;em&gt;More&amp;hellip;&lt;/em&gt;&lt;/a&gt;</description></item>
+&lt;p&gt;I recently realized how easy it is to make emacs automatically do even more repetitive things I used to do manually.&lt;/p&gt;&lt;a href="https://llazarek.github.io/2018/08/scripting-emacs.html"&gt;&lt;em&gt;More&amp;hellip;&lt;/em&gt;&lt;/a&gt;</description></item>
   <item>
    <title>Setting up a home cloud server with Nextcloud</title>
    <link>https://llazarek.github.io/2018/08/setting-up-a-home-cloud-server-with-nextcloud.html</link>
    <guid isPermaLink="false">urn:https-llazarek-github-io:-2018-08-setting-up-a-home-cloud-server-with-nextcloud-html</guid>
-   <pubDate>Sun, 12 Aug 2018 16:32:37 UT</pubDate>
+   <pubDate>Sun, 12 Aug 2018 09:32:37 UT</pubDate>
    <author>Lukas Lazarek</author>
    <description>
 &lt;p&gt;This weekend, I set up a home server for my parents running Nextcloud so that they can have their own, (almost) free cloud storage. The process was surprisingly simple and fun, though there are a number of steps involved, so I&amp;rsquo;m documenting it here for the sake of reproducibility.&lt;/p&gt;&lt;a href="https://llazarek.github.io/2018/08/setting-up-a-home-cloud-server-with-nextcloud.html"&gt;&lt;em&gt;More&amp;hellip;&lt;/em&gt;&lt;/a&gt;</description></item>
   <item>
    <title>Tracking Expenses with Ledger</title>
-   <link>https://llazarek.github.io/blog/2018/07/tracking-expenses-with-ledger.html</link>
-   <guid isPermaLink="false">urn:https-llazarek-github-io:-blog-2018-07-tracking-expenses-with-ledger-html</guid>
-   <pubDate>Fri, 20 Jul 2018 18:34:47 UT</pubDate>
+   <link>https://llazarek.github.io/2018/07/tracking-expenses-with-ledger.html</link>
+   <guid isPermaLink="false">urn:https-llazarek-github-io:-2018-07-tracking-expenses-with-ledger-html</guid>
+   <pubDate>Fri, 20 Jul 2018 11:34:47 UT</pubDate>
    <author>Lukas Lazarek</author>
    <description>
-&lt;p&gt;How I track expenses using ledger, even on my phone.&lt;/p&gt;&lt;a href="https://llazarek.github.io/blog/2018/07/tracking-expenses-with-ledger.html"&gt;&lt;em&gt;More&amp;hellip;&lt;/em&gt;&lt;/a&gt;</description></item>
+&lt;p&gt;How I track expenses using ledger, even on my phone.&lt;/p&gt;&lt;a href="https://llazarek.github.io/2018/07/tracking-expenses-with-ledger.html"&gt;&lt;em&gt;More&amp;hellip;&lt;/em&gt;&lt;/a&gt;</description></item>
   <item>
    <title>Improving the Agenda</title>
-   <link>https://llazarek.github.io/blog/2018/07/improving-the-agenda.html</link>
-   <guid isPermaLink="false">urn:https-llazarek-github-io:-blog-2018-07-improving-the-agenda-html</guid>
-   <pubDate>Mon, 09 Jul 2018 08:27:27 UT</pubDate>
+   <link>https://llazarek.github.io/2018/07/improving-the-agenda.html</link>
+   <guid isPermaLink="false">urn:https-llazarek-github-io:-2018-07-improving-the-agenda-html</guid>
+   <pubDate>Mon, 09 Jul 2018 01:27:27 UT</pubDate>
    <author>Lukas Lazarek</author>
    <description>
-&lt;p&gt;Org mode&amp;rsquo;s agenda is a fantastic interface for viewing and managing tasks. However, its default display settings get cluttered with large numbers of tasks, making it difficult to see what really needs to be done. Here are some of the ways I make the agenda crystal clear.&lt;/p&gt;&lt;a href="https://llazarek.github.io/blog/2018/07/improving-the-agenda.html"&gt;&lt;em&gt;More&amp;hellip;&lt;/em&gt;&lt;/a&gt;</description></item>
+&lt;p&gt;Org mode&amp;rsquo;s agenda is a fantastic interface for viewing and managing tasks. However, its default display settings get cluttered with large numbers of tasks, making it difficult to see what really needs to be done. Here are some of the ways I make the agenda crystal clear.&lt;/p&gt;&lt;a href="https://llazarek.github.io/2018/07/improving-the-agenda.html"&gt;&lt;em&gt;More&amp;hellip;&lt;/em&gt;&lt;/a&gt;</description></item>
   <item>
    <title>Modal Editing in Emacs</title>
-   <link>https://llazarek.github.io/blog/2018/07/modal-editing-in-emacs.html</link>
-   <guid isPermaLink="false">urn:https-llazarek-github-io:-blog-2018-07-modal-editing-in-emacs-html</guid>
-   <pubDate>Mon, 09 Jul 2018 07:02:02 UT</pubDate>
+   <link>https://llazarek.github.io/2018/07/modal-editing-in-emacs.html</link>
+   <guid isPermaLink="false">urn:https-llazarek-github-io:-2018-07-modal-editing-in-emacs-html</guid>
+   <pubDate>Mon, 09 Jul 2018 00:02:02 UT</pubDate>
    <author>Lukas Lazarek</author>
    <description>
-&lt;p&gt;Modal editing in emacs is easy, and can be much better than vim.&lt;/p&gt;&lt;a href="https://llazarek.github.io/blog/2018/07/modal-editing-in-emacs.html"&gt;&lt;em&gt;More&amp;hellip;&lt;/em&gt;&lt;/a&gt;</description></item>
+&lt;p&gt;Modal editing in emacs is easy, and can be much better than vim.&lt;/p&gt;&lt;a href="https://llazarek.github.io/2018/07/modal-editing-in-emacs.html"&gt;&lt;em&gt;More&amp;hellip;&lt;/em&gt;&lt;/a&gt;</description></item>
   <item>
    <title>Organization with Org Mode</title>
-   <link>https://llazarek.github.io/blog/2018/07/organization-with-org-mode.html</link>
-   <guid isPermaLink="false">urn:https-llazarek-github-io:-blog-2018-07-organization-with-org-mode-html</guid>
-   <pubDate>Mon, 02 Jul 2018 16:37:07 UT</pubDate>
+   <link>https://llazarek.github.io/2018/07/organization-with-org-mode.html</link>
+   <guid isPermaLink="false">urn:https-llazarek-github-io:-2018-07-organization-with-org-mode-html</guid>
+   <pubDate>Mon, 02 Jul 2018 09:37:07 UT</pubDate>
    <author>Lukas Lazarek</author>
    <description>
-&lt;p&gt;I organize myself and my work using emacs&amp;rsquo; org mode. It has served me extremely well over the past few years and has helped me better organize both my working and personal life. In this post, I describe how I use org mode for everything from long-term projects to appointments and ideas.&lt;/p&gt;&lt;a href="https://llazarek.github.io/blog/2018/07/organization-with-org-mode.html"&gt;&lt;em&gt;More&amp;hellip;&lt;/em&gt;&lt;/a&gt;</description></item>
+&lt;p&gt;I organize myself and my work using emacs&amp;rsquo; org mode. It has served me extremely well over the past few years and has helped me better organize both my working and personal life. In this post, I describe how I use org mode for everything from long-term projects to appointments and ideas.&lt;/p&gt;&lt;a href="https://llazarek.github.io/2018/07/organization-with-org-mode.html"&gt;&lt;em&gt;More&amp;hellip;&lt;/em&gt;&lt;/a&gt;</description></item>
   <item>
    <title>Language-oriented Programming: ptext</title>
-   <link>https://llazarek.github.io/blog/2018/05/language-oriented-programming-ptext.html</link>
-   <guid isPermaLink="false">urn:https-llazarek-github-io:-blog-2018-05-language-oriented-programming-ptext-html</guid>
-   <pubDate>Wed, 23 May 2018 00:06:27 UT</pubDate>
+   <link>https://llazarek.github.io/2018/05/language-oriented-programming-ptext.html</link>
+   <guid isPermaLink="false">urn:https-llazarek-github-io:-2018-05-language-oriented-programming-ptext-html</guid>
+   <pubDate>Tue, 22 May 2018 17:06:27 UT</pubDate>
    <author>Lukas Lazarek</author>
    <description>
-&lt;p&gt;Language-oriented programming in action with racket.&lt;/p&gt;&lt;a href="https://llazarek.github.io/blog/2018/05/language-oriented-programming-ptext.html"&gt;&lt;em&gt;More&amp;hellip;&lt;/em&gt;&lt;/a&gt;</description></item></channel></rss>
+&lt;p&gt;Language-oriented programming in action with racket.&lt;/p&gt;&lt;a href="https://llazarek.github.io/2018/05/language-oriented-programming-ptext.html"&gt;&lt;em&gt;More&amp;hellip;&lt;/em&gt;&lt;/a&gt;</description></item></channel></rss>
