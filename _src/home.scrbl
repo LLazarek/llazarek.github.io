@@ -36,6 +36,17 @@ I can be reached by email at
 
 @(linebreak)
 @subsection{Publications}
+@subsubsection{2026}
+@(export-and-render-citation! sash-sosp-26 "bib/sash-sosp-26.html")
+
+@(linebreak)
+
+@(export-and-render-citation! rt-osdi-26 "bib/rt-osdi-26.html")
+
+@(linebreak)
+
+@(export-and-render-citation! koala-tocs-26 "bib/koala-tocs-26.html")
+
 @subsubsection{2025}
 @(export-and-render-citation! koala-atc-25 "bib/koala-atc-25.html")
 
@@ -61,6 +72,12 @@ I can be reached by email at
 @(linebreak)
 @subsection{Software}
 @itemlist[#:style #f
+@item{@hyperlink["https://github.com/atlas-brown/sash"]{sash} - symbolic execution engine for shell scripts
+}
+@item{@hyperlink["https://github.com/atlas-brown/rt"]{rt} - type checker for shell streams
+}
+@item{@hyperlink["https://github.com/kbensh/koala"]{koala} - a benchmark suite of diverse shell scripts
+}
 @item{@hyperlink["https://github.com/LLazarek/complot"]{complot} - language for compositional data visualization design
 }
 @item{@hyperlink["https://github.com/LLazarek/configurable"]{configurable} - library for simple software configuration via config files
@@ -83,6 +100,20 @@ I can be reached by email at
 
 @(linebreak)
 @subsection{Talks}
+@(render-talk "Semantics-Driven Static Analysis for UNIX Shell programs"
+              "Northeastern, Boston"
+              "2026-02"
+              #f
+              (hash)
+              "Invited talk.")
+
+@(render-talk "Mutate: Inject Bugs into Your Programs!"
+              "Thirteenth RacketCon, Northwestern"
+              "2023-10"
+              #f
+              (hash "video" "https://www.youtube.com/watch?v=C1I4Glv7ixI")
+              "Talk about the mutate mutation system (see Software).")
+
 @(render-talk "How to Evaluate Blame for Gradual Types, Part 2"
               "ICFP 2023, Seattle"
               "2023-09-07"
